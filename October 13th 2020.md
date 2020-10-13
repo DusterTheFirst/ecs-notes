@@ -1,8 +1,6 @@
-# Problem review:
+# Unions and data design
 
-## Unions and data design
-
-### Lab 2 Problem 2
+## Lab 2 Problem 2
 > Design a function message-to-employee which takes in the kind of data you defined above and
 produces a message about the employee’s paycheck. For example if the employee receives a paycheck
 every week you should produce “Here is your weekly paycheck!”. Is the template useful here? Why or
