@@ -6,11 +6,11 @@ produces a message about the employee’s paycheck. For example if the employee 
 every week you should produce “Here is your weekly paycheck!”. Is the template useful here? Why or
 why not?
 
-**Define what the data is**
-    Paycheck can be weekly, biweekly, or monthly
+**Define what the data is**\
+    Paycheck can be weekly, biweekly, or monthly.
     
-**What does it represent?**
-    Paycheck represents how often an employee is paid
+**What does it represent?**\
+    Paycheck represents how often an employee is paid.
 
 Now that we have it all in our head, we should put it down in a comment:
 ```scheme
@@ -21,35 +21,37 @@ Now that we have it all in our head, we should put it down in a comment:
 ; and represents how often an employee is paid
 ```
     
- **Once you have the idea, define some constants (if there are a finite amount)**
+Once you have the idea, define some constants (if there are a finite amount).
  ```scheme
  (define PC-W "weekly")
  (define PC-B "biweekly")
  (define PC-M "monthly")
 ```
 
-**Once you have the idea and the data, create a template:**
+Once you have the idea and the data, create a template:
 ```scheme
 (define (paycheck-template pc)
     (cond [(string=? pc PC-W) ...]
           [(string=? pc PC-B) ...]
           [(string=? pc PC-M) ...]))
 ```
-> The ...s are not valid scheme, they just tell us that we will come back to them later
+> The `...`s are not valid scheme, they just tell us that we will come back to them later.
 
-**Now we can move onto creating a function to tell the employee about their paycheck**
-*Always start by laying out the function you want*
-Name: message-to-employee
-Input: Paycheck
-Output: String
-Description: Message an employee about when their paycheck arrives
-*Now that you have it layed out, put it in a comment*
+*Now we can move onto creating a function to tell the employee about their paycheck.*
+**Always** start by laying out the function you want.
+
+**Name:** `message-to-employee`\
+**Input:** `Paycheck`\
+**Output:** `String`\
+**Description:** `Message an employee about when their paycheck arrives.`
+
+Now that you have it in your head, put it in a comment.
 ```scheme
 ; message-to-employee : Paycheck -> String
 ; Message an employee about when their paycheck arrives
 ```
 
-*Once you have the layout of your function, **ALWAYS** write out (at least) 2 check-expect tests*
+Once you have the layout of your function, **ALWAYS** write out (at least) 2 check-expect tests.
 ```scheme
 (check-expect
     (message-to-employee PC-W)
@@ -61,24 +63,26 @@ Description: Message an employee about when their paycheck arrives
     (message-to-employee PC-M)
     "Here is your monthly paycheck!")
 ```
-> In this case, we create 3 tests since there are 3 variants of our type
+> In this case, we create 3 tests since there are 3 variants of our type.
 
-*Now that we have it all layed out, we can create a function by pasting our template*
+*Now that we have it all layed out, we can create a function by pasting our template.*
 ```scheme
 (define (message-to-employee pc)
     (cond [(string=? pc PC-W) ...]
           [(string=? pc PC-B) ...]
           [(string=? pc PC-M) ...]))
 ```
-**Now we need to change the ...s to something more useful**
-*In our case, the ...s would all become the same thing:*
+
+Now we need to change the `...`s to something more useful.
+*In our case, the `...`s would all become the same thing:*
 ```scheme
 (define (message-to-employee pc)
     (cond [(string=? pc PC-W) (string-append "Here is your " pc " paycheck!")]
           [(string=? pc PC-B) (string-append "Here is your " pc " paycheck!")]
           [(string=? pc PC-M) (string-append "Here is your " pc " paycheck!")]))
 ```
-*Since they are all the same, we can simplify the function down to just one line
+
+Since they are all the *same*, we can simplify the function down to just one line.
 ```scheme
 (define (message-to-employee pc)
     (string-append "Here is your " pc " paycheck!"))
@@ -95,11 +99,13 @@ you will need to multiply the input number by 12 since there are 12 months in a 
 here? Why or why not?
 
 *As always, start your function definition with its signature*
-Name: calculate-annual
-Input: Number and Paycheck
-Output: Number
-Description: Estimates how much an employee will earn by the end of the year
-*Now that you have it layed out, put it in a comment*
+
+**Name:** `calculate-annual`\
+**Input:** `Number and Paycheck`\
+**Output:** `Number`\
+**Description:** `Estimates how much an employee will earn by the end of the year`
+
+Now that you have it all out, put it in a comment:
 ```scheme
 ; calculate-annual : Number Paycheck -> Number
 ; Estimates how much an employee will earn by the end of the year
@@ -112,7 +118,7 @@ Description: Estimates how much an employee will earn by the end of the year
 (check-expect (calculate-annual 450 PC-B) (* 450 26))
 ```
 
-*Now that we have the check-expects all layed out, its time to make the function*
+Now that we have the check-expects all out, its time to make the function:
 ```scheme
 (define (calculate-annual single-paycheck pc)
     (cond [(string=? pc PC-W) (* single-paycheck 52)]
@@ -121,13 +127,12 @@ Description: Estimates how much an employee will earn by the end of the year
 ```
 > In this case, the custom data type is useful since we are able to use the seperate paths to calculate the paycheck differently
 
-
 ### Lab 2 problem 4
 > Design data to represent the name of someone who has donated to a charity. Your data should account for the fact that the 
 donor may wish to remain anonymous. Why can’t we use a String to represent the anonymous donor? What can we use instead? Don’t 
 forget to follow all 4 steps of the design recipe for data.
 
-*The first thing we need to do when defining a data type is to define what it can be*
+The first thing we need to do when defining a data type is to define what it can be:
 ```scheme
 ; A DonorName is one of:
 ;   - String
@@ -135,13 +140,13 @@ forget to follow all 4 steps of the design recipe for data.
 ; and represents the name of someone donating to charity
 ```
 
-*Now that we have our data type all layed out for us, we should now create (at least) 2 examples of the data type*
+Now that we have our data type all layed out for us, we should now create (at least) 2 examples of the data type.
 ```scheme
 (define DONORNAME1 "Paul")
 (define DONORNAME2 false)
 ```
 
-*Once we have some examples we can make a template*
+Once we have some examples we can make a template:
 ```scheme
 (define (donor-template dn)
     (cond [(string? dn) ...]
@@ -154,24 +159,26 @@ forget to follow all 4 steps of the design recipe for data.
 message to send via email such as “Thank you, Bob!” if the donor’s name was Bob. If the donor was anonymous it produces false. 
 What kind of data do you need to design in order to write the signature for this function?
 
-*As always, start your function definition with its signature*
-Name: email-donor
-Input: DonorName
-Output: String or false (we could make another data type, but to save time I will not)
-Description: To send a message to the given donor if they are not anonymous
-*Now that you have it layed out, put it in a comment*
+As always, start your function definition with its signature:
+
+**Name:** `email-donor`\
+**Input:** `DonorName`\
+**Output:** `String or false` (we could make another data type, but to save time I will not)\
+**Description:** `To send a message to the given donor if they are not anonymous`
+
+Now that you know it, put it in a comment:
 ```scheme
 ; email-donor : DonorName -> String or false
 ; To send a message to the given donor if they are not anonymous
 ```
 
-**Now that we have the signature, we can write some check expects**
+Now that we have the signature, we can write some check expects
 ```scheme
 (check-expect (email-donor DONORNAME1) "Thank you, Paul!")
 (check-expect (email-donor DONORNAME2) false)
 ```
 
-*And finally, we can write the function itself, copying the template*
+And finally, we can write the function itself, copying the template and replacing the `...`s
 ```scheme
 (define (email-donor dn)
     (cond [(string? dn) (string-append "Thank you, " dn "!")]
