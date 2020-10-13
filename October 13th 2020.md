@@ -11,8 +11,17 @@ why not?
 **Define what the data is**
     Paycheck can be weekly, biweekly, or monthly
     
- **What does it represent?**
+**What does it represent?**
     Paycheck represents how often an employee is paid
+
+Now that we have it all in our head, we should put it down in a comment:
+```scheme
+; A Paycheck is one of:
+; - "weekly"
+; - "biweekly"
+; - "monthly"
+; and represents how often an employee is paid
+```
     
  **Once you have the idea, define some constants (if there are a finite amount)**
  ```scheme
