@@ -122,3 +122,60 @@ Description: Estimates how much an employee will earn by the end of the year
           [(string=? pc PC-M) (* single-paycheck 12)]
 ```
 > In this case, the custom data type is useful since we are able to use the seperate paths to calculate the paycheck differently
+
+
+### Lab 2 problem 4
+> Design data to represent the name of someone who has donated to a charity. Your data should account for the fact that the 
+donor may wish to remain anonymous. Why can’t we use a String to represent the anonymous donor? What can we use instead? Don’t 
+forget to follow all 4 steps of the design recipe for data.
+
+*The first thing we need to do when defining a data type is to define what it can be*
+```scheme
+; A DonorName is one of:
+;   - String
+:   - false
+; and represents the name of someone donating to charity
+```
+
+*Now that we have our data type all layed out for us, we should now create (at least) 2 examples of the data type*
+```scheme
+(define DONORNAME1 "Paul")
+(define DONORNAME2 false)
+```
+
+*Once we have some examples we can make a template*
+```scheme
+(define (donor-template dn)
+    (cond [(string? dn) ...]
+          [(boolean? dn) ...]))
+```
+> Remember, the ...s are there for us to replace later when we copy this template
+
+### Lab 2 problem 5
+> Design a function email-donor which takes in the type of data you defined above. If the donor is not anonymous it produces a 
+message to send via email such as “Thank you, Bob!” if the donor’s name was Bob. If the donor was anonymous it produces false. 
+What kind of data do you need to design in order to write the signature for this function?
+
+*As always, start your function definition with its signature*
+Name: email-donor
+Input: DonorName
+Output: String or false (we could make another data type, but to save time I will not)
+Description: To send a message to the given donor if they are not anonymous
+*Now that you have it layed out, put it in a comment*
+```scheme
+; email-donor : DonorName -> String or false
+; To send a message to the given donor if they are not anonymous
+```
+
+**Now that we have the signature, we can write some check expects**
+```scheme
+(check-expect (email-donor DONORNAME1) "Thank you, Paul!")
+(check-expect (email-donor DONORNAME2) false)
+```
+
+*And finally, we can write the function itself, copying the template*
+```scheme
+(define (email-donor dn)
+    (cond [(string? dn) (string-append "Thank you, " dn "!")]
+          [(boolean? dn) false]))
+```
