@@ -90,7 +90,7 @@ Description: Estimates how much an employee will earn by the end of the year
 (check-expect (calculate-annual 450 PC-B) (* 450 26))
 ```
 
-*Now that we have the check-expects all layed out, its time to make the function
+*Now that we have the check-expects all layed out, its time to make the function*
 ```scheme
 (define (calculate-annual single-paycheck pc)
     (cond [(string=? pc PC-W) (* single-paycheck 52)]
