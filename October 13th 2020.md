@@ -133,7 +133,7 @@ forget to follow all 4 steps of the design recipe for data.
 ```scheme
 ; A DonorName is one of:
 ;   - String
-:   - false
+;   - false
 ; and represents the name of someone donating to charity
 ```
 
