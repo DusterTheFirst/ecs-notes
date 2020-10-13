@@ -56,7 +56,22 @@ Description: Message an employee about when their paycheck arrives
 ```
 > In this case, we create 3 tests since there are 3 variants of our type
 
-*Now that we have it all layed out, we can create a function*
+*Now that we have it all layed out, we can create a function by pasting our template*
+```scheme
+(define (message-to-employee pc)
+    (cond [(string=? pc PC-W) ...]
+          [(string=? pc PC-B) ...]
+          [(string=? pc PC-M) ...]))
+```
+**Now we need to change the ...s to something more useful**
+*In our case, the ...s would all become the same thing:*
+```scheme
+(define (message-to-employee pc)
+    (cond [(string=? pc PC-W) (string-append "Here is your " pc " paycheck!")]
+          [(string=? pc PC-B) (string-append "Here is your " pc " paycheck!")]
+          [(string=? pc PC-M) (string-append "Here is your " pc " paycheck!")]))
+```
+*Since they are all the same, we can simplify the function down to just one line
 ```scheme
 (define (message-to-employee pc)
     (string-append "Here is your " pc " paycheck!"))
