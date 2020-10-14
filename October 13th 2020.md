@@ -1,5 +1,5 @@
 # Unions and data design
-[Jump to TL;DR (summary)](#TL;DR)
+[Jump to TL;DR (summary)](#tldr-october-13-2020)
 
 ## Lab 2 Problem 2
 > Design a function message-to-employee which takes in the kind of data you defined above and
@@ -186,11 +186,11 @@ And finally, we can write the function itself, copying the template and replacin
           [(boolean? dn) false]))
 ```
 
-# TL;DR
+# TL;DR (October 13 2020)
 - Unions are useful for if you need to hold 2 different data types in the same spot
 - Unions can be one data type or the other, but never both
 - Unions are invisible to scheme, so scheme cannot enforce the types for us
 - Unions can be separated using the `type?` functions, such as `string?` or `number?`
 - Cond is very powerful for using unions. ie. the above function
-- **ALWAYS** define at least 2 examples of the union if it has an infinite amount of possibilities [see Lab 2 Problem 4](#Lab%202%20problem%204)
-- **If Possible** define all variants of the union (only for non infinite ones) [see Lab 2 Problem 2](#Lab%202%20Problem%202)
+- **ALWAYS** define at least 2 examples of the union if it has an infinite amount of possibilities [see Lab 2 Problem 4](#lab-2-problem-4)
+- **If Possible** define all variants of the union (only for non infinite ones) [see Lab 2 Problem 2](#Lab-2-Problem-2)
