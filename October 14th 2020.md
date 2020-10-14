@@ -1,5 +1,6 @@
 # Text Editor v2
-[Jump to TL;DR (summary)](#tldr-october-14-2020)
+[Jump to TL;DR (summary)](#tldr-october-14-2020)\
+[Jump to Table Of Contents](#file-ecs-notes-md)
 
 In our previous text editor, we only used the text as the world state,
 limiting us to not be able to move the cursor around the screen
