@@ -1,4 +1,5 @@
 # Unions and data design
+[Jump to TL;DR (summary)](#TL;DR)
 
 ## Lab 2 Problem 2
 > Design a function message-to-employee which takes in the kind of data you defined above and
@@ -91,7 +92,7 @@ Since they are all the *same*, we can simplify the function down to just one lin
 In the end, our template and custom type were not used since they were more or less extrenious,
 we did not need to create a custom type for this since there is one code path for every paycheck type
 
-### Lab 2 Problem 3
+## Lab 2 Problem 3
 > Design a function calculate-annual which takes in a Number, representing the amount an employee makes
 on a single paycheck, and the data describing how often they receive the paycheck. It produces a Number
 with an estimate of their annual wages. For example, if the employee gets their paycheck once per month
@@ -127,7 +128,7 @@ Now that we have the check-expects all out, its time to make the function:
 ```
 > In this case, the custom data type is useful since we are able to use the seperate paths to calculate the paycheck differently
 
-### Lab 2 problem 4
+## Lab 2 problem 4
 > Design data to represent the name of someone who has donated to a charity. Your data should account for the fact that the 
 donor may wish to remain anonymous. Why can’t we use a String to represent the anonymous donor? What can we use instead? Don’t 
 forget to follow all 4 steps of the design recipe for data.
@@ -154,7 +155,7 @@ Once we have some examples we can make a template:
 ```
 > Remember, the ...s are there for us to replace later when we copy this template
 
-### Lab 2 problem 5
+## Lab 2 problem 5
 > Design a function email-donor which takes in the type of data you defined above. If the donor is not anonymous it produces a 
 message to send via email such as “Thank you, Bob!” if the donor’s name was Bob. If the donor was anonymous it produces false. 
 What kind of data do you need to design in order to write the signature for this function?
@@ -184,3 +185,12 @@ And finally, we can write the function itself, copying the template and replacin
     (cond [(string? dn) (string-append "Thank you, " dn "!")]
           [(boolean? dn) false]))
 ```
+
+# TL;DR
+- Unions are useful for if you need to hold 2 different data types in the same spot
+- Unions can be one data type or the other, but never both
+- Unions are invisible to scheme, so scheme cannot enforce the types for us
+- Unions can be separated using the `type?` functions, such as `string?` or `number?`
+- Cond is very powerful for using unions. ie. the above function
+- **ALWAYS** define at least 2 examples of the union if it has an infinite amount of possibilities [see Lab 2 Problem 4](#Lab%202%20problem%204)
+- **If Possible** define all variants of the union (only for non infinite ones) [see Lab 2 Problem 2](#Lab%202%20Problem%202)
