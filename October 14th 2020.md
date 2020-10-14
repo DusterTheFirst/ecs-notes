@@ -188,3 +188,5 @@ for deeply nested data, such as the address inside of the student [see: Changing
     - To be able to modify a structure, you have to create a whole new one with the new data [see:  Holding a student back](#holding-a-student-back)
 - Scheme is very lax and does not enforce the types you want in your structures, you have to be
 weary of that and enforce it yourself
+
+[Jump to Table Of Contents](#file-ecs-notes-md)
