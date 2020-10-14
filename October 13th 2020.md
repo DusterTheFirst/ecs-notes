@@ -1,6 +1,7 @@
 # Unions and data design
 [Jump to TL;DR (summary)](#tldr-october-13-2020)\
-[Jump to Table Of Contents](#file-ecs-notes-md)
+[Jump to Table Of Contents](#file-ecs-notes-md)\
+[Code for this lesson on wescheme](https://www.wescheme.org/openEditor?publicId=wRuHb37cbQ)
 
 ## Lab 2 Problem 2
 > Design a function message-to-employee which takes in the kind of data you defined above and

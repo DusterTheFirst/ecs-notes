@@ -1,6 +1,7 @@
 # Text Editor v2
 [Jump to TL;DR (summary)](#tldr-october-14-2020)\
-[Jump to Table Of Contents](#file-ecs-notes-md)
+[Jump to Table Of Contents](#file-ecs-notes-md)\
+[Code for this lesson on wescheme](https://www.wescheme.org/openEditor?publicId=Cy6jDDBlgN)
 
 In our previous text editor, we only used the text as the world state,
 limiting us to not be able to move the cursor around the screen
@@ -121,7 +122,18 @@ Now, we define 2 sample students:
 (define STUDENT1 (make-stdnt "Sheev" 4 ADDRESS1))
 (define STUDENT2 (make-stdnt "Alice" 1234567789 ADDRESS2))
 ```
-TODO: finish section
+
+As always, after setting up the struct and creating the samples, we should
+create a template for us to use later.
+```scheme
+(define (student-template s)
+  (... (stdnt-name s)
+       (stdnt-grad-yr s)
+       (address-template (stdnt-house s)) ...))
+```
+> Notice how in this template, we also use the address-template. That is because the house
+member of the `student` structure is an `address` structure, so we need to use the tools from the address-template
+to get the data out of the address
 
 ## Using a structure in a function
 What if we want to use our new fandangled structure in a function? Well, lets try it out!
@@ -170,7 +182,139 @@ Heres how you would do that:
 that the gradyr is now one more than the given
 
 ## Changing the zip code
-TODO: add section
+As always, start by laying out the function you want.
+> I know it can get repetitive, but your later self with thank you
+
+**Name:** `update-zip-for-student`\
+**Input:** `Student and Nat`\
+**Output:** `Student`\
+**Description:** `Update a student's zip code to be a new, given a new zip code`
+
+And now as a nice concise comment
+```scheme
+; update-zip-for-student : Student Nat -> Student
+; Update a student's zip code to be a new, given a new zip code
+```
+
+Now that we have the function all layed out, we can start with some check-expects
+```scheme
+(check-expect
+    (update-zip-for-student STUDENT1 12345)
+    (make-stdnt "Sheev" 4
+        (make-address 50 "Rice St" "Wellesley" "MA" 12345)))
+(check-expect
+    (update-zip-for-student STUDENT2 98765)
+    (make-stdnt "Alice" 123456789
+        (make-address 1 "a" "b" "c" 98765)))
+```
+> Looks normal, and it is, all that changes is the zip code. This should be easy, right?
+
+Well yes, but we have a lot of writing to do. We can define our function, copying the student template,
+but, we cant just update the zip by replacing the last parameter with a new zip code, cause it takes in a whole
+structure. We need to make another function that can update the zip in the structure for us.
+
+> Whenever you write a function, try to keep it limited to using only one data type at a time. In our case, we
+only use the student structure in this function, and we will make another `update-zip` function to handle the
+address structure
+```scheme
+(define (update-zip-for-student s new-zip)
+  (make-stdnt (stdnt-name s)
+              (stdnt-grad-yr s)
+              (update-zip (stdnt-house s) new-zip)))
+```
+
+Now, its time to make the update-zip function. Ill go quick with this one, assuming
+you have gotten faster with them aswell.
+```scheme
+; update-zip : Address Nat -> Address
+; Update the zip code for this address to the given #
+```
+**Bam**, theres our signature and description
+
+```scheme
+(check-expect
+    (update-zip ADDRESS1 02020)
+    (make-address 50 "Rice St" "Wellesley" "MA" 02020))
+(check-expect
+    (update-zip ADDRESS2 13579)
+    (make-address 1 "a" "b" "c" 13579))
+```
+**Whamo**, we have some check expects
+
+And then we can, very simply, just create the `update-zip` function
+```scheme
+(define (update-zip a new-zip)
+    (make-address
+        (address-house a)
+        (address-st a)
+        (address-city a)
+        (address-state a)
+        new-zip))
+```
+It may look like a lot of code, but if you break it down, all it does is create a new
+address, give it the house, st, city, and state of the old address, and just replace the
+zip with the new zip
+
+## Tying it together into a text editor
+Now that we have learned to use structures, we can put them to good use. We can use them in our
+text editor. Remember when we had our text editor, it could type and delete, but you could not move
+the cursor around. That was because our world state was a single string: The text that was in the editor.
+We had no way of storing the cursor position. Well, using these new hot structures that we have learned
+about, that is all about to change.
+
+So. first thing you do with any data type, function, or struct is a simple, one line comment describing it.
+In our case, we will make a structure called `TextEditor` or `te` for short with the text and cursor position
+as members. We can write this out in a comment like so:
+```scheme
+; A TextEditor is a (make-te String Nat)
+```
+
+Now that we know about the text editor, we need to tell scheme about it. (remember, anything after a `;` is
+invisible to scheme and is only for us to read).
+
+We can define the struct as such:
+```scheme
+(define-struct te [text cursor])
+```
+
+And now we can describe the types in the text editor further
+```scheme
+; and represents a text editor
+; - where text is the text you have typed
+; - and cursor is the index of the cursor
+```
+
+<details>
+<summary>All together they will look as such:</summary>
+
+```scheme
+; A TextEditor is a (make-te String Nat)
+(define-struct te [text cursor])
+; and represents a text editor
+; - where text is the text you have typed
+; - and cursor is the index of the cursor
+```
+
+</details>
+
+Now that we have the struct created and layed out. We need to make 2 samples:
+```scheme
+(define TE1 (make-te "hello" 1))
+(define TE2 (make-te "ECS" 0))
+```
+
+Although we don't have time to implement it into our text editor but we can make a simple
+function that we may be able to use as the on key handler for our big-bang program. Since it
+will handle key events, it take in our world state, in this case the `TextEditor` structure and the key event.
+```scheme
+; insert-text : TextEditor KeyEvent -> TextEditor
+; Insert text the user typed at the cursor's location
+```
+An example check expect could exist as such:
+```scheme
+(check-expect (insert-text TE1 "a")
+              (make-te "haello" 2))
+```
 
 # TL;DR (October 14, 2020)
 - Structures are a way to store more than one data piece in the same place
