@@ -1,5 +1,5 @@
 # Text Editor v2
-[Jump to TL;DR (summary)](#TL;DR)
+[Jump to TL;DR (summary)](#tldr-october-14-2020)
 
 In our previous text editor, we only used the text as the world state,
 limiting us to not be able to move the cursor around the screen
@@ -120,7 +120,7 @@ Now, we define 2 sample students:
 (define STUDENT1 (make-stdnt "Sheev" 4 ADDRESS1))
 (define STUDENT2 (make-stdnt "Alice" 1234567789 ADDRESS2))
 ```
-// TODO:
+TODO: finish section
 
 ## Using a structure in a function
 What if we want to use our new fandangled structure in a function? Well, lets try it out!
@@ -169,9 +169,9 @@ Heres how you would do that:
 that the gradyr is now one more than the given
 
 ## Changing the zip code
-// TODO:
+TODO: add section
 
-# TL;DR
+# TL;DR (October 14, 2020)
 - Structures are a way to store more than one data piece in the same place
 - Structures can be created like so:
 ```scheme
@@ -182,8 +182,8 @@ where `<name-of-structure>` is replaced with the name of your structure. (ex: `a
 `<name-of-field>` is replaced with the name of the field that you want to read. (ex: `st`). So
 to access an address's st(reet), we can use the helper function `(address-st a)`
 - When using structures in a function, only access one data type at a time, make different functions
-for deeply nested data, such as the address inside of the student [see: Changing the zip code](#Changing%20the%20zip%20code)
+for deeply nested data, such as the address inside of the student [see: Changing the zip code](#changing-the-zip-code)
 - ALL DATA IN SCHEME IS IMMUTABLE (unable to be mutated (changed))
-    - To be able to modify a structure, you have to create a whole new one with the new data [see:  Holding a student back](#Holding%20a%20student%20back)
+    - To be able to modify a structure, you have to create a whole new one with the new data [see:  Holding a student back](#holding-a-student-back)
 - Scheme is very lax and does not enforce the types you want in your structures, you have to be
 weary of that and enforce it yourself
