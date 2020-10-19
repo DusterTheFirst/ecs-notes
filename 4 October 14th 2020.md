@@ -1,6 +1,6 @@
 # Text Editor v2
 [Jump to TL;DR (summary)](#tldr-october-14-2020)\
-[Jump to Table Of Contents](#file-ecs-notes-md)\
+[Jump to Table Of Contents](#file-1-ecs-notes-md)\
 [Code for this lesson on wescheme](https://www.wescheme.org/openEditor?publicId=Cy6jDDBlgN)
 
 In our previous text editor, we only used the text as the world state,
@@ -333,4 +333,4 @@ for deeply nested data, such as the address inside of the student [see: Changing
 - Scheme is very lax and does not enforce the types you want in your structures, you have to be
 weary of that and enforce it yourself
 
-[Jump to Table Of Contents](#file-ecs-notes-md)
+[Jump to Table Of Contents](#file-1-ecs-notes-md)

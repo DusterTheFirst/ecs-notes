@@ -1,6 +1,6 @@
 # Unions and data design
 [Jump to TL;DR (summary)](#tldr-october-13-2020)\
-[Jump to Table Of Contents](#file-ecs-notes-md)\
+[Jump to Table Of Contents](#file-1-ecs-notes-md)\
 [Code for this lesson on wescheme](https://www.wescheme.org/openEditor?publicId=wRuHb37cbQ)
 
 ## Lab 2 Problem 2
@@ -197,4 +197,4 @@ And finally, we can write the function itself, copying the template and replacin
 - **ALWAYS** define at least 2 examples of the union if it has an infinite amount of possibilities [see Lab 2 Problem 4](#lab-2-problem-4)
 - **If Possible** define all variants of the union (only for non infinite ones) [see Lab 2 Problem 2](#Lab-2-Problem-2)
 
-[Jump to Table Of Contents](#file-ecs-notes-md)
+[Jump to Table Of Contents](#file-1-ecs-notes-md)
