@@ -4,7 +4,7 @@ to read through them again
 
 ## Table Of Contents:
 ### Handouts:
-- [ECS Help Sheet](#file-1-ecs-help-sheet-md)
+- [ECS Help Sheet](#file-2-ecs-help-sheet-md)
 
 ### Daily Notes
 - [October 13th 2020 (Unions and data design)](#file-3-october-13th-2020-md)
