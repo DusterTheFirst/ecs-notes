@@ -55,8 +55,121 @@ Recursion is when some *thing* does itself multiple times. In terms of scheme an
 knowledge, there are 2 places where we can use recursion. Functions and structures.
 
 A data structure is recursive when one of the parts of it is the data structure itself. A way to
-visualize it is to think of russian nesting dolls. Each doll has its outer shell with the paint and
-the nice artwork, but if you look inside of them, they have a whole new doll inside. 
+visualize it is to think of russian nesting dolls (also called Matryoshka):
+
+<details>
+<summary>Click To Expand Images</summary>
+
+![Image 1](https://m.media-amazon.com/images/S/aplus-media/sc/d88c17bc-2edd-430f-8786-fe2569db8f3a.__CR0,171,1716,1061_PT0_SX970_V1___.jpg)
+![Image 2](https://cdn.shopify.com/s/files/1/1659/7413/products/Authentic-Russian-Nesting-Doll-Apples-2-947841_1200x1200.jpg?v=1571439509)
+
+</details>
+
+Each doll has its outer shell with the paint and
+the nice artwork, but if you look inside of them, they have a whole new doll inside.
+
+This outer doll can be thought of as the structure and the paint could be a property of it, much like the
+positions in our `twothings` structure and the doll on the inside would be a whole new two things struct.
+Lets try to change our `BalloonGame` into a recursive structure so that we can have infinite balloons and
+it may help to see a concrete example.
+
+## Making a recursive structure
+Back to our `BalloonGame` structure:
+```scheme
+; A BalloonGame is one of:
+; - false (no balloons)
+; - Posn (balloon)
+; - (make-twothings Posn Posn)
+; and represents either a screen with no balloons, a screen with a balloon,
+; or a screen with two balloons
+```
+
+We can join the single and double data structure variants into one recursive data variant.
+
+```scheme
+; A BalloonGame is one of:
+; - false (no balloons)
+; - (make-twothings Posn BalloonGame)
+; and represents either a screen with no balloons, or a screen with at least one balloon
+```
+
+In the above definition, we replaced the second Posn in the `twothings` struct with a Balloon,
+but what does that entail exactly? Well, now `chain` our `Balloon Gme`s together.
+
+We can start with the inside most `BalloonGame`, the false variant.
+```scheme
+(define NO-BALLOONS false)
+```
+
+Since the false variant of our data type has no `BalloonGame` inside of it, it is the end of
+the recursion, the center most Matryoshka. But we can now put another doll around it:
+
+```scheme
+(define ONE-BALLOON (make-twothings (make-posn 10 20) NO-BALLOONS))
+```
+
+Now our `ONE-BALLOON` constant is a `BalloonGame` with one balloon. If we unravel it, or replace
+the constants with their actual value so its a bit easier to picture, it will look as such:
+```scheme
+(define ONE-BALLOON (make-twothings (make-posn 10 20) false))
+```
+
+The false at the end signals that that is the end of our recursion. Now if we have 2 balloons, we can show
+that like so:
+```scheme
+(define TWO-BALLOONS (make-twothings (make-posn 250 93) ONE-BALLOON))
+```
+
+or unwrapped:
+```scheme
+(define TWO-BALLOONS (make-twothings (make-posn 250 93) (make-twothings (make-posn 10 20) false)))
+```
+
+Once again, we have that false at the end to signal that our recursion is done.
+
+Recursion is a lot to wrap your head around, so this could take multiple reads through
+(and definitely should), but here are a few more examples of the `BalloonGame` data structure
+for you to gander at
+
+```scheme
+(define NO-BALLOONS false)
+(define ONE-BALLOON (make-twothings (make-posn 10 20) NO-BALLOONS))
+(define TWO-BALLOONS (make-twothings (make-posn 250 93) ONE-BALLOON))
+(define THREE-BALLOONS (make-twothings (make-posn 200 200) TWO-BALLOONS))
+(define FOUR-BALLOONS (make-twothings (make-posn 350 26) THREE-BALLOONS))
+```
+
+And them "unraveled"
+```scheme
+(define NO-BALLOONS false)
+
+(define ONE-BALLOON (make-twothings (make-posn 10 20)
+                                    false))
+
+(define TWO-BALLOONS (make-twothings (make-posn 250 93)
+                                     (make-twothings (make-posn 10 20)
+                                                     false)))
+
+(define THREE-BALLOONS (make-twothings (make-posn 200 200)
+                                       (make-twothings (make-posn 250 93)
+                                                       (make-twothings (make-posn 10 20)
+                                                                       false))))
+(define FOUR-BALLOONS (make-twothings (make-posn 350 26)
+                                      (make-twothings (make-posn 200 200)
+                                                      (make-twothings (make-posn 250 93)
+                                                                      (make-twothings (make-posn 10 20)
+                                                                                      false)))))
+```
+
+In the "unraveled" version &mdash; which by the way you should almost never type out by hand,
+always use the method shown above it, where you have each nested one get defined before it
+&mdash; it becomes a bit clearer to see the "nesting" of the structure inside of itself.
+It is worthy to note that all of them end in false. If there not a second, non recursive variant
+of our data type, we would never to be able to stop recursing, but since we have that second false
+variant, we are allowed to stop our data type with the false variant
+
+\# TODO: FUNCTION HANDLING THEM
+\# TODO: REST
 
 # Too Long; Didn't Read (December 1 2020)
 - [Final Product](https://www.wescheme.org/openEditor?publicId=4CXe2en4jH)
