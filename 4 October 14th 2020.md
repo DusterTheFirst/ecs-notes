@@ -1,5 +1,5 @@
 # Text Editor v2
-[Jump to TL;DR (summary)](#tldr-october-14-2020)\
+[Jump to TL;DR (summary)](#too-long-didnt-read-october-14-2020)\
 [Jump to Table Of Contents](#file-1-ecs-notes-md)\
 [Code for this lesson on wescheme](https://www.wescheme.org/openEditor?publicId=Cy6jDDBlgN)
 
@@ -316,7 +316,7 @@ An example check expect could exist as such:
               (make-te "haello" 2))
 ```
 
-# TL;DR (October 14, 2020)
+# Too Long; Didn't Read (October 14, 2020)
 - Structures are a way to store more than one data piece in the same place
 - Structures can be created like so:
 ```scheme

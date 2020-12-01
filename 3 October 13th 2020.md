@@ -1,5 +1,5 @@
 # Unions and data design
-[Jump to TL;DR (summary)](#tldr-october-13-2020)\
+[Jump to TL;DR (summary)](#too-long-didnt-read-october-13-2020)\
 [Jump to Table Of Contents](#file-1-ecs-notes-md)\
 [Code for this lesson on wescheme](https://www.wescheme.org/openEditor?publicId=wRuHb37cbQ)
 
@@ -188,7 +188,7 @@ And finally, we can write the function itself, copying the template and replacin
           [(boolean? dn) false]))
 ```
 
-# TL;DR (October 13 2020)
+# Too Long; Didn't Read (October 13 2020)
 - Unions are useful for if you need to hold 2 different data types in the same spot
 - Unions can be one data type or the other, but never both
 - Unions are invisible to scheme, so scheme cannot enforce the types for us

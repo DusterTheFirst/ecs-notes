@@ -1,5 +1,5 @@
 # Text Editor v2 contd.
-[Jump to TL;DR (summary)](#tldr-october-19-2020)\
+[Jump to TL;DR (summary)](#too-long-didnt-read-october-19-2020)\
 [Jump to Table Of Contents](#file-1-ecs-notes-md)
 
 ## Starting where we left off last week
@@ -235,7 +235,7 @@ and we can add that into our new function
           [else BLANK-EDITOR-IMAGE])) ; new
 ```
 
-# TL;DR (October 19 2020)
+# Too Long; Didn't Read (October 19 2020)
 - USE YOUR [ECS Help Sheet](#file-2-ecs-help-sheet-md).
 It will walk you through it all.
 - Make constants! they will help you keep duplicated code to a minimum,
