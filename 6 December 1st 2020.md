@@ -166,7 +166,83 @@ always use the method shown above it, where you have each nested one get defined
 &mdash; it becomes a bit clearer to see the "nesting" of the structure inside of itself.
 It is worthy to note that all of them end in false. If there not a second, non recursive variant
 of our data type, we would never to be able to stop recursing, but since we have that second false
-variant, we are allowed to stop our data type with the false variant
+variant, we are allowed to stop our data type with the false variant.
+
+Since we have now updated the data definition and its samples (the NO-BALLOONS - FOUR-BALLOONS above)
+we can move to the final step of the data defining process, which is to make our template. In our case,
+we just need to update our template.
+
+Currently we have this:
+```scheme
+; BalloonGame -> ???
+(define (balloon-game-template game)
+  (cond [(boolean? game) ...]
+        [(posn? game) (posn-template game)]
+        [(twothings? game)
+         (... (posn-template (twothings-thing1 game))
+              (posn-template (twothings-thing2 game)))]))
+```
+
+And that template worked for our 3 variants, the no balloons (false), the one Posn, or the 2 Posns.
+Since we no longer have 3 variants we have to change the template. We can begin by removing the one
+posn template, since although we do use only 1 posn, we still use the `twothings` struct.
+
+```diff
+; BalloonGame -> ???
+(define (balloon-game-template game)
+  (cond [(boolean? game) ...]
+-       [(posn? game) (posn-template game)]
+        [(twothings? game)
+         (... (posn-template (twothings-thing1 game))
+              (posn-template (twothings-thing2 game)))]))
+```
+
+Now its all fine and dandy? Right? Well not yet... We also changed the data that is
+stored in the two things structure. Since we changed our *definition*, we also need
+to change the code that uses it, or the *implementation*.
+
+In our new data definition for the two things variant, we changed from 2 Posns to a
+Posn and another BalloonGame. In our above template, we call the `posn-template` on the
+`thing1` and the `thing2` from twothings since they both used to be posns, Now the second
+one is another `BalloonGame` so we have to call this same `baloon-game-template` on that
+baloon game
+
+```diff
+; BalloonGame -> ???
+(define (balloon-game-template game)
+  (cond [(boolean? game) ...]
+        [(twothings? game)
+         (... (posn-template (twothings-thing1 game))
+-             (posn-template (twothings-thing2 game)))]))
++             (balloon-game-template (twothings-thing2 game)))]))
+```
+
+As you can see, we now have our template calling that same template. This is very similar
+to our **recursive data structure** in a lot of ways, I wonder what it would be called?
+
+# Recursive functions
+Recursive functions are very much the same as recursive data definitions. But instead of
+containing themselves, as recursive structures do, they call (or run) themselves.
+
+We can see that in practice in our new and updated `balloon-game-template`:
+```scheme
+; BalloonGame -> ???
+(define (balloon-game-template game)
+  (cond [(boolean? game) ...]
+        [(twothings? game)
+         (... (posn-template (twothings-thing1 game))
+              (balloon-game-template (twothings-thing2 game)))]))
+``` 
+
+Since the function calls itself, it needs a path to take that could not call itself or else
+it would be stuck calling itself which would call itself which would....
+
+Just like how a recursive structure needs a second variant a recursive function needs a cond
+or if with *one or more* of the paths **not** calling itself.
+
+This escape can be seen in our template with the boolean? cond case which will run when we get
+to the end of our "nested dolls".
+
 
 \# TODO: FUNCTION HANDLING THEM
 \# TODO: REST
