@@ -1,10 +1,16 @@
 [book]
-authors = ["DusterTheFirst"]
+authors = ["Zachary Kohnen"]
 language = "en"
 multilingual = false
 src = "src"
 title = "ECS Notes"
 
+[build]
+create-missing = false
+
 [output.html]
+default-theme = "navy"
+cname = "ecs-notes.dusterthefirst.com"
+git-repository-url = "https://github.com/DusterTheFirst/ecs-notes"
 
 [output.linkcheck]

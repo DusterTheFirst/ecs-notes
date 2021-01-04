@@ -10,4 +10,4 @@ All notes are written by Zachary Kohnen, the Student Assistant for Orange block,
 are for the orange block that those notes were taken on
 
 If you have any questions about the content or improvements, you can check out the source on
-[GitHub]() or email me at [21kohnenz@wpsraiders.org](mailto:21kohnenz@wpsraiders.org)
+[GitHub](https://github.com/DusterTheFirst/ecs-notes) or email me at [21kohnenz@wpsraiders.org](mailto:21kohnenz@wpsraiders.org)
