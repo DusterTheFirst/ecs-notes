@@ -10,7 +10,7 @@
     - [Text Editor v2 contd. (October 19, 2020)](./scheme/2020-10-19.md)
     - [Recursion and balloon game (December 1, 2020)](./scheme/2020-12-1.md)
 - [Python]()
-    - [Introduction](./python/Introduction.md)
+    - [Introduction](./python/introduction.md)
 
 ---
 
