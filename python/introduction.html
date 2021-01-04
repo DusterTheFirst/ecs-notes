@@ -1,0 +1,482 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js navy">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Introduction - ECS Notes</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="../favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="../favicon.png">
+        
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Welcome</a></li><li class="spacer"></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.</strong> Scheme</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../scheme/2020-10-13.html"><strong aria-hidden="true">1.1.</strong> Unions and data design (October 13 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-10-14.html"><strong aria-hidden="true">1.2.</strong> Text Editor v2 (October 14, 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-10-19.html"><strong aria-hidden="true">1.3.</strong> Text Editor v2 contd. (October 19, 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-12-1.html"><strong aria-hidden="true">1.4.</strong> Recursion and balloon game (December 1, 2020)</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Python</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../python/introduction.html" class="active"><strong aria-hidden="true">2.1.</strong> Introduction</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><a href="../scheme-help-sheet.html">Scheme Help Sheet</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">ECS Notes</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                        <a href="https://github.com/DusterTheFirst/ecs-notes" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#introduction" id="introduction">Introduction</a></h1>
+<p><a href="#too-long-didnt-read">Jump to TL;DR (summary)</a></p>
+<p>Welcome to the wonderful world of python.
+Python is a very different language than scheme/racket which we have used so far.
+Almost all of the syntax (or the structure of the language) will be different than how
+we have done previous.</p>
+<p>Below is a more in depth dive into each aspect of the language</p>
+<h2><a class="header" href="#math" id="math">Math</a></h2>
+<p>Unlike scheme which uses prefix notation for mathematical operations such as <code>(+ 6 8)</code> which would
+add 6 and 8 together. Python on the other hand uses infix notation such as <code>6 + 8</code>
+which is much more similar to the mathematical notation you have learned before.</p>
+<p>To add, subtract, multiply, and divide in python you would do the following:</p>
+<pre><code class="language-python"># Addition
+1 + 2 # = 3
+2 + 4 # = 6
+
+# Subtraction
+2 - 3 # = -1
+3 - 2 # = 1
+
+# Multiplication
+-1 * 2 # = -2
+3 * 4 # = 12
+
+# Division
+2 / 6 # = .33333
+6 / 2 # = 3
+</code></pre>
+<p>As well as the usual operators, python has a few others.</p>
+<p>In math class or when using a calculator, it is common to represent an exponent with the <code>^</code> character
+ex: <code>2^6</code> would represent 2 to the power of 6, but that is not the case in python. The <code>^</code> character
+already has a meaning as the <a href="https://en.wikipedia.org/wiki/Exclusive_or">XOR</a> operator, which does
+not matter for this class yet, but is important to note that python will not throw out code that uses
+the <code>^</code> character but will just produce a weird value. Instead, python uses 2 multiplicaation symbols
+to denote exponentiation: <code>**</code>. Some more examples are below.</p>
+<pre><code class="language-python">2 ** 6 # = 64
+3 ** 3 # = 27
+</code></pre>
+<p>Sometimes when you divide, you might not care about the decimal or fractional portion of the result
+and for that use case, python has the double division <code>//</code> operator for &quot;integer division&quot; or division
+without decimals</p>
+<pre><code class="language-python">2 // 16 # = 0
+10 // 8 # = 1
+</code></pre>
+<p>And when dividing you might only care about the remainder and for that, python has the modulo <code>%</code> operator.</p>
+<pre><code class="language-python">6 % 3 # = 0
+7 % 3 # = 1
+</code></pre>
+<h3><a class="header" href="#more-math" id="more-math">More Math</a></h3>
+<p>Sometimes you need more than just the simple operations and for that, python has the math library.
+The documentation for the math library can be found <a href="https://docs.python.org/3/library/math.html">on the official python docs</a>
+but python is a very popular language and is very easily google-able. Do not hesitate to use the internet
+whenever you need to reference some docs or look something up.</p>
+<p>In order to use libraries, you need to <code>import</code> them. To import the math library you would do as such:</p>
+<pre><code class="language-python">import math
+</code></pre>
+<p>Functions from a library can be used by putting the library name, a dot, and then the name of the function.
+ex: <code>math.sin()</code> would be the sin function in the math library</p>
+<p>Here are a few useful but non-exhaustive list of the functions available from the math library.</p>
+<pre><code class="language-python"># Trig functions
+math.sin(math.pi) # = 0
+math.cos(math.pi) # = -1
+math.tan(math.pi) # = 0
+
+# Rounding functions
+math.floor(10.2) # = 10
+math.ceil(10.2) # = 11
+
+# Absolute value
+math.fabs(-100) # = 100
+
+# Factorial
+math.factorial(4) # = 1 * 2 * 3 * 4 = 24
+
+# Logarithms
+math.log(4) # = ln(4) = 1.3862943611
+math.log(100, 10) # = log_10(100) = 2
+math.log10(100) # = log_10(100) = 2
+math.log(100, 5) # = log_5(100) = 2.8613531161
+</code></pre>
+<p>Once again, the <a href="https://docs.python.org/3/library/math.html">docs</a> have an exhaustive list of all methods available from the library.</p>
+<h2><a class="header" href="#booleans" id="booleans">Booleans</a></h2>
+<p>Just like in scheme, we can also deal with true/false conditions or booleans. These are also used
+in python, although their names are capitalized:</p>
+<pre><code class="language-python">True
+False
+</code></pre>
+<p>Just like in scheme, we can also do logical operations with the booleans, such as <code>and</code> and <code>or</code> which
+are used much like they are in scheme, just in infix notation instead of prefix notation.</p>
+<pre><code class="language-python"># Logical and
+True and True # = True
+True and False # = False
+False and True # = False
+False and False # = False
+
+# Logical or
+True or True # = True
+True or False # = True
+False or True # = True
+False or False # = False
+
+# Logical not
+not True # = False
+not False # = True
+</code></pre>
+<p>There is also a less common logical operation called <code>xor</code> or <code>eXclusive OR</code> which you may never have
+to use, but is good to know. It will return <code>True</code> if one and only one of the inputs is <code>True</code> which
+can be seen below.</p>
+<pre><code class="language-python">True ^ True # = False
+True ^ False # = True
+False ^ True # = True
+False ^ False # = False
+</code></pre>
+<h2><a class="header" href="#conditionals" id="conditionals">Conditionals</a></h2>
+<p>When dealing with numbers, we may want to check if some <em>condition</em> holds true. There are 2 different
+types of conditionals, equality and inequality. You may remember these from your math class, but if
+not here is a refresher.</p>
+<p>Equality is the comparison of 2 exact numbers, such as <code>_ is equal to _</code> or <code>_ is not equal to _</code>.
+Equality can be expressed in python as such:</p>
+<pre><code class="language-python">1 == 2 # = False
+6 == 6 # = True
+
+6 != 9 # = True
+12 != 12 # = False
+</code></pre>
+<p>Inequality is checking the relation of 1 number with respect to another or <code>_ is greater than _</code> or
+<code>_ is less than _</code>. These operations can be expressed in python as such:</p>
+<pre><code class="language-python">1 &gt; 2 # = False
+6 &gt; 6 # = False
+
+6 &gt;= 9 # = False
+12 &gt;= 12 # = True
+
+6 &lt; 9 # = True
+12 &lt; 12 # = False
+
+1 &lt;= 2 # = True
+6 &lt;= 6 # = True
+</code></pre>
+<h2><a class="header" href="#strings" id="strings">Strings</a></h2>
+<p>Similarly to scheme, strings, which are just text, can be created using quotation marks (<code>&quot;</code>) aka
+double quotes. But unlike scheme python also lets you use apostrophes (<code>'</code>) aka single quotes to surround
+your text. Both act exactly the same.</p>
+<pre><code class="language-python">&quot;Strings can be defined using double quotes&quot;
+'or using single quotes'
+</code></pre>
+<p>When using double quotes, you are allowed to use apostrophes in the text as usual</p>
+<pre><code class="language-python">&quot;they're late&quot;
+</code></pre>
+<p>And when using single quotes, you can use double quotes inside of the text with no problem</p>
+<pre><code class="language-python">'And then he said &quot;Oh no you did not!&quot;'
+</code></pre>
+<p>When you want to use both in one string, things get a bit more complex. The quotes that you write
+around your string, signal to the language that everything inside of it is text, but when the text
+contains the same quote you used to tell the language about the text, the language will mistakenly
+see it as you ending the string.</p>
+<p>You can see this in the syntax highlighting (coloring) of the code below changing after that quote, meaning
+that python would not read this how we wanted.</p>
+<pre><code class="language-python">&quot;They're having a lot of fun and yelling &quot;yippee&quot;&quot;
+'They're having a lot of fun and yelling &quot;yippee&quot;'
+</code></pre>
+<p>To get around this issue, we can use what is called &quot;escaping quotes&quot;. If you want to use the character
+tha you used to make a string (ie. <code>'</code> inside a single quoted string or <code>&quot;</code> inside a double quoted string)
+you can put a backslash <code>\</code> character in front of it to tell the language to treat it as part of the
+string.</p>
+<pre><code class="language-python">'They\'re having a lot of fun and yelling &quot;yippee&quot;'
+&quot;They're having a lot of fun and yelling \&quot;yippee\&quot;&quot;
+</code></pre>
+<p>Note the colors staying the same throughout the string. Both strings above are exactly equal, the only
+difference is what quote we are using.</p>
+<p>Sometimes it is useful to combine 2 strings, and python allows us to do so using the <code>+</code> operator.</p>
+<pre><code class="language-python">&quot;Hello&quot; + &quot;world&quot; # = &quot;Helloworld&quot;
+</code></pre>
+<p>We may also want to create a string that has multiple lines of text. We can do so using a multiline strings
+which are defined using 3 double quotes</p>
+<pre><code class="language-python">&quot;&quot;&quot;Hello there
+this string
+spans across
+multiple lines :D&quot;&quot;&quot;
+</code></pre>
+<p>You can also use the newline character <code>\n</code> instead to denote multiple lines in a string</p>
+<pre><code class="language-python">&quot;Hello there\nthis string\nspans across\nmultiple lines :D&quot;
+</code></pre>
+<p>The above 2 strings are exactly equal, they are just different ways of writing them</p>
+<h2><a class="header" href="#comments" id="comments">Comments</a></h2>
+<p>A lot of the time, code is complicated.
+<a href="https://www.quora.com/Why-is-reading-code-much-harder-than-writing-it-How-can-I-read-code-and-understand-what-the-code-actually-is-doing-in-Python-to-be-precise">Reading code is 2x harder than writing that same code.</a>
+To help ourselves with our programming, programming languages have comments, or lines/sections of code
+that are not read by the language, but instead by the programmer. I have been using comments in these
+notes with notes and information on what is in the code that I am showing you. These comments are denoted
+by a different, dimmer color than the rest of the code.</p>
+<p>Comments in python are denoted using the pound sign <code>#</code> aka hash or hashtag.</p>
+<pre><code class="language-python"># Cool single line comment
+</code></pre>
+<p>Comments can appear after code, but any text after the <code>#</code> is interpreted as a comment.</p>
+<pre><code class="language-python">2 + 5 # Cool comment after code
+</code></pre>
+<p>If you want a comment that spans multiple lines, you can use a multiline comment which will just get
+ignored when you run the program since you do nothing with it</p>
+<pre><code class="language-python">&quot;&quot;&quot;
+Weird whacky multiline string acting as a
+multiline comment
+&quot;&quot;&quot;
+</code></pre>
+<p>But it is probably better to just use multiple comments, one per line <sup>(like a sane person)</sup></p>
+<pre><code class="language-python"># Or just use
+# Multiple lines of these
+# Like a sane human being
+</code></pre>
+<h2><a class="header" href="#turtle" id="turtle">Turtle</a></h2>
+<p>You cant have a programming lesson without a bit of fun, so here is our fun for this lesson. We get
+to draw! yaay woot woot.... Just me? ok...</p>
+<p>In python, we can use the turtle library. The documentation for the turtle library can be found
+<a href="https://docs.python.org/3/library/turtle.html">on the official python docs</a> Just like with the math library, we have to <code>import</code>
+the library to use it.</p>
+<pre><code class="language-python">import turtle
+</code></pre>
+<p>With all good art, we need color, so we can go ahead and set the color of the turtle with the color method</p>
+<pre><code class="language-python">turtle.color('red', 'yellow')
+</code></pre>
+<p>To move the turtle, we have 2 options. We can either move in a direction, ie <code>forward</code>, <code>backward</code>,
+or we could move to an exact position.</p>
+<pre><code class="language-python"># Turtle movement
+turtle.forward(10)
+turtle.left(120)
+
+# Turtle teleportation
+turtle.setx(-100)
+turtle.sety(100)
+</code></pre>
+<p>The coordinates of the canvas that we can draw on are on the x axis, -180 to 180 and on the y axis,
+-200 to 200. The center of the screen being 0,0.</p>
+<p>We can also stop the turtle from drawing a path, or change its color mid stroke using the functions
+below.</p>
+<pre><code class="language-python"># Turtle pen control
+turtle.penup()
+turtle.pencolor('red')
+turtle.pendown()
+</code></pre>
+<p>Once again, the <a href="https://docs.python.org/3/library/math.html">docs</a> have an exhaustive list of all methods available from the library.</p>
+<p>Remember, python is very google-able, please feel free to google to your heart's content.</p>
+<h2><a class="header" href="#too-long-didnt-read" id="too-long-didnt-read">Too Long; Didn't Read</a></h2>
+<p>If you want an abridged version, you can look at just the code that I have gone over
+<a href="https://github.com/DusterTheFirst/ecs-notes/tree/main/src/python/introduction.py">here</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../scheme/2020-12-1.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../scheme-help-sheet.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../scheme/2020-12-1.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../scheme-help-sheet.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
