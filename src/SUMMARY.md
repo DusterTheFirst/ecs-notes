@@ -14,4 +14,4 @@
 
 ---
 
-[Scheme Help Sheet](./scheme/2-help-sheet.md)
+[Scheme Help Sheet](./scheme-help-sheet.md)
