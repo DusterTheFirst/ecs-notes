@@ -1,0 +1,14 @@
+{
+    "no-inline-html": {
+        "allowed_elements": [
+            "details",
+            "summary"
+        ]
+    },
+    "line-length": {
+        "line_length": 100
+    },
+    "MD007": {
+        "indent": 4
+    }
+}

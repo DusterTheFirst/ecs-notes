@@ -1,0 +1,10 @@
+[book]
+authors = ["DusterTheFirst"]
+language = "en"
+multilingual = false
+src = "src"
+title = "ECS Notes"
+
+[output.html]
+
+[output.linkcheck]
