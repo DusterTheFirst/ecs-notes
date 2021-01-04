@@ -1,0 +1,410 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js navy">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Unions and data design (October 13 2020) - ECS Notes</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="../favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="../favicon.png">
+        
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Welcome</a></li><li class="spacer"></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.</strong> Scheme</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../scheme/2020-10-13.html" class="active"><strong aria-hidden="true">1.1.</strong> Unions and data design (October 13 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-10-14.html"><strong aria-hidden="true">1.2.</strong> Text Editor v2 (October 14, 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-10-19.html"><strong aria-hidden="true">1.3.</strong> Text Editor v2 contd. (October 19, 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-12-1.html"><strong aria-hidden="true">1.4.</strong> Recursion and balloon game (December 1, 2020)</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Python</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../python/Introduction.html"><strong aria-hidden="true">2.1.</strong> Introduction</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><a href="../scheme/2-help-sheet.html">Scheme Help Sheet</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">ECS Notes</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                        <a href="https://github.com/DusterTheFirst/ecs-notes" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#unions-and-data-design-october-13-2020" id="unions-and-data-design-october-13-2020">Unions and data design (October 13, 2020)</a></h1>
+<p><a href="#too-long-didnt-read">Jump to TL;DR (summary)</a><br />
+<a href="https://www.wescheme.org/openEditor?publicId=wRuHb37cbQ">Code for this lesson on wescheme</a></p>
+<h2><a class="header" href="#lab-2-problem-2" id="lab-2-problem-2">Lab 2 Problem 2</a></h2>
+<blockquote>
+<p>Design a function message-to-employee which takes in the kind of data you defined above and
+produces a message about the employee’s paycheck. For example if the employee receives a paycheck
+every week you should produce “Here is your weekly paycheck!”. Is the template useful here? Why or
+why not?</p>
+</blockquote>
+<p><strong>Define what the data is</strong><br />
+Paycheck can be weekly, biweekly, or monthly.</p>
+<p><strong>What does it represent?</strong><br />
+Paycheck represents how often an employee is paid.</p>
+<p>Now that we have it all in our head, we should put it down in a comment:</p>
+<pre><code class="language-scheme">; A Paycheck is one of:
+; - &quot;weekly&quot;
+; - &quot;biweekly&quot;
+; - &quot;monthly&quot;
+; and represents how often an employee is paid
+</code></pre>
+<p>Once you have the idea, define some constants (if there are a finite amount).</p>
+<pre><code class="language-scheme"> (define PC-W &quot;weekly&quot;)
+ (define PC-B &quot;biweekly&quot;)
+ (define PC-M &quot;monthly&quot;)
+</code></pre>
+<p>Once you have the idea and the data, create a template:</p>
+<pre><code class="language-scheme">(define (paycheck-template pc)
+    (cond [(string=? pc PC-W) ...]
+          [(string=? pc PC-B) ...]
+          [(string=? pc PC-M) ...]))
+</code></pre>
+<blockquote>
+<p>The <code>...</code>s are not valid scheme, they just tell us that we will come back to them later.</p>
+</blockquote>
+<p><em>Now we can move onto creating a function to tell the employee about their paycheck.</em>
+<strong>Always</strong> start by laying out the function you want.</p>
+<p><strong>Name:</strong> <code>message-to-employee</code><br />
+<strong>Input:</strong> <code>Paycheck</code><br />
+<strong>Output:</strong> <code>String</code><br />
+<strong>Description:</strong> <code>Message an employee about when their paycheck arrives.</code></p>
+<p>Now that you have it in your head, put it in a comment.</p>
+<pre><code class="language-scheme">; message-to-employee : Paycheck -&gt; String
+; Message an employee about when their paycheck arrives
+</code></pre>
+<p>Once you have the layout of your function, <strong>ALWAYS</strong> write out (at least) 2 check-expect tests.</p>
+<pre><code class="language-scheme">(check-expect
+    (message-to-employee PC-W)
+    &quot;Here is your weekly paycheck!&quot;)
+(check-expect
+    (message-to-employee PC-B)
+    &quot;Here is your biweekly paycheck!&quot;)
+(check-expect
+    (message-to-employee PC-M)
+    &quot;Here is your monthly paycheck!&quot;)
+</code></pre>
+<blockquote>
+<p>In this case, we create 3 tests since there are 3 variants of our type.</p>
+</blockquote>
+<p><em>Now that we have it all layed out, we can create a function by pasting our template.</em></p>
+<pre><code class="language-scheme">(define (message-to-employee pc)
+    (cond [(string=? pc PC-W) ...]
+          [(string=? pc PC-B) ...]
+          [(string=? pc PC-M) ...]))
+</code></pre>
+<p>Now we need to change the <code>...</code>s to something more useful.
+<em>In our case, the <code>...</code>s would all become the same thing:</em></p>
+<pre><code class="language-scheme">(define (message-to-employee pc)
+    (cond [(string=? pc PC-W) (string-append &quot;Here is your &quot; pc &quot; paycheck!&quot;)]
+          [(string=? pc PC-B) (string-append &quot;Here is your &quot; pc &quot; paycheck!&quot;)]
+          [(string=? pc PC-M) (string-append &quot;Here is your &quot; pc &quot; paycheck!&quot;)]))
+</code></pre>
+<p>Since they are all the <em>same</em>, we can simplify the function down to just one line.</p>
+<pre><code class="language-scheme">(define (message-to-employee pc)
+    (string-append &quot;Here is your &quot; pc &quot; paycheck!&quot;))
+</code></pre>
+<p>In the end, our template and custom type were not used since they were more or less extrenious,
+we did not need to create a custom type for this since there is one code path for every paycheck type</p>
+<h2><a class="header" href="#lab-2-problem-3" id="lab-2-problem-3">Lab 2 Problem 3</a></h2>
+<blockquote>
+<p>Design a function calculate-annual which takes in a Number, representing the amount an employee makes
+on a single paycheck, and the data describing how often they receive the paycheck. It produces a Number
+with an estimate of their annual wages. For example, if the employee gets their paycheck once per month
+you will need to multiply the input number by 12 since there are 12 months in a year. Is the template
+useful here? Why or why not?</p>
+</blockquote>
+<p><em>As always, start your function definition with its signature</em></p>
+<p><strong>Name:</strong> <code>calculate-annual</code><br />
+<strong>Input:</strong> <code>Number and Paycheck</code><br />
+<strong>Output:</strong> <code>Number</code><br />
+<strong>Description:</strong> <code>Estimates how much an employee will earn by the end of the year</code></p>
+<p>Now that you have it all out, put it in a comment:</p>
+<pre><code class="language-scheme">; calculate-annual : Number Paycheck -&gt; Number
+; Estimates how much an employee will earn by the end of the year
+</code></pre>
+<p><em>Check expect time!</em></p>
+<pre><code class="language-scheme">(check-expect (calculate-annual 4 PC-M) 48)
+(check-expect (calculate-annual 34 PC-W) (* 34 52))
+(check-expect (calculate-annual 450 PC-B) (* 450 26))
+</code></pre>
+<p>Now that we have the check-expects all out, its time to make the function:</p>
+<pre><code class="language-scheme">(define (calculate-annual single-paycheck pc)
+    (cond [(string=? pc PC-W) (* single-paycheck 52)]
+          [(string=? pc PC-B) (* single-paycheck 26)]
+          [(string=? pc PC-M) (* single-paycheck 12)]
+</code></pre>
+<blockquote>
+<p>In this case, the custom data type is useful since we are able to use the seperate paths to
+calculate the paycheck differently</p>
+</blockquote>
+<h2><a class="header" href="#lab-2-problem-4" id="lab-2-problem-4">Lab 2 problem 4</a></h2>
+<blockquote>
+<p>Design data to represent the name of someone who has donated to a charity. Your data should account
+for the fact that the donor may wish to remain anonymous. Why can’t we use a String to represent the
+anonymous donor? What can we use instead? Don’t forget to follow all 4 steps of the design recipe for
+data.</p>
+</blockquote>
+<p>The first thing we need to do when defining a data type is to define what it can be:</p>
+<pre><code class="language-scheme">; A DonorName is one of:
+;   - String
+;   - false
+; and represents the name of someone donating to charity
+</code></pre>
+<p>Now that we have our data type all layed out for us, we should now create (at least) 2 examples of
+the data type.</p>
+<pre><code class="language-scheme">(define DONORNAME1 &quot;Paul&quot;)
+(define DONORNAME2 false)
+</code></pre>
+<p>Once we have some examples we can make a template:</p>
+<pre><code class="language-scheme">(define (donor-template dn)
+    (cond [(string? dn) ...]
+          [(boolean? dn) ...]))
+</code></pre>
+<blockquote>
+<p>Remember, the ...s are there for us to replace later when we copy this template</p>
+</blockquote>
+<h2><a class="header" href="#lab-2-problem-5" id="lab-2-problem-5">Lab 2 problem 5</a></h2>
+<blockquote>
+<p>Design a function email-donor which takes in the type of data you defined above. If the donor is
+not anonymous it produces a message to send via email such as “Thank you, Bob!” if the donor’s name
+was Bob. If the donor was anonymous it produces false. What kind of data do you need to design in
+order to write the signature for this function?</p>
+</blockquote>
+<p>As always, start your function definition with its signature:</p>
+<p><strong>Name:</strong> <code>email-donor</code><br />
+<strong>Input:</strong> <code>DonorName</code><br />
+<strong>Output:</strong> <code>String or false</code> (we could make another data type, but to save time I will not)<br />
+<strong>Description:</strong> <code>To send a message to the given donor if they are not anonymous</code></p>
+<p>Now that you know it, put it in a comment:</p>
+<pre><code class="language-scheme">; email-donor : DonorName -&gt; String or false
+; To send a message to the given donor if they are not anonymous
+</code></pre>
+<p>Now that we have the signature, we can write some check expects</p>
+<pre><code class="language-scheme">(check-expect (email-donor DONORNAME1) &quot;Thank you, Paul!&quot;)
+(check-expect (email-donor DONORNAME2) false)
+</code></pre>
+<p>And finally, we can write the function itself, copying the template and replacing the <code>...</code>s</p>
+<pre><code class="language-scheme">(define (email-donor dn)
+    (cond [(string? dn) (string-append &quot;Thank you, &quot; dn &quot;!&quot;)]
+          [(boolean? dn) false]))
+</code></pre>
+<h2><a class="header" href="#too-long-didnt-read" id="too-long-didnt-read">Too Long; Didn't Read</a></h2>
+<ul>
+<li>Unions are useful for if you need to hold 2 different data types in the same spot</li>
+<li>Unions can be one data type or the other, but never both</li>
+<li>Unions are invisible to scheme, so scheme cannot enforce the types for us</li>
+<li>Unions can be separated using the <code>type?</code> functions, such as <code>string?</code> or <code>number?</code></li>
+<li>Cond is very powerful for using unions. ie. the above function</li>
+<li><strong>ALWAYS</strong> define at least 2 examples of the union if it has an infinite amount of possibilities
+<a href="#lab-2-problem-4">see Lab 2 Problem 4</a></li>
+<li><strong>If Possible</strong> define all variants of the union (only for non infinite ones) <a href="#Lab-2-Problem-2">see Lab 2 Problem 2</a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../scheme/2020-10-14.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../scheme/2020-10-14.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

@@ -1,0 +1,539 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js navy">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Text Editor v2 (October 14, 2020) - ECS Notes</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="../favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="../favicon.png">
+        
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Welcome</a></li><li class="spacer"></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.</strong> Scheme</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../scheme/2020-10-13.html"><strong aria-hidden="true">1.1.</strong> Unions and data design (October 13 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-10-14.html" class="active"><strong aria-hidden="true">1.2.</strong> Text Editor v2 (October 14, 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-10-19.html"><strong aria-hidden="true">1.3.</strong> Text Editor v2 contd. (October 19, 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-12-1.html"><strong aria-hidden="true">1.4.</strong> Recursion and balloon game (December 1, 2020)</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Python</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../python/Introduction.html"><strong aria-hidden="true">2.1.</strong> Introduction</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><a href="../scheme/2-help-sheet.html">Scheme Help Sheet</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">ECS Notes</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                        <a href="https://github.com/DusterTheFirst/ecs-notes" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#text-editor-v2-october-14-2020" id="text-editor-v2-october-14-2020">Text Editor v2 (October 14, 2020)</a></h1>
+<p><a href="#too-long-didnt-read">Jump to TL;DR (summary)</a><br />
+<a href="https://www.wescheme.org/openEditor?publicId=Cy6jDDBlgN">Code for this lesson on wescheme</a></p>
+<p>In our previous text editor, we only used the text as the world state,
+limiting us to not be able to move the cursor around the screen</p>
+<p>Currently, we can only store data one at a time, it could be a union
+(Such as a String <strong>or</strong> a Number) but it could never store both at
+the same time.</p>
+<p>To hold more than 1 data at a time, we can use <em>structures</em></p>
+<h2><a class="header" href="#designing-structures" id="designing-structures">Designing structures</a></h2>
+<h3><a class="header" href="#an-address" id="an-address">An address</a></h3>
+<p>When creating a structure, you should figure out what data you want to store.
+For our example, we will create a structure to store an address. In an address,
+we want to store a <code>house-number</code>, <code>city</code>, <code>street</code>, and <code>zipcode</code>.
+As with all definitions, we want to start out with a comment describing it:</p>
+<pre><code class="language-scheme">; An Address is a (make-address Nat String String String Nat)
+</code></pre>
+<blockquote>
+<p>Nat in this case is used to tell us that it is a natural number</p>
+</blockquote>
+<p>In the code snippet, we specify the name, and then a function <code>make-address</code> to create
+an address, now to define it in scheme to actually use, we can use the <code>define-struct</code> tool</p>
+<pre><code class="language-scheme">(define-struct address [house st city state zip])
+</code></pre>
+<p>Now, once we have <code>define-struct</code>, we can create one using the automatically created <code>make-address</code>
+function.</p>
+<pre><code class="language-scheme">(make-address false &quot;hello&quot; 2 -7 true)
+</code></pre>
+<p>and that would return</p>
+<pre><code class="language-scheme">(address false &quot;hello&quot; 2 -7 true)
+</code></pre>
+<blockquote>
+<p>Notice that this does not match our comment, but scheme cant read our comment, so it doesn't know better.</p>
+</blockquote>
+<p>To make sure that we match our address definition, we can make some samples and a more detailed
+description of the structure.</p>
+<p>The more detailed description looks like:</p>
+<pre><code class="language-scheme">; and represents someone's address
+; - where house is the house number
+; - st s the name of the street
+; - city is the name of the city
+; - state is the abbreviation for the state
+; - and zip is the zip code
+</code></pre>
+<p>and would be placed after the structure definition.</p>
+<p>Now that we have a good description, we can make some samples for reference</p>
+<pre><code class="language-scheme">(define ADDRESS1 (make-address 50 &quot;Rice St&quot; &quot;Wellesley&quot; &quot;MA&quot; 02482))
+(define ADDRESS2 (make-address 1 &quot;a&quot; &quot;b&quot; &quot;c&quot; 7))
+</code></pre>
+<p>Now that we have the structure defined, we need a way to access the different members of it.
+Lucky for us, Scheme creates a bunch of helper functions for us:</p>
+<pre><code class="language-scheme">(address-&lt;field&gt; address)
+</code></pre>
+<p>where <code>&lt;field&gt;</code> is replaced by the name of the field defined above. ie.</p>
+<pre><code class="language-scheme">(address-house ADDRESS1)
+</code></pre>
+<p>would return 50, since it is the value we put in the structure when we made it
+or &quot;constructed it&quot;</p>
+<p>We can put all of these helper methods together into a template for future use</p>
+<pre><code class="language-scheme">(define (address-template a)
+    (... (address-house a)
+         (address-st a)
+         (address-city a)
+         (address-state a)
+         (address-zip a) ...))
+</code></pre>
+<blockquote>
+<p>Remember, the ...s are there for us to replace later when we copy the template function.</p>
+</blockquote>
+<p>Another helper function created for us is the <code>address?</code> function which lets us check if
+a type is an address.</p>
+<pre><code class="language-scheme">(address? ADDRESS1) ; true
+(address? (make-address false false false false false)) ; also true
+(address? 3) ; false
+</code></pre>
+<blockquote>
+<p>The second example returned true because scheme does not know about our capitol A Address type and
+does not know that we want the fields to be specific types. Because of that, as long as we made a
+structure using the <code>make-address</code> function scheme will see it as a structure</p>
+</blockquote>
+<h3><a class="header" href="#making-a-structure-that-uses-another-structure" id="making-a-structure-that-uses-another-structure">Making a structure that uses another structure</a></h3>
+<p>Now that we have the address structure created, we can make a student structure that uses our
+address structure as one of the fields. To start making our student structure, which will hold a
+name, year of graduation, and an address we start with the comment to describe it:</p>
+<pre><code class="language-scheme">; A Student is a (make-stdnt String Nat Address)
+</code></pre>
+<blockquote>
+<p>We are going to name our structure <code>stdnt</code> to help show that the name of the structure can be
+whatever you want</p>
+</blockquote>
+<p>Once we have the comment, we need to tell scheme about it, using the <code>define-struct</code> tool</p>
+<pre><code class="language-scheme">(define-struct stdnt [name gradyr house])
+</code></pre>
+<blockquote>
+<p>Remember the names can be anything we want, but we need to use the same ones defined here
+later in our project, <strong><em>NOT</em> the data type</strong></p>
+</blockquote>
+<p>Once we have the structure defined for scheme, we now need to describe each field</p>
+<pre><code class="language-scheme">; and represents a student
+; - where name is the student's full name
+; - grad-yr is the student's graduation year
+; - and house is the address where the student lives
+</code></pre>
+<p>Now, we define 2 sample students:</p>
+<pre><code class="language-scheme">(define STUDENT1 (make-stdnt &quot;Sheev&quot; 4 ADDRESS1))
+(define STUDENT2 (make-stdnt &quot;Alice&quot; 1234567789 ADDRESS2))
+</code></pre>
+<p>As always, after setting up the struct and creating the samples, we should
+create a template for us to use later.</p>
+<pre><code class="language-scheme">(define (student-template s)
+  (... (stdnt-name s)
+       (stdnt-grad-yr s)
+       (address-template (stdnt-house s)) ...))
+</code></pre>
+<blockquote>
+<p>Notice how in this template, we also use the address-template. That is because the house
+member of the <code>student</code> structure is an <code>address</code> structure, so we need to use the tools from the address-template
+to get the data out of the address</p>
+</blockquote>
+<h2><a class="header" href="#using-a-structure-in-a-function" id="using-a-structure-in-a-function">Using a structure in a function</a></h2>
+<p>What if we want to use our new fandangled structure in a function? Well, lets try it out!
+As always, we can start by making a function, say one that adds one to a student's
+year-of-graduation (holds them back)</p>
+<h3><a class="header" href="#holding-a-student-back" id="holding-a-student-back">Holding a student back</a></h3>
+<p>As always, start by laying out the function you want.</p>
+<p><strong>Name:</strong> <code>stay-back</code><br />
+<strong>Input:</strong> <code>Student</code><br />
+<strong>Output:</strong> <code>Student</code><br />
+<strong>Description:</strong> <code>Adds 1 to a student's graduation year.</code></p>
+<p>And now we can put that into a nice comment for us to read:</p>
+<pre><code class="language-scheme">; stay-back : Student -&gt; Student
+; Adds 1 to a Student's graduation year
+</code></pre>
+<p>Once we have the comment for the function, we can create (at least) 2 check-expect tests
+to verify that it is working how we expect.</p>
+<pre><code class="language-scheme">(check-expect
+    (stay-back STUDENT1)
+    (make-stdnt &quot;Sheev&quot; 5 ADDRESS1))
+(check-expect
+    (stay-back STUDENT2)
+    (make-stdnt &quot;Alice&quot; 123456790 ADDRESS2))
+</code></pre>
+<p>Okay, that all looks great, now we have to define the function:</p>
+<pre><code class="language-scheme">(define (stay-back s)
+    (+ 1 (stdnt-gradyr s)))
+</code></pre>
+<blockquote>
+<p>This above code with not work, remember <strong>you cannot modify a structure</strong>. In order to make
+a change, you have to create a whole new one, created from the old one with the new value in place
+of the old.</p>
+</blockquote>
+<p>Heres how you would do that:</p>
+<pre><code class="language-scheme">(define (stay-back s)
+    (make-stdnt (stdnt-name s) (+ 1 (stdnt-gradyr s)) (stdnt-house s)))
+</code></pre>
+<blockquote>
+<p>Notice that we have to re-create the structure with <code>make-stdnt</code> but with the difference being
+that the gradyr is now one more than the given</p>
+</blockquote>
+<h2><a class="header" href="#changing-the-zip-code" id="changing-the-zip-code">Changing the zip code</a></h2>
+<p>As always, start by laying out the function you want.</p>
+<blockquote>
+<p>I know it can get repetitive, but your later self with thank you</p>
+</blockquote>
+<p><strong>Name:</strong> <code>update-zip-for-student</code><br />
+<strong>Input:</strong> <code>Student and Nat</code><br />
+<strong>Output:</strong> <code>Student</code><br />
+<strong>Description:</strong> <code>Update a student's zip code to be a new, given a new zip code</code></p>
+<p>And now as a nice concise comment</p>
+<pre><code class="language-scheme">; update-zip-for-student : Student Nat -&gt; Student
+; Update a student's zip code to be a new, given a new zip code
+</code></pre>
+<p>Now that we have the function all layed out, we can start with some check-expects</p>
+<pre><code class="language-scheme">(check-expect
+    (update-zip-for-student STUDENT1 12345)
+    (make-stdnt &quot;Sheev&quot; 4
+        (make-address 50 &quot;Rice St&quot; &quot;Wellesley&quot; &quot;MA&quot; 12345)))
+(check-expect
+    (update-zip-for-student STUDENT2 98765)
+    (make-stdnt &quot;Alice&quot; 123456789
+        (make-address 1 &quot;a&quot; &quot;b&quot; &quot;c&quot; 98765)))
+</code></pre>
+<blockquote>
+<p>Looks normal, and it is, all that changes is the zip code. This should be easy, right?</p>
+</blockquote>
+<p>Well yes, but we have a lot of writing to do. We can define our function, copying the student template,
+but, we cant just update the zip by replacing the last parameter with a new zip code, cause it takes
+in a whole structure. We need to make another function that can update the zip in the structure for us.</p>
+<blockquote>
+<p>Whenever you write a function, try to keep it limited to using only one data type at a time. In
+our case, we only use the student structure in this function, and we will make another <code>update-zip</code>
+function to handle the address structure</p>
+</blockquote>
+<pre><code class="language-scheme">(define (update-zip-for-student s new-zip)
+  (make-stdnt (stdnt-name s)
+              (stdnt-grad-yr s)
+              (update-zip (stdnt-house s) new-zip)))
+</code></pre>
+<p>Now, its time to make the update-zip function. Ill go quick with this one, assuming
+you have gotten faster with them aswell.</p>
+<pre><code class="language-scheme">; update-zip : Address Nat -&gt; Address
+; Update the zip code for this address to the given #
+</code></pre>
+<p><strong>Bam</strong>, theres our signature and description</p>
+<pre><code class="language-scheme">(check-expect
+    (update-zip ADDRESS1 02020)
+    (make-address 50 &quot;Rice St&quot; &quot;Wellesley&quot; &quot;MA&quot; 02020))
+(check-expect
+    (update-zip ADDRESS2 13579)
+    (make-address 1 &quot;a&quot; &quot;b&quot; &quot;c&quot; 13579))
+</code></pre>
+<p><strong>Whamo</strong>, we have some check expects</p>
+<p>And then we can, very simply, just create the <code>update-zip</code> function</p>
+<pre><code class="language-scheme">(define (update-zip a new-zip)
+    (make-address
+        (address-house a)
+        (address-st a)
+        (address-city a)
+        (address-state a)
+        new-zip))
+</code></pre>
+<p>It may look like a lot of code, but if you break it down, all it does is create a new
+address, give it the house, st, city, and state of the old address, and just replace the
+zip with the new zip</p>
+<h2><a class="header" href="#tying-it-together-into-a-text-editor" id="tying-it-together-into-a-text-editor">Tying it together into a text editor</a></h2>
+<p>Now that we have learned to use structures, we can put them to good use. We can use them in our
+text editor. Remember when we had our text editor, it could type and delete, but you could not move
+the cursor around. That was because our world state was a single string: The text that was in the editor.
+We had no way of storing the cursor position. Well, using these new hot structures that we have learned
+about, that is all about to change.</p>
+<p>So. first thing you do with any data type, function, or struct is a simple, one line comment
+describing it. In our case, we will make a structure called <code>TextEditor</code> or <code>te</code> for short with the
+text and cursor position as members. We can write this out in a comment like so:</p>
+<pre><code class="language-scheme">; A TextEditor is a (make-te String Nat)
+</code></pre>
+<p>Now that we know about the text editor, we need to tell scheme about it. (remember, anything after a
+<code>;</code> is invisible to scheme and is only for us to read).</p>
+<p>We can define the struct as such:</p>
+<pre><code class="language-scheme">(define-struct te [text cursor])
+</code></pre>
+<p>And now we can describe the types in the text editor further</p>
+<pre><code class="language-scheme">; and represents a text editor
+; - where text is the text you have typed
+; - and cursor is the index of the cursor
+</code></pre>
+<details>
+<summary>All together they will look as such:</summary>
+<pre><code class="language-scheme">; A TextEditor is a (make-te String Nat)
+(define-struct te [text cursor])
+; and represents a text editor
+; - where text is the text you have typed
+; - and cursor is the index of the cursor
+</code></pre>
+</details>
+<p>Now that we have the struct created and layed out. We need to make 2 samples:</p>
+<pre><code class="language-scheme">(define TE1 (make-te &quot;hello&quot; 1))
+(define TE2 (make-te &quot;ECS&quot; 0))
+</code></pre>
+<p>Although we don't have time to implement it into our text editor but we can make a simple
+function that we may be able to use as the on key handler for our big-bang program. Since it
+will handle key events, it take in our world state, in this case the <code>TextEditor</code> structure and the
+key event.</p>
+<pre><code class="language-scheme">; insert-text : TextEditor KeyEvent -&gt; TextEditor
+; Insert text the user typed at the cursor's location
+</code></pre>
+<p>An example check expect could exist as such:</p>
+<pre><code class="language-scheme">(check-expect (insert-text TE1 &quot;a&quot;)
+              (make-te &quot;haello&quot; 2))
+</code></pre>
+<h2><a class="header" href="#too-long-didnt-read" id="too-long-didnt-read">Too Long; Didn't Read</a></h2>
+<ul>
+<li>
+<p>Structures are a way to store more than one data piece in the same place</p>
+</li>
+<li>
+<p>Structures can be created like so:</p>
+<pre><code class="language-scheme">(make-struct my-struct-name [field1-name field2-name ...])
+</code></pre>
+</li>
+<li>
+<p>When using structures, you can use the generated function <code>&lt;name-of-structure&gt;-&lt;name-of-field&gt;</code>
+where <code>&lt;name-of-structure&gt;</code> is replaced with the name of your structure. (ex: <code>address</code>) and
+<code>&lt;name-of-field&gt;</code> is replaced with the name of the field that you want to read. (ex: <code>st</code>). So
+to access an address's st(reet), we can use the helper function <code>(address-st a)</code></p>
+</li>
+<li>
+<p>When using structures in a function, only access one data type at a time, make different functions
+for deeply nested data, such as the address inside of the student <a href="#changing-the-zip-code">see: Changing the zip code</a></p>
+</li>
+<li>
+<p>ALL DATA IN SCHEME IS IMMUTABLE (unable to be mutated (changed))</p>
+<ul>
+<li>To be able to modify a structure, you have to create a whole new one with the new data
+<a href="#holding-a-student-back">see:  Holding a student back</a></li>
+</ul>
+</li>
+<li>
+<p>Scheme is very lax and does not enforce the types you want in your structures, you have to be
+weary of that and enforce it yourself</p>
+</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../scheme/2020-10-13.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../scheme/2020-10-19.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../scheme/2020-10-13.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../scheme/2020-10-19.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

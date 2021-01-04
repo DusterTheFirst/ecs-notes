@@ -1,0 +1,451 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js navy">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Recursion and balloon game (December 1, 2020) - ECS Notes</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="../favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="../favicon.png">
+        
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Welcome</a></li><li class="spacer"></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.</strong> Scheme</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../scheme/2020-10-13.html"><strong aria-hidden="true">1.1.</strong> Unions and data design (October 13 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-10-14.html"><strong aria-hidden="true">1.2.</strong> Text Editor v2 (October 14, 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-10-19.html"><strong aria-hidden="true">1.3.</strong> Text Editor v2 contd. (October 19, 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-12-1.html" class="active"><strong aria-hidden="true">1.4.</strong> Recursion and balloon game (December 1, 2020)</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Python</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../python/Introduction.html"><strong aria-hidden="true">2.1.</strong> Introduction</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><a href="../scheme/2-help-sheet.html">Scheme Help Sheet</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">ECS Notes</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                        <a href="https://github.com/DusterTheFirst/ecs-notes" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#recursion-and-balloon-game-december-1-2020" id="recursion-and-balloon-game-december-1-2020">Recursion and balloon game (December 1, 2020)</a></h1>
+<p><a href="#too-long-didnt-read">Jump to TL;DR (summary)</a><br />
+<a href="https://www.wescheme.org/openEditor?publicId=5L8j5dHY5S">Starting code for this lesson on wescheme</a></p>
+<h2><a class="header" href="#starting-with-the-balloon-game" id="starting-with-the-balloon-game">Starting with the balloon game</a></h2>
+<p>We left off writing a game where the user can make balloons which will fly upwards.
+Our game worked and was great, but there is a slight problem, we can only have 2
+balloons at a time, and that sucks. We want all the balloons!!!</p>
+<p>Currently our Balloon game type is as follows:</p>
+<pre><code class="language-scheme">; A BalloonGame is one of:
+; - false (no balloons)
+; - Posn (balloon)
+; - (make-twothings Posn Posn)
+; and represents either a screen with no balloons, a screen with a balloon,
+; or a screen with two balloons
+</code></pre>
+<p>As we can see, there are the 3 variants, no balloons, one balloon and 2 balloons.
+If we wanted 3 balloons what could we do? One option would be to make a 4th variant
+and make it something like:</p>
+<pre><code class="language-scheme">; - (make-threethings Posn Posn Posn)
+</code></pre>
+<p>But that method has a problem. First off, we need to make another whole data type <code>threethings</code>
+and making data types is <em>so <strong>not</strong> lit</em>. Another problem with this method is every single time
+we want to add another balloon, we have to make another variant, and a whole new data type. <em><strong>UGH</strong></em>.</p>
+<p>What if I told you <del>that you lived in a simulation</del> that there is a way to make a data definition that
+can hole <em>infinite</em> amounts of data.</p>
+<h2><a class="header" href="#recursive-data-structures" id="recursive-data-structures">Recursive data structures</a></h2>
+<p>You saw this coming if you read the title, but what you might not have known is what in the gosh darn
+is this fandangled recursion thing? Well, I can hit you with what my friend Merriam Webster says:</p>
+<pre><code class="language-none">recursion (noun)
+re·​cur·​sion | ri-ˈkər-zhən
+    
+    a computer programming technique involving the use of a procedure,
+    subroutine, function, or algorithm that calls itself one or more
+    times until a specified condition is met at which time the rest
+    of each repetition is processed from the last one called to the
+    first 
+</code></pre>
+<p>Ok webster, that's cool and all, but like <em><strong>HUH?</strong></em> what do all those words mean. <em>Procedures</em>?
+<em>Subroutines</em>?</p>
+<p>It looks like Mr. Webster is a bit too verbose for us, let be break it down.</p>
+<p>Recursion is when some <em>thing</em> does itself multiple times. In terms of scheme and our programming
+knowledge, there are 2 places where we can use recursion. Functions and structures.</p>
+<p>A data structure is recursive when one of the parts of it is the data structure itself. A way to
+visualize it is to think of russian nesting dolls (also called Matryoshka):</p>
+<details>
+<summary>Click To Expand Images</summary>
+<p><img src="https://m.media-amazon.com/images/S/aplus-media/sc/d88c17bc-2edd-430f-8786-fe2569db8f3a.__CR0,171,1716,1061_PT0_SX970_V1___.jpg" alt="Image 1" />
+<img src="https://cdn.shopify.com/s/files/1/1659/7413/products/Authentic-Russian-Nesting-Doll-Apples-2-947841_1200x1200.jpg?v=1571439509" alt="Image 2" /></p>
+</details>
+<p>Each doll has its outer shell with the paint and
+the nice artwork, but if you look inside of them, they have a whole new doll inside.</p>
+<p>This outer doll can be thought of as the structure and the paint could be a property of it, much
+like the positions in our <code>twothings</code> structure and the doll on the inside would be a whole new two
+things struct. Lets try to change our <code>BalloonGame</code> into a recursive structure so that we can have
+infinite balloons and it may help to see a concrete example.</p>
+<h2><a class="header" href="#making-a-recursive-structure" id="making-a-recursive-structure">Making a recursive structure</a></h2>
+<p>Back to our <code>BalloonGame</code> structure:</p>
+<pre><code class="language-scheme">; A BalloonGame is one of:
+; - false (no balloons)
+; - Posn (balloon)
+; - (make-twothings Posn Posn)
+; and represents either a screen with no balloons, a screen with a balloon,
+; or a screen with two balloons
+</code></pre>
+<p>We can join the single and double data structure variants into one recursive data variant.</p>
+<pre><code class="language-scheme">; A BalloonGame is one of:
+; - false (no balloons)
+; - (make-twothings Posn BalloonGame)
+; and represents either a screen with no balloons, or a screen with at least one balloon
+</code></pre>
+<p>In the above definition, we replaced the second Posn in the <code>twothings</code> struct with a Balloon,
+but what does that entail exactly? Well, now <code>chain</code> our <code>Balloon Gme</code>s together.</p>
+<p>We can start with the inside most <code>BalloonGame</code>, the false variant.</p>
+<pre><code class="language-scheme">(define NO-BALLOONS false)
+</code></pre>
+<p>Since the false variant of our data type has no <code>BalloonGame</code> inside of it, it is the end of
+the recursion, the center most Matryoshka. But we can now put another doll around it:</p>
+<pre><code class="language-scheme">(define ONE-BALLOON (make-twothings (make-posn 10 20) NO-BALLOONS))
+</code></pre>
+<p>Now our <code>ONE-BALLOON</code> constant is a <code>BalloonGame</code> with one balloon. If we unravel it, or replace
+the constants with their actual value so its a bit easier to picture, it will look as such:</p>
+<pre><code class="language-scheme">(define ONE-BALLOON (make-twothings (make-posn 10 20) false))
+</code></pre>
+<p>The false at the end signals that that is the end of our recursion. Now if we have 2 balloons, we
+can show that like so:</p>
+<pre><code class="language-scheme">(define TWO-BALLOONS (make-twothings (make-posn 250 93) ONE-BALLOON))
+</code></pre>
+<p>or unwrapped:</p>
+<pre><code class="language-scheme">(define TWO-BALLOONS (make-twothings (make-posn 250 93) (make-twothings (make-posn 10 20) false)))
+</code></pre>
+<p>Once again, we have that false at the end to signal that our recursion is done.</p>
+<p>Recursion is a lot to wrap your head around, so this could take multiple reads through
+(and definitely should), but here are a few more examples of the <code>BalloonGame</code> data structure
+for you to gander at</p>
+<pre><code class="language-scheme">(define NO-BALLOONS false)
+(define ONE-BALLOON (make-twothings (make-posn 10 20) NO-BALLOONS))
+(define TWO-BALLOONS (make-twothings (make-posn 250 93) ONE-BALLOON))
+(define THREE-BALLOONS (make-twothings (make-posn 200 200) TWO-BALLOONS))
+(define FOUR-BALLOONS (make-twothings (make-posn 350 26) THREE-BALLOONS))
+</code></pre>
+<p>And them &quot;unraveled&quot;</p>
+<pre><code class="language-scheme">(define NO-BALLOONS false)
+
+(define ONE-BALLOON (make-twothings (make-posn 10 20)
+                                    false))
+
+(define TWO-BALLOONS (make-twothings (make-posn 250 93)
+                                     (make-twothings (make-posn 10 20)
+                                                     false)))
+
+(define THREE-BALLOONS (make-twothings (make-posn 200 200)
+                                       (make-twothings (make-posn 250 93)
+                                                       (make-twothings (make-posn 10 20)
+                                                                       false))))
+(define FOUR-BALLOONS (make-twothings (make-posn 350 26)
+                                      (make-twothings (make-posn 200 200)
+                                                      (make-twothings (make-posn 250 93)
+                                                                      (make-twothings (make-posn 10 20)
+                                                                                      false)))))
+</code></pre>
+<p>In the &quot;unraveled&quot; version — which by the way you should almost never type out by hand,
+always use the method shown above it, where you have each nested one get defined before it
+— it becomes a bit clearer to see the &quot;nesting&quot; of the structure inside of itself.
+It is worthy to note that all of them end in false. If there not a second, non recursive variant
+of our data type, we would never to be able to stop recursing, but since we have that second false
+variant, we are allowed to stop our data type with the false variant.</p>
+<p>Since we have now updated the data definition and its samples (the NO-BALLOONS - FOUR-BALLOONS above)
+we can move to the final step of the data defining process, which is to make our template. In our case,
+we just need to update our template.</p>
+<p>Currently we have this:</p>
+<pre><code class="language-scheme">; BalloonGame -&gt; ???
+(define (balloon-game-template game)
+  (cond [(boolean? game) ...]
+        [(posn? game) (posn-template game)]
+        [(twothings? game)
+         (... (posn-template (twothings-thing1 game))
+              (posn-template (twothings-thing2 game)))]))
+</code></pre>
+<p>And that template worked for our 3 variants, the no balloons (false), the one Posn, or the 2 Posns.
+Since we no longer have 3 variants we have to change the template. We can begin by removing the one
+posn template, since although we do use only 1 posn, we still use the <code>twothings</code> struct.</p>
+<pre><code class="language-diff">; BalloonGame -&gt; ???
+(define (balloon-game-template game)
+  (cond [(boolean? game) ...]
+-       [(posn? game) (posn-template game)]
+        [(twothings? game)
+         (... (posn-template (twothings-thing1 game))
+              (posn-template (twothings-thing2 game)))]))
+</code></pre>
+<p>Now its all fine and dandy? Right? Well not yet... We also changed the data that is
+stored in the two things structure. Since we changed our <em>definition</em>, we also need
+to change the code that uses it, or the <em>implementation</em>.</p>
+<p>In our new data definition for the two things variant, we changed from 2 Posns to a
+Posn and another BalloonGame. In our above template, we call the <code>posn-template</code> on the
+<code>thing1</code> and the <code>thing2</code> from twothings since they both used to be posns, Now the second
+one is another <code>BalloonGame</code> so we have to call this same <code>baloon-game-template</code> on that
+baloon game</p>
+<pre><code class="language-diff">; BalloonGame -&gt; ???
+(define (balloon-game-template game)
+  (cond [(boolean? game) ...]
+        [(twothings? game)
+         (... (posn-template (twothings-thing1 game))
+-             (posn-template (twothings-thing2 game)))]))
++             (balloon-game-template (twothings-thing2 game)))]))
+</code></pre>
+<p>As you can see, we now have our template calling that same template. This is very similar
+to our <strong>recursive data structure</strong> in a lot of ways, I wonder what it would be called?</p>
+<h2><a class="header" href="#recursive-functions" id="recursive-functions">Recursive functions</a></h2>
+<p>Recursive functions are very much the same as recursive data definitions. But instead of
+containing themselves, as recursive structures do, they call (or run) themselves.</p>
+<p>We can see that in practice in our new and updated <code>balloon-game-template</code>:</p>
+<pre><code class="language-scheme">; BalloonGame -&gt; ???
+(define (balloon-game-template game)
+  (cond [(boolean? game) ...]
+        [(twothings? game)
+         (... (posn-template (twothings-thing1 game))
+              (balloon-game-template (twothings-thing2 game)))]))
+</code></pre>
+<p>Since the function calls itself, it needs a path to take that could not call itself or else
+it would be stuck calling itself which would call itself which would....</p>
+<p>Just like how a recursive structure needs a second variant a recursive function needs a cond
+or if with <em>one or more</em> of the paths <strong>not</strong> calling itself.</p>
+<p>This escape can be seen in our template with the boolean? cond case which will run when we get
+to the end of our &quot;nested dolls&quot;.</p>
+<p># TODO: FUNCTION HANDLING THEM
+# TODO: REST</p>
+<h2><a class="header" href="#too-long-didnt-read" id="too-long-didnt-read">Too Long; Didn't Read</a></h2>
+<ul>
+<li><a href="https://www.wescheme.org/openEditor?publicId=4CXe2en4jH">Final Product</a></li>
+<li>Recursion is the method of nesting something inside of another of that same thing
+<ul>
+<li>We can have recursive data structures (A structure that contains itself) (think of a russian
+nesting doll)</li>
+<li>We can have recursive functions (A function that calls itself)</li>
+</ul>
+</li>
+<li>With all recursive things, you <em><strong>MUST</strong></em> have an 'escape'
+<ul>
+<li>Recursive data structures must have a variant to signal that the recursion is finished (our
+false case above)</li>
+<li>Recursive functions must have a way to not call themselves again, so they must contain a
+cond/if with at least one branch not calling themselves</li>
+</ul>
+</li>
+<li>If you do not have this escape from recursion
+<ul>
+<li>Your data structure would be infinitely large since it would forever contain 1 more of itself
+which would contain 1 more of itself which ....</li>
+<li>You function would never be done running since it would forever call itself which would call
+itself which would call itself which would ....</li>
+</ul>
+</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../scheme/2020-10-19.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../python/Introduction.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../scheme/2020-10-19.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../python/Introduction.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
