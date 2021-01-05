@@ -1,6 +1,6 @@
 # Introduction
 
-[Jump to TL;DR (summary)](#too-long-didnt-read)\
+[Jump to TL;DR (summary)](#too-long-didnt-read)
 
 Welcome to the wonderful world of python.
 Python is a very different language than scheme/racket which we have used so far.

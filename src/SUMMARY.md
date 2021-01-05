@@ -11,7 +11,8 @@
     - [Recursion and balloon game (December 1, 2020)](./scheme/2020-12-1.md)
 - [Python]()
     - [Introduction](./python/introduction.md)
+    - [Constants and Functions](./python/constants-functions.md)
 
 ---
 
-[Scheme Help Sheet](./scheme-help-sheet.md)
+[ECS Help Sheet](./help-sheet.md)
