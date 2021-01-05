@@ -172,7 +172,7 @@
                         <h1><a class="header" href="#hello-ecs-students" id="hello-ecs-students">Hello ECS Students</a></h1>
 <p>This is a bunch of notes taken from the classes if you want
 to read through them again</p>
-<p>There is a sidebar that is on the right or accessible using the top right button in
+<p>There is a sidebar that is on the left or accessible using the top left button in
 the header</p>
 <p>All notes are written by Zachary Kohnen, the Student Assistant for Orange block, so all of the dates
 are for the orange block that those notes were taken on</p>
@@ -1465,6 +1465,23 @@ design recipe when you do so.</li>
 
         
 
+        
+        <!-- Google Analytics Tag -->
+        <script type="text/javascript">
+            var localAddrs = ["localhost", "127.0.0.1", ""];
+
+            // make sure we don't activate google analytics if the developer is
+            // inspecting the book locally...
+            if (localAddrs.indexOf(document.location.hostname) === -1) {
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'G-3S02PN40BH', 'auto');
+                ga('send', 'pageview');
+            }
+        </script>
         
 
         
