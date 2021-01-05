@@ -3,7 +3,7 @@
 This is a bunch of notes taken from the classes if you want
 to read through them again
 
-There is a sidebar that is on the right or accessible using the top right button in
+There is a sidebar that is on the left or accessible using the top left button in
 the header
 
 All notes are written by Zachary Kohnen, the Student Assistant for Orange block, so all of the dates
