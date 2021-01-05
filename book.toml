@@ -12,6 +12,6 @@ create-missing = false
 default-theme = "navy"
 cname = "ecs-notes.dusterthefirst.com"
 git-repository-url = "https://github.com/DusterTheFirst/ecs-notes"
-google-analytics = "G-3S02PN40BH"
+google-analytics = "257838842"
 
 [output.linkcheck]
