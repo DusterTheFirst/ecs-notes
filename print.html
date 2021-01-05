@@ -97,7 +97,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Welcome</a></li><li class="spacer"></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.</strong> Scheme</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="scheme/2020-10-13.html"><strong aria-hidden="true">1.1.</strong> Unions and data design (October 13 2020)</a></li><li class="chapter-item expanded "><a href="scheme/2020-10-14.html"><strong aria-hidden="true">1.2.</strong> Text Editor v2 (October 14, 2020)</a></li><li class="chapter-item expanded "><a href="scheme/2020-10-19.html"><strong aria-hidden="true">1.3.</strong> Text Editor v2 contd. (October 19, 2020)</a></li><li class="chapter-item expanded "><a href="scheme/2020-12-1.html"><strong aria-hidden="true">1.4.</strong> Recursion and balloon game (December 1, 2020)</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Python</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="python/introduction.html"><strong aria-hidden="true">2.1.</strong> Introduction</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><a href="scheme-help-sheet.html">Scheme Help Sheet</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Welcome</a></li><li class="spacer"></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.</strong> Scheme</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="scheme/2020-10-13.html"><strong aria-hidden="true">1.1.</strong> Unions and data design (October 13 2020)</a></li><li class="chapter-item expanded "><a href="scheme/2020-10-14.html"><strong aria-hidden="true">1.2.</strong> Text Editor v2 (October 14, 2020)</a></li><li class="chapter-item expanded "><a href="scheme/2020-10-19.html"><strong aria-hidden="true">1.3.</strong> Text Editor v2 contd. (October 19, 2020)</a></li><li class="chapter-item expanded "><a href="scheme/2020-12-1.html"><strong aria-hidden="true">1.4.</strong> Recursion and balloon game (December 1, 2020)</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Python</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="python/introduction.html"><strong aria-hidden="true">2.1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="python/constants-functions.html"><strong aria-hidden="true">2.2.</strong> Constants and Functions</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><a href="help-sheet.html">ECS Help Sheet</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -1323,12 +1323,99 @@ turtle.pendown()
 <h2><a class="header" href="#too-long-didnt-read-4" id="too-long-didnt-read-4">Too Long; Didn't Read</a></h2>
 <p>If you want an abridged version, you can look at just the code that I have gone over
 <a href="https://github.com/DusterTheFirst/ecs-notes/tree/main/src/python/introduction.py">here</a></p>
-<h1><a class="header" href="#scheme-help-sheet" id="scheme-help-sheet">Scheme Help Sheet</a></h1>
+<h1><a class="header" href="#constants-and-functions" id="constants-and-functions">Constants and Functions</a></h1>
+<p><a href="python/constants-functions.html#too-long-didnt-read">Jump to TL;DR (summary)</a></p>
+<h2><a class="header" href="#constants" id="constants">Constants</a></h2>
+<p>Starting with some code from the introduction that draws a square</p>
+<pre><code class="language-python">import turtle
+turtle.forward(150)
+turtle.left(90)
+turtle.forward(150)
+turtle.left(90)
+turtle.forward(150)
+turtle.left(90)
+turtle.forward(150)
+turtle.done()
+</code></pre>
+<p>We can see that our code is very repetitive. We call <code>turtle.forward</code> 4 times and <code>turtle.left</code> 3 times.
+We also give them all the same values to the functions over and over. We can start by getting rid of
+the same value over and over and over again using constants, much like we have with scheme.</p>
+<p>Constants in python are defined with all caps names and our constants would look something like</p>
+<pre><code class="language-python">SIZE = 150
+ANGLE = 90
+</code></pre>
+<p>Just like in scheme, we use all caps for our constants to show that they will never change. If we wanted
+to have a constant with spaces in its name, we would write it like such</p>
+<pre><code class="language-python">THIS_IS_MY_CONSTANT = &quot;hello&quot;
+</code></pre>
+<p>And now that we have these constants defined, we can replace the numbers in our code with these constants</p>
+<pre><code class="language-python">turtle.forward(SIZE)
+turtle.left(ANGLE)
+turtle.forward(SIZE)
+turtle.left(ANGLE)
+turtle.forward(SIZE)
+turtle.left(ANGLE)
+turtle.forward(SIZE)
+turtle.done()
+</code></pre>
+<p>Now we just have one spot to change our size and angle if we want to draw a different shape or to
+draw a different size. The code is still repetitive though. If we wanted to draw 2 squares, we would
+have 14 lines of code. bruh :(. Instead, we can use</p>
+<h2><a class="header" href="#functions" id="functions">Functions</a></h2>
+<p>Functions, which you are hopefully familiar with from scheme, are tools that allow us to group blocks
+of code together which we can run and even give values to. In python, we follow the same steps as in
+scheme when defining a function.</p>
+<ul>
+<li>Signature</li>
+<li>Purpose/Description</li>
+<li><del>Tests</del></li>
+<li>Actual Function Body</li>
+</ul>
+<p>Ok, we do all of them <em>except</em> tests. I know, it is so sad. They were my favorite part of programming
+too.</p>
+<p>Now that we have that out of the way, we can move our code into a function. We start with the signature.
+Since this function is drawing a square, I think we should name it <code>draw_triangle</code>. No? Ok... I guess
+we can call it <code>draw_square</code>. And we want our function to take in the size of the square so that we
+can use it for <sub>small</sub> and <strong>big</strong> squares. Our function's signature would look something like</p>
+<pre><code class="language-python"># draw_square : Number -&gt; Image
+</code></pre>
+<p>Although, yes, this function does not <code>return</code> an image per se, we will still put it down as such, to
+clarify that the function will create an image on the screen. We will get into what it means for a function
+to actually return a value later.</p>
+<p>And now we can add our very, very complex description or purpose statement whatever you prefer.</p>
+<pre><code class="language-python"># draw_square : Number -&gt; Image
+# Draws a square of the given size
+</code></pre>
+<h2><a class="header" href="#too-long-didnt-read-5" id="too-long-didnt-read-5">Too Long; Didn't Read</a></h2>
+<p>If you want an abridged version, you can look at just the code that I have gone over
+<a href="https://github.com/DusterTheFirst/ecs-notes/tree/main/src/python/constants-functions.py">here</a></p>
+<ul>
+<li>Functions are defined with the <code>def</code> keyword and look something like</li>
+</ul>
+<pre><code class="language-python"># square_root : Number -&gt; Number
+# Find the square root of a Number
+def square_root(n):
+    return n**(1/2) # n^.5 = sqrt(n)
+</code></pre>
+<ul>
+<li>Similarly to scheme, <code>CONSTANTS_LOOK_LIKE_THIS</code> and <code>variables_look_like_this</code> the only difference
+is the underscores <code>_</code> versus the hyphen <code>-</code></li>
+<li>Still follow the <a href="python/../help-sheet.html">help-sheet</a>'s rules for defining functions, just skip the test step for now</li>
+<li>Variable's values can be changed</li>
+</ul>
+<pre><code class="language-python">x = 7
+x = 10
+print(x)
+</code></pre>
+<ul>
+<li>Inside of a function, variables do not modify the variables that were passed in (see <a href="python/constants-functions.html#mutation-weirdness">Mutation Weirdness</a>)</li>
+</ul>
+<h1><a class="header" href="#ecs-help-sheet" id="ecs-help-sheet">ECS Help Sheet</a></h1>
 <table><thead><tr><th align="center">Designing Data</th><th align="center">Designing Functions</th></tr></thead><tbody>
 <tr><td align="center">Data Definition - what kind of data is allowed</td><td align="center">Signature - what kind of data goes in and what kind of data comes out?</td></tr>
 <tr><td align="center">Interpretation - what does this data mean?</td><td align="center">Purpose - what does this function do?</td></tr>
 <tr><td align="center">Examples (at least 2)</td><td align="center">Testing - examples of how the function works (using check-expect)</td></tr>
-<tr><td align="center">Template (see <a href="scheme-help-sheet.html#designing-templates">Designing Templates</a>)</td><td align="center">Code - using the template</td></tr>
+<tr><td align="center">Template (see <a href="help-sheet.html#designing-templates">Designing Templates</a>)</td><td align="center">Code - using the template</td></tr>
 </tbody></table>
 <h2><a class="header" href="#designing-templates" id="designing-templates">Designing Templates</a></h2>
 <ol>
