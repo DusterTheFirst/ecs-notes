@@ -230,6 +230,276 @@ to actually return a value later.</p>
 <pre><code class="language-python"># draw_square : Number -&gt; Image
 # Draws a square of the given size
 </code></pre>
+<p>Now that we have the documentation out of the way, we can move onto the actual body of the function.
+The function will basically be a copy and paste of our above code with some parts added to tell python
+that it is a function.</p>
+<pre><code class="language-python"># draw_square : Number -&gt; Image
+# Draws a square of the given size
+def draw_square(size):
+    turtle.forward(size)
+    turtle.left(ANGLE)
+    turtle.forward(size)
+    turtle.left(ANGLE)
+    turtle.forward(size)
+    turtle.left(ANGLE)
+    turtle.forward(size)
+</code></pre>
+<p>Here is a breakdown of the parts of a python function</p>
+<pre><code class="language-python">def # Tells python about the function definition
+draw_square # The name of our function
+(size) # Tells python that our function takes in one input, and we name it size
+: # Tells python that everything after this is the content of the function
+</code></pre>
+<p>If we were to take in 2 inputs, we would put a comma in between them in the parenthesis</p>
+<pre><code class="language-python">def two_inputs(a, b):
+</code></pre>
+<p>Note that in the function, we have replaced <code>SIZE</code> with <code>size</code> since we are no longer using the
+constant size that we defined before and instead are allowing us to specify the size of the square
+when we call the function</p>
+<blockquote>
+<p>Python is what is called a &quot;whitespace language&quot; meaning that what the code means is heavily dependant
+on the whitespace in the code.</p>
+<blockquote>
+<p>Whitespace is a character that you can not see such as space or tab</p>
+</blockquote>
+<p>because of this, the indentation of your code matters. To specify that the code above is part of the
+function, it needed to be indented one time. If we now wanted to write more code after, but not inside
+of the function, we would have to un-indent the code which would look like so</p>
+</blockquote>
+<pre><code class="language-python"># draw_square : Number -&gt; Image
+# Draws a square of the given size
+def draw_square(size):
+    turtle.forward(size)
+    turtle.left(ANGLE)
+    turtle.forward(size)
+    turtle.left(ANGLE)
+    turtle.forward(size)
+    turtle.left(ANGLE)
+    turtle.forward(size)
+
+turtle.done() # This code is now not inside of the above function
+</code></pre>
+<p>To use our function that we have defined, we can now call it as such</p>
+<pre><code class="language-python">draw_square(150)
+draw_square(300)
+turtle.done()
+</code></pre>
+<blockquote>
+<p>Unlike in scheme where you can call/use a function from anywhere, in python, you must define a function
+before you are able to use it, much like variables or constants. So the above code would have to appear
+below the function we have made</p>
+</blockquote>
+<h2><a class="header" href="#designing-a-square-root-function" id="designing-a-square-root-function">Designing a square root function</a></h2>
+<p>Now that we have designed a simple function, we get to do another one! yay!</p>
+<p>This function we will define will find the square root of an inputted value</p>
+<p>Lets walk down the steps of function definitions</p>
+<ul>
+<li>Signature</li>
+</ul>
+<pre><code class="language-python"># square_root : Number -&gt; Number
+</code></pre>
+<ul>
+<li>Purpose/Description</li>
+</ul>
+<pre><code class="language-python"># Find the square root of a Number
+</code></pre>
+<ul>
+<li><del>Tests</del></li>
+</ul>
+<p>No tests needed</p>
+<ul>
+<li>Actual Function Body</li>
+</ul>
+<p>To make the function, we need to remember how to take a square root. If you remember from math class,
+a square root is the same as raising something to the power of <code>1/2</code>, we can express that in python
+with the following</p>
+<pre><code class="language-python">def square_root(n):
+    n**(1/2)
+</code></pre>
+<p>If you remember back to the introduction, the <code>**</code> operator raises the number on the left to the
+exponent on the right, so in this case, we are raising n to the power of <code>1/2</code> where n is the inputted
+value to our function</p>
+<p>Unlike scheme, python does not return anything from the function unless you explicitly tell it to
+<code>return</code> the value. That is because in python, you can run multiple lines of code per function where
+as scheme had you nest all of the function calls inside each other.</p>
+<p>To be able to return the value, we need to add <code>return</code> before the value we want to return. Below is
+the fully complete function</p>
+<pre><code class="language-python"># square_root : Number -&gt; Number
+# Find the square root of a Number
+def square_root(n):
+    return n**(1/2) # n^.5 = sqrt(n)
+</code></pre>
+<p>Now we can use this function</p>
+<pre><code class="language-python">square_root(100) # = 10.0
+</code></pre>
+<p>And we can assign the result to a variable as well</p>
+<pre><code class="language-python">x = square_root(25) # = 5.0
+</code></pre>
+<p>But how to we show out this information to us? Im not too sure, but I have heard a bit about</p>
+<h2><a class="header" href="#printing-values-to-the-console" id="printing-values-to-the-console">Printing Values to the Console</a></h2>
+<p>Python provides a function to us called print that will print out all of its arguments. This function
+is a bit different than the ones that we have wrote so far in that it can take 0 or 100 inputs. Print
+will print out all of the inputs given to it. We use it like any other function that we have before</p>
+<pre><code class="language-python">print(&quot;hello&quot;)
+print(&quot;hello&quot;, 7, False, 32)
+print(square_root(100))
+</code></pre>
+<blockquote>
+<p>Watch out! Although python is very google-able, there are 2 different versions of python: Python 2
+and Python 3. There are a few syntax and other changes between these versions, one of these is the
+layout of the print function. In Python 2, you would write <code>print &quot;hello&quot;</code> to print the string hello.
+In the newer Python 3 that we use, we need to put parenthesis around the inputs to all functions, so
+we would write <code>print(&quot;hello&quot;)</code>. <strong>If you ever see the old way of printing, look around for a newer
+source since the source you are using may be outdated, or just replace the old style of prints with
+the new style.</strong></p>
+</blockquote>
+<h2><a class="header" href="#returning-nothing" id="returning-nothing">Returning Nothing</a></h2>
+<p>When writing a function, we may want to not return anything from it since we might print to the console
+or draw using a turtle. In that case, we need to mark the function as returning <code>(void)</code>.</p>
+<p>We will use a simple function that prints a greeting to the name that is given ie. <code>print_greeting(&quot;Zach&quot;)</code>
+would print <code>Hello Zach</code> to the console as an example for this.</p>
+<p>The function signature and usage would look as follows</p>
+<pre><code class="language-python"># print_greeting : String -&gt; (void)
+# Prints a greeting to the given person
+def print_greeting(name):
+    print(&quot;Hello &quot; + name)
+
+print_greeting(&quot;Alice&quot;) # prints &quot;Hello Alice&quot;
+</code></pre>
+<blockquote>
+<p>Make note of the un-indentation of the last line, meaning that it is not inside of the function above
+it.</p>
+</blockquote>
+<p>The main change we have made is the return type being <code>(void)</code> to tell us that this function returns
+nothing.</p>
+<p>Since this function returns nothing, we cannot get a value from it/assign it to a variable</p>
+<pre><code class="language-python">greeting = print_greeting(&quot;Alice&quot;)
+print(greeting) # prints &quot;None&quot;
+</code></pre>
+<p>If we instead wanted to be able to use and manipulate the greeting before printing it out, we would
+need to make our function return the greeting instead of printing it. Since it now returns the
+greeting instead of printing it, we can rename it to <code>get_greeting</code>.</p>
+<pre><code class="language-python"># get_greeting : String -&gt; String
+# Get a greeting to the given person
+def get_greeting(name):
+    return &quot;Hello &quot; + name
+
+get_greeting(&quot;Alice&quot;) # = &quot;Hello Alice&quot;
+</code></pre>
+<p>Note that the last line does not print anything to the console, and instead just will return the
+greeting for use to use later in our program. We can use the value like so</p>
+<pre><code class="language-python">greeting = get_greeting(&quot;Alice&quot;)
+print(greeting + &quot;'s dog&quot;) # prints &quot;Hello Alice's dog&quot;
+</code></pre>
+<h2><a class="header" href="#mutation" id="mutation">Mutation</a></h2>
+<p>This is a very common feature that scheme intentionally did not let us use, and that is because it
+has a lot of quirks, but can also be very useful.</p>
+<p>We can define variables like such</p>
+<pre><code class="language-python">x = 7
+</code></pre>
+<p>And in python, we can now change that variable.</p>
+<pre><code class="language-python">x = 7
+x = 10
+print(x)
+</code></pre>
+<p>So in the console, we will see the number 10, since <code>x</code> was changed from 7 to 10</p>
+<p>Sometimes we don't want to change a variable to an exact value, but instead change it relatively
+such as adding 5 to it. Python lets us to so in 2 ways. The obvious way would be to do something
+like</p>
+<pre><code class="language-python">x = x + 3
+</code></pre>
+<p>But python gives us the tool to do it a bit more concisely using</p>
+<pre><code class="language-python">x += 3
+</code></pre>
+<p>Python lets us do this with all of the operators gone over in the introduction, here is an example
+of a few of them.</p>
+<pre><code class="language-python">x -= 3 # subtracts 3 from the value x
+x *= 3 # multiplies 3 to the value x
+x /= 3 # divides 3 from the value x
+</code></pre>
+<p>Weirdly, we can use these with strings too</p>
+<pre><code class="language-python">s = &quot;Hello&quot;
+s += &quot;!&quot; # Adds a &quot;!&quot; at the end of the string s
+s *= 3 # Duplicates the string s 3 times
+print(s) # prints &quot;Hello!Hello!Hello!&quot;
+</code></pre>
+<h2><a class="header" href="#mutation-madness" id="mutation-madness">Mutation Madness</a></h2>
+<p>Say we have this function</p>
+<pre><code class="language-python"># change_number : Number -&gt; (void)
+# Add 3 to the given Number
+def change_number(x):
+    x += 3
+</code></pre>
+<p>And this code that deals with the function</p>
+<pre><code class="language-python">x = 10
+change_number(x)
+print(x)
+</code></pre>
+<p>What do you think this would print?</p>
+<details>
+<summary>Click for the answer</summary>
+<p>This would print out 10.</p>
+<p>The x in the function and the x in the code outside of the function are not the same variable. Yes
+they have the same name, but the one inside of the function could just as well be named <code>n</code> or <code>jeff</code>.</p>
+<p>The variables that are passed to a function cannot be modified by the function. But they can modify the
+data in the function themselves.</p>
+<p>If we wanted to actually give the changed value back to the code that called this function, we would
+need to return it back out.</p>
+<pre><code class="language-python"># change_number : Number -&gt; Number
+# Add 3 to the given Number
+def change_number(x):
+    x += 3
+    return x
+</code></pre>
+<p>And when we use the function, we would need to do the following:</p>
+<pre><code class="language-python">x = 10
+x = change_number(x) # Move the changed value of x into x so we can use it
+print(x)
+</code></pre>
+</details>
+<h2><a class="header" href="#exercise" id="exercise">Exercise</a></h2>
+<p>Given these functions</p>
+<pre><code class="language-python">def change1(x):
+    x += 3
+    return x
+
+def change2(a):
+    a -= 5
+    return a
+
+def change3(s):
+    s *= 2
+</code></pre>
+<p>And this code that uses the above functions</p>
+<pre><code class="language-python">a = 7
+b = &quot;hello&quot;
+c = 10
+
+b = change1(a)
+change3(b)
+c = change2(c)
+
+print(a, b, c)
+</code></pre>
+<p>What would be printed to the console</p>
+<details>
+<summary>Solution</summary>
+<pre><code class="language-python"># Answer: a: 7, b: 10, c: 5
+
+a = 7
+b = &quot;hello&quot;
+c = 10
+
+b = change1(a) # = a + 3
+change3(b) # NO CHANGE
+c = change2(c) # = c - 5
+
+# a: UNCHANGED  = 7
+# b: a + 3      = 10
+# c: c - 5      = 5
+print(a, b, c)
+</code></pre>
+</details>
 <h2><a class="header" href="#too-long-didnt-read" id="too-long-didnt-read">Too Long; Didn't Read</a></h2>
 <p>If you want an abridged version, you can look at just the code that I have gone over
 <a href="https://github.com/DusterTheFirst/ecs-notes/tree/main/src/python/constants-functions.py">here</a></p>
@@ -252,7 +522,7 @@ x = 10
 print(x)
 </code></pre>
 <ul>
-<li>Inside of a function, variables do not modify the variables that were passed in (see <a href="#mutation-weirdness">Mutation Weirdness</a>)</li>
+<li>Inside of a function, variables do not modify the variables that were passed in (see <a href="#mutation-madness">Mutation Madness</a>)</li>
 </ul>
 
                     </main>
