@@ -77,7 +77,7 @@ def square_root(n):
     return n**(1/2) # n^.5 = sqrt(n)
 
 square_root(100) # = 10.0
-square_root(25) # = 5.0
+x = square_root(25) # = 5.0
 
 # PRINTING VALUES
 
@@ -113,11 +113,11 @@ print(greeting) # prints "None"
 def get_greeting(name):
     return "Hello " + name
 
-print_greeting("Alice") # = "Hello Alice"
+get_greeting("Alice") # = "Hello Alice"
 
-# Since it returns somethin, we can now get a value from it
-greeting = print_greeting("Alice")
-print(greeting) # prints "Hello Alice"
+# Since it returns something, we can now get a value from it
+greeting = get_greeting("Alice")
+print(greeting + "'s dog") # prints "Hello Alice's dog"
 
 # MUTATION
 
@@ -132,14 +132,15 @@ print(x)
 # and then the second line will change x to 10
 # so print(x) will print 10
 
-# Changing the value relativly
+# Changing the value relatively
 
 # Sometimes we want to change the value like
 x = x + 3
-# which would add 3 to the current value
+# which would add 3 to value stored in x and then store it in x
 
 # python gives us a tool to do this using +=
-x += 3 # adds 3 to the value x
+x += 3
+# adds 3 to the value stored in x in place
 
 # We can do this with all the mathematical operators
 x -= 3 # subtracts 3 from the value x
@@ -176,7 +177,7 @@ print(x)
 # if we want to mutate or change values passed to us, we need to return
 # them with their new values out of the function so that they can be used
 
-# change_number : Number -> (void)
+# change_number : Number -> Number
 # Add 3 to the given Number
 def change_number(x):
     x += 3
@@ -184,7 +185,7 @@ def change_number(x):
 
 # and then to use the function, we would do
 x = 10
-x = change_number(x)
+x = change_number(x) # Move the changed value of x into x so we can use it
 print(x)
 
 # EXERCISES
