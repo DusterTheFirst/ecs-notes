@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Welcome</a></li><li class="spacer"></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.</strong> Scheme</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../scheme/2020-10-13.html"><strong aria-hidden="true">1.1.</strong> Unions and data design (October 13 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-10-14.html"><strong aria-hidden="true">1.2.</strong> Text Editor v2 (October 14, 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-10-19.html" class="active"><strong aria-hidden="true">1.3.</strong> Text Editor v2 contd. (October 19, 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-12-1.html"><strong aria-hidden="true">1.4.</strong> Recursion and balloon game (December 1, 2020)</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Python</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../python/introduction.html"><strong aria-hidden="true">2.1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../python/constants-functions.html"><strong aria-hidden="true">2.2.</strong> Constants and Functions</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><a href="../help-sheet.html">ECS Help Sheet</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Welcome</a></li><li class="spacer"></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.</strong> Scheme</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../scheme/2020-10-13.html"><strong aria-hidden="true">1.1.</strong> Unions and data design (October 13 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-10-14.html"><strong aria-hidden="true">1.2.</strong> Text Editor v2 (October 14, 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-10-19.html" class="active"><strong aria-hidden="true">1.3.</strong> Text Editor v2 contd. (October 19, 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-12-1.html"><strong aria-hidden="true">1.4.</strong> Recursion and balloon game (December 1, 2020)</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Python</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../python/introduction.html"><strong aria-hidden="true">2.1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../python/constants-functions.html"><strong aria-hidden="true">2.2.</strong> Constants and Functions</a></li><li class="chapter-item expanded "><a href="../python/lists.html"><strong aria-hidden="true">2.3.</strong> Lists</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><a href="../help-sheet.html">ECS Help Sheet</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -229,9 +229,10 @@ click and move the cursor around, and lastly we want <code>on-key</code> so we c
 and display it.</p>
 <h3><a class="header" href="#our-main-function" id="our-main-function">Our main function</a></h3>
 <p>Finally, we are here!!1! We can design our main function. Lets call this <code>microsoft-word</code>
-(this might violate tons of copyright, but we are too cool for copyright law). We also need to figure
-out what goes in and what comes out. With most all main functions, they will take in the <code>WorldState</code>
-and return a <code>WorldState</code>. And now, we can put it all together with a nice description as well</p>
+(this might violate tons of trademark law, but we are too cool for trademark law). We also need to
+figure out what goes in and what comes out. With most all main functions, they will take in the
+<code>WorldState</code> and return a <code>WorldState</code>. And now, we can put it all together with a nice description
+as well</p>
 <pre><code class="language-scheme">; microsoft-word : TextEditor -&gt; TextEditor
 ; Starts up a text editor where you can move the cursor
 (define (microsoft-word initial-editor)
@@ -241,8 +242,8 @@ and return a <code>WorldState</code>. And now, we can put it all together with a
                                              ; long as we know what they mean
               [on-key insert-text]))
 </code></pre>
-<p>Now that we have the main function and a wishlist of all the functions we want, we can make their function
-signatures so we know what we want later when we design them.</p>
+<p>Now that we have the main function and a wishlist of all the functions we want, we can make their
+function signatures so we know what we want later when we design them.</p>
 <h4><a class="header" href="#function-signatures" id="function-signatures">Function signatures</a></h4>
 <p>Lets define our <code>draw-text-editor</code> signature. Since it is the <code>to-draw</code> handler, it takes in the
 <code>WorldState</code> and outputs the drawn <code>Image</code>. We can put it in a nice old comment with a description</p>
@@ -263,11 +264,12 @@ into a handy comment for us.</p>
 </code></pre>
 <h4><a class="header" href="#defining-functions" id="defining-functions">Defining functions</a></h4>
 <p>Now that we have all of the signatures in our wish list, we can start writing the functions.</p>
-<p>We can start with the <code>draw-text-editor</code> function. As always, we need to start with some check expects.</p>
+<p>We can start with the <code>draw-text-editor</code> function. As always, we need to start with some check
+expects.</p>
 <pre><code class="language-scheme">(check-expect
     (draw-text-editor TE-EMPTY)
-    (overlay (beside CURSOR_IMAGE (text &quot; &quot; FONT-SIZE FONT-COLOR)) ; This will create the blank image
-                                                                   ; with just a cursor
+    (overlay (beside CURSOR_IMAGE (text &quot; &quot; FONT-SIZE FONT-COLOR)) ; This will create the blank
+                                                                   ; image with just a cursor
     BACKGROUND))
 (check-expect
     (draw-text-editor TE1)
@@ -293,8 +295,8 @@ Lets paste it down here so we can use it.</p>
          ...))
 </code></pre>
 <p>To access the text, we can use the <code>te-text</code> helper function from our template.
-So we can paste it into the first cond. We need to check it to make sure that its length is &gt; 0, meaning
-it is not empty</p>
+So we can paste it into the first cond. We need to check it to make sure that its length is &gt; 0,
+meaning it is not empty</p>
 <pre><code class="language-scheme">(define (draw-text-editor editor)
     (cond [(&gt; (string-length (te-text editor)) 0)] ; new
           [...]))
@@ -310,8 +312,8 @@ the cursor, and then the rest of the text</p>
           [...]))
 </code></pre>
 <p>Now, we need to figure out how to draw the text in front of the cursor. We can get a slice of
-a string by using the <code>substring</code> function, and use the cursor position to chop it. We want to get the
-<code>substring</code> of the <code>te-text</code> from 0 up until <code>te-cursor</code></p>
+a string by using the <code>substring</code> function, and use the cursor position to chop it. We want to get
+the <code>substring</code> of the <code>te-text</code> from 0 up until <code>te-cursor</code></p>
 <pre><code class="language-scheme">(define (draw-text-editor editor)
     (cond [(&gt; (string-length (te-text editor)) 0)
            (overlay (beside (text (substring (te-text editor) 0 ; new
@@ -348,8 +350,8 @@ into a constant. We can copy it from our first check expect</p>
 <p>and then update our check expect from</p>
 <pre><code class="language-scheme">(check-expect
     (draw-text-editor TE-EMPTY)
-    (overlay (beside CURSOR_IMAGE (text &quot; &quot; FONT-SIZE FONT-COLOR)) ; This will create the blank image
-                                                                   ; with just a cursor
+    (overlay (beside CURSOR_IMAGE (text &quot; &quot; FONT-SIZE FONT-COLOR)) ; This will create the blank
+                                                                   ; image with just a cursor
     BACKGROUND))
 </code></pre>
 <p>to</p>

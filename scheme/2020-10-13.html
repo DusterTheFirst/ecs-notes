@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Welcome</a></li><li class="spacer"></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.</strong> Scheme</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../scheme/2020-10-13.html" class="active"><strong aria-hidden="true">1.1.</strong> Unions and data design (October 13 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-10-14.html"><strong aria-hidden="true">1.2.</strong> Text Editor v2 (October 14, 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-10-19.html"><strong aria-hidden="true">1.3.</strong> Text Editor v2 contd. (October 19, 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-12-1.html"><strong aria-hidden="true">1.4.</strong> Recursion and balloon game (December 1, 2020)</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Python</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../python/introduction.html"><strong aria-hidden="true">2.1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../python/constants-functions.html"><strong aria-hidden="true">2.2.</strong> Constants and Functions</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><a href="../help-sheet.html">ECS Help Sheet</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Welcome</a></li><li class="spacer"></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.</strong> Scheme</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../scheme/2020-10-13.html" class="active"><strong aria-hidden="true">1.1.</strong> Unions and data design (October 13 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-10-14.html"><strong aria-hidden="true">1.2.</strong> Text Editor v2 (October 14, 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-10-19.html"><strong aria-hidden="true">1.3.</strong> Text Editor v2 contd. (October 19, 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-12-1.html"><strong aria-hidden="true">1.4.</strong> Recursion and balloon game (December 1, 2020)</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Python</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../python/introduction.html"><strong aria-hidden="true">2.1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../python/constants-functions.html"><strong aria-hidden="true">2.2.</strong> Constants and Functions</a></li><li class="chapter-item expanded "><a href="../python/lists.html"><strong aria-hidden="true">2.3.</strong> Lists</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><a href="../help-sheet.html">ECS Help Sheet</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -244,16 +244,19 @@ Paycheck represents how often an employee is paid.</p>
     (string-append &quot;Here is your &quot; pc &quot; paycheck!&quot;))
 </code></pre>
 <p>In the end, our template and custom type were not used since they were more or less extrenious,
-we did not need to create a custom type for this since there is one code path for every paycheck type</p>
+we did not need to create a custom type for this since there is one code path for every paycheck
+type</p>
 <h2><a class="header" href="#lab-2-problem-3" id="lab-2-problem-3">Lab 2 Problem 3</a></h2>
 <blockquote>
-<p>Design a function calculate-annual which takes in a Number, representing the amount an employee makes
-on a single paycheck, and the data describing how often they receive the paycheck. It produces a Number
-with an estimate of their annual wages. For example, if the employee gets their paycheck once per month
-you will need to multiply the input number by 12 since there are 12 months in a year. Is the template
-useful here? Why or why not?</p>
-</blockquote>
+<p>Design a function calculate-annual which takes in a Number, representing the amount an employee
+makes on a single paycheck, and the data describing how often they receive the paycheck. It produces
+a Number with an estimate of their annual wages. For example, if the employee gets their paycheck
+once per month you will need to multiply the input number by 12 since there are 12 months in a year.
+Is the template useful here? Why or why not?</p>
+<blockquote>
 <p><em>As always, start your function definition with its signature</em></p>
+</blockquote>
+</blockquote>
 <p><strong>Name:</strong> <code>calculate-annual</code><br />
 <strong>Input:</strong> <code>Number and Paycheck</code><br />
 <strong>Output:</strong> <code>Number</code><br />
@@ -279,10 +282,10 @@ calculate the paycheck differently</p>
 </blockquote>
 <h2><a class="header" href="#lab-2-problem-4" id="lab-2-problem-4">Lab 2 problem 4</a></h2>
 <blockquote>
-<p>Design data to represent the name of someone who has donated to a charity. Your data should account
-for the fact that the donor may wish to remain anonymous. Why can’t we use a String to represent the
-anonymous donor? What can we use instead? Don’t forget to follow all 4 steps of the design recipe for
-data.</p>
+<p>Design data to represent the name of someone who has donated to a charity. Your data should
+account for the fact that the donor may wish to remain anonymous. Why can’t we use a String to
+represent the anonymous donor? What can we use instead? Don’t forget to follow all 4 steps of the
+design recipe for data.</p>
 </blockquote>
 <p>The first thing we need to do when defining a data type is to define what it can be:</p>
 <pre><code class="language-scheme">; A DonorName is one of:
@@ -337,7 +340,8 @@ order to write the signature for this function?</p>
 <li>Cond is very powerful for using unions. ie. the above function</li>
 <li><strong>ALWAYS</strong> define at least 2 examples of the union if it has an infinite amount of possibilities
 <a href="#lab-2-problem-4">see Lab 2 Problem 4</a></li>
-<li><strong>If Possible</strong> define all variants of the union (only for non infinite ones) <a href="#Lab-2-Problem-2">see Lab 2 Problem 2</a></li>
+<li><strong>If Possible</strong> define all variants of the union (only for non infinite ones)
+<a href="#Lab-2-Problem-2">see Lab 2 Problem 2</a></li>
 </ul>
 
                     </main>

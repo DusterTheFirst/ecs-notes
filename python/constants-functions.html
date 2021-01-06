@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Welcome</a></li><li class="spacer"></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.</strong> Scheme</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../scheme/2020-10-13.html"><strong aria-hidden="true">1.1.</strong> Unions and data design (October 13 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-10-14.html"><strong aria-hidden="true">1.2.</strong> Text Editor v2 (October 14, 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-10-19.html"><strong aria-hidden="true">1.3.</strong> Text Editor v2 contd. (October 19, 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-12-1.html"><strong aria-hidden="true">1.4.</strong> Recursion and balloon game (December 1, 2020)</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Python</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../python/introduction.html"><strong aria-hidden="true">2.1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../python/constants-functions.html" class="active"><strong aria-hidden="true">2.2.</strong> Constants and Functions</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><a href="../help-sheet.html">ECS Help Sheet</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Welcome</a></li><li class="spacer"></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.</strong> Scheme</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../scheme/2020-10-13.html"><strong aria-hidden="true">1.1.</strong> Unions and data design (October 13 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-10-14.html"><strong aria-hidden="true">1.2.</strong> Text Editor v2 (October 14, 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-10-19.html"><strong aria-hidden="true">1.3.</strong> Text Editor v2 contd. (October 19, 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-12-1.html"><strong aria-hidden="true">1.4.</strong> Recursion and balloon game (December 1, 2020)</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Python</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../python/introduction.html"><strong aria-hidden="true">2.1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../python/constants-functions.html" class="active"><strong aria-hidden="true">2.2.</strong> Constants and Functions</a></li><li class="chapter-item expanded "><a href="../python/lists.html"><strong aria-hidden="true">2.3.</strong> Lists</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><a href="../help-sheet.html">ECS Help Sheet</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -181,18 +181,19 @@ turtle.left(90)
 turtle.forward(150)
 turtle.done()
 </code></pre>
-<p>We can see that our code is very repetitive. We call <code>turtle.forward</code> 4 times and <code>turtle.left</code> 3 times.
-We also give them all the same values to the functions over and over. We can start by getting rid of
-the same value over and over and over again using constants, much like we have with scheme.</p>
+<p>We can see that our code is very repetitive. We call <code>turtle.forward</code> 4 times and <code>turtle.left</code> 3
+times. We also give them all the same values to the functions over and over. We can start by getting
+rid of the same value over and over and over again using constants, much like we have with scheme.</p>
 <p>Constants in python are defined with all caps names and our constants would look something like</p>
 <pre><code class="language-python">SIZE = 150
 ANGLE = 90
 </code></pre>
-<p>Just like in scheme, we use all caps for our constants to show that they will never change. If we wanted
-to have a constant with spaces in its name, we would write it like such</p>
+<p>Just like in scheme, we use all caps for our constants to show that they will never change. If we
+wanted to have a constant with spaces in its name, we would write it like such</p>
 <pre><code class="language-python">THIS_IS_MY_CONSTANT = &quot;hello&quot;
 </code></pre>
-<p>And now that we have these constants defined, we can replace the numbers in our code with these constants</p>
+<p>And now that we have these constants defined, we can replace the numbers in our code with these
+constants</p>
 <pre><code class="language-python">turtle.forward(SIZE)
 turtle.left(ANGLE)
 turtle.forward(SIZE)
@@ -206,33 +207,34 @@ turtle.done()
 draw a different size. The code is still repetitive though. If we wanted to draw 2 squares, we would
 have 14 lines of code. bruh :(. Instead, we can use</p>
 <h2><a class="header" href="#functions" id="functions">Functions</a></h2>
-<p>Functions, which you are hopefully familiar with from scheme, are tools that allow us to group blocks
-of code together which we can run and even give values to. In python, we follow the same steps as in
-scheme when defining a function.</p>
+<p>Functions, which you are hopefully familiar with from scheme, are tools that allow us to group
+blocks of code together which we can run and even give values to. In python, we follow the same
+steps as in scheme when defining a function.</p>
 <ul>
 <li>Signature</li>
 <li>Purpose/Description</li>
 <li><del>Tests</del></li>
 <li>Actual Function Body</li>
 </ul>
-<p>Ok, we do all of them <em>except</em> tests. I know, it is so sad. They were my favorite part of programming
-too.</p>
-<p>Now that we have that out of the way, we can move our code into a function. We start with the signature.
-Since this function is drawing a square, I think we should name it <code>draw_triangle</code>. No? Ok... I guess
-we can call it <code>draw_square</code>. And we want our function to take in the size of the square so that we
-can use it for <sub>small</sub> and <strong>big</strong> squares. Our function's signature would look something like</p>
+<p>Ok, we do all of them <em>except</em> tests. I know, it is so sad. They were my favorite part of
+programming too.</p>
+<p>Now that we have that out of the way, we can move our code into a function. We start with the
+signature. Since this function is drawing a square, I think we should name it <code>draw_triangle</code>. No?
+Ok... I guess we can call it <code>draw_square</code>. And we want our function to take in the size of the
+square so that we can use it for <sub>small</sub> and <strong>big</strong> squares. Our function's signature
+would look something like</p>
 <pre><code class="language-python"># draw_square : Number -&gt; Image
 </code></pre>
-<p>Although, yes, this function does not <code>return</code> an image per se, we will still put it down as such, to
-clarify that the function will create an image on the screen. We will get into what it means for a function
-to actually return a value later.</p>
+<p>Although, yes, this function does not <code>return</code> an image per se, we will still put it down as such,
+to clarify that the function will create an image on the screen. We will get into what it means for
+a function to actually return a value later.</p>
 <p>And now we can add our very, very complex description or purpose statement whatever you prefer.</p>
 <pre><code class="language-python"># draw_square : Number -&gt; Image
 # Draws a square of the given size
 </code></pre>
 <p>Now that we have the documentation out of the way, we can move onto the actual body of the function.
-The function will basically be a copy and paste of our above code with some parts added to tell python
-that it is a function.</p>
+The function will basically be a copy and paste of our above code with some parts added to tell
+python that it is a function.</p>
 <pre><code class="language-python"># draw_square : Number -&gt; Image
 # Draws a square of the given size
 def draw_square(size):
@@ -257,14 +259,14 @@ draw_square # The name of our function
 constant size that we defined before and instead are allowing us to specify the size of the square
 when we call the function</p>
 <blockquote>
-<p>Python is what is called a &quot;whitespace language&quot; meaning that what the code means is heavily dependant
-on the whitespace in the code.</p>
+<p>Python is what is called a &quot;whitespace language&quot; meaning that what the code means is heavily
+dependant on the whitespace in the code.</p>
 <blockquote>
 <p>Whitespace is a character that you can not see such as space or tab</p>
 </blockquote>
-<p>because of this, the indentation of your code matters. To specify that the code above is part of the
-function, it needed to be indented one time. If we now wanted to write more code after, but not inside
-of the function, we would have to un-indent the code which would look like so</p>
+<p>because of this, the indentation of your code matters. To specify that the code above is part of
+the function, it needed to be indented one time. If we now wanted to write more code after, but not
+inside of the function, we would have to un-indent the code which would look like so</p>
 </blockquote>
 <pre><code class="language-python"># draw_square : Number -&gt; Image
 # Draws a square of the given size
@@ -285,9 +287,9 @@ draw_square(300)
 turtle.done()
 </code></pre>
 <blockquote>
-<p>Unlike in scheme where you can call/use a function from anywhere, in python, you must define a function
-before you are able to use it, much like variables or constants. So the above code would have to appear
-below the function we have made</p>
+<p>Unlike in scheme where you can call/use a function from anywhere, in python, you must define a
+function before you are able to use it, much like variables or constants. So the above code would
+have to appear below the function we have made</p>
 </blockquote>
 <h2><a class="header" href="#designing-a-square-root-function" id="designing-a-square-root-function">Designing a square root function</a></h2>
 <p>Now that we have designed a simple function, we get to do another one! yay!</p>
@@ -310,15 +312,15 @@ below the function we have made</p>
 <ul>
 <li>Actual Function Body</li>
 </ul>
-<p>To make the function, we need to remember how to take a square root. If you remember from math class,
-a square root is the same as raising something to the power of <code>1/2</code>, we can express that in python
-with the following</p>
+<p>To make the function, we need to remember how to take a square root. If you remember from math
+class, a square root is the same as raising something to the power of <code>1/2</code>, we can express that in
+python with the following</p>
 <pre><code class="language-python">def square_root(n):
     n**(1/2)
 </code></pre>
 <p>If you remember back to the introduction, the <code>**</code> operator raises the number on the left to the
-exponent on the right, so in this case, we are raising n to the power of <code>1/2</code> where n is the inputted
-value to our function</p>
+exponent on the right, so in this case, we are raising n to the power of <code>1/2</code> where n is the
+inputted value to our function</p>
 <p>Unlike scheme, python does not return anything from the function unless you explicitly tell it to
 <code>return</code> the value. That is because in python, you can run multiple lines of code per function where
 as scheme had you nest all of the function calls inside each other.</p>
@@ -337,9 +339,10 @@ def square_root(n):
 </code></pre>
 <p>But how to we show out this information to us? Im not too sure, but I have heard a bit about</p>
 <h2><a class="header" href="#printing-values-to-the-console" id="printing-values-to-the-console">Printing Values to the Console</a></h2>
-<p>Python provides a function to us called print that will print out all of its arguments. This function
-is a bit different than the ones that we have wrote so far in that it can take 0 or 100 inputs. Print
-will print out all of the inputs given to it. We use it like any other function that we have before</p>
+<p>Python provides a function to us called print that will print out all of its arguments. This
+function is a bit different than the ones that we have wrote so far in that it can take 0 or 100
+inputs. Print will print out all of the inputs given to it. We use it like any other function that
+we have before</p>
 <pre><code class="language-python">print(&quot;hello&quot;)
 print(&quot;hello&quot;, 7, False, 32)
 print(square_root(100))
@@ -347,17 +350,17 @@ print(square_root(100))
 <blockquote>
 <p>Watch out! Although python is very google-able, there are 2 different versions of python: Python 2
 and Python 3. There are a few syntax and other changes between these versions, one of these is the
-layout of the print function. In Python 2, you would write <code>print &quot;hello&quot;</code> to print the string hello.
-In the newer Python 3 that we use, we need to put parenthesis around the inputs to all functions, so
-we would write <code>print(&quot;hello&quot;)</code>. <strong>If you ever see the old way of printing, look around for a newer
-source since the source you are using may be outdated, or just replace the old style of prints with
-the new style.</strong></p>
+layout of the print function. In Python 2, you would write <code>print &quot;hello&quot;</code> to print the string
+hello. In the newer Python 3 that we use, we need to put parenthesis around the inputs to all
+functions, so we would write <code>print(&quot;hello&quot;)</code>. <strong>If you ever see the old way of printing, look
+around for a newer source since the source you are using may be outdated, or just replace the old
+style of prints with the new style.</strong></p>
 </blockquote>
 <h2><a class="header" href="#returning-nothing" id="returning-nothing">Returning Nothing</a></h2>
-<p>When writing a function, we may want to not return anything from it since we might print to the console
-or draw using a turtle. In that case, we need to mark the function as returning <code>(void)</code>.</p>
-<p>We will use a simple function that prints a greeting to the name that is given ie. <code>print_greeting(&quot;Zach&quot;)</code>
-would print <code>Hello Zach</code> to the console as an example for this.</p>
+<p>When writing a function, we may want to not return anything from it since we might print to the
+console or draw using a turtle. In that case, we need to mark the function as returning <code>(void)</code>.</p>
+<p>We will use a simple function that prints a greeting to the name that is given ie.
+<code>print_greeting(&quot;Zach&quot;)</code> would print <code>Hello Zach</code> to the console as an example for this.</p>
 <p>The function signature and usage would look as follows</p>
 <pre><code class="language-python"># print_greeting : String -&gt; (void)
 # Prints a greeting to the given person
@@ -367,8 +370,8 @@ def print_greeting(name):
 print_greeting(&quot;Alice&quot;) # prints &quot;Hello Alice&quot;
 </code></pre>
 <blockquote>
-<p>Make note of the un-indentation of the last line, meaning that it is not inside of the function above
-it.</p>
+<p>Make note of the un-indentation of the last line, meaning that it is not inside of the function
+above it.</p>
 </blockquote>
 <p>The main change we have made is the return type being <code>(void)</code> to tell us that this function returns
 nothing.</p>
@@ -440,9 +443,10 @@ print(x)
 <summary>Click for the answer</summary>
 <p>This would print out 10.</p>
 <p>The x in the function and the x in the code outside of the function are not the same variable. Yes
-they have the same name, but the one inside of the function could just as well be named <code>n</code> or <code>jeff</code>.</p>
-<p>The variables that are passed to a function cannot be modified by the function. But they can modify the
-data in the function themselves.</p>
+they have the same name, but the one inside of the function could just as well be named <code>n</code> or
+<code>jeff</code>.</p>
+<p>The variables that are passed to a function cannot be modified by the function. But they can modify
+the data in the function themselves.</p>
 <p>If we wanted to actually give the changed value back to the code that called this function, we would
 need to return it back out.</p>
 <pre><code class="language-python"># change_number : Number -&gt; Number
@@ -522,7 +526,8 @@ x = 10
 print(x)
 </code></pre>
 <ul>
-<li>Inside of a function, variables do not modify the variables that were passed in (see <a href="#mutation-madness">Mutation Madness</a>)</li>
+<li>Inside of a function, variables do not modify the variables that were passed in
+(see <a href="#mutation-madness">Mutation Madness</a>)</li>
 </ul>
 
                     </main>
@@ -536,7 +541,7 @@ print(x)
                         
 
                         
-                            <a rel="next" href="../help-sheet.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../python/lists.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -554,7 +559,7 @@ print(x)
                 
 
                 
-                    <a rel="next" href="../help-sheet.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../python/lists.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

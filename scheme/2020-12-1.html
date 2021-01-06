@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Welcome</a></li><li class="spacer"></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.</strong> Scheme</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../scheme/2020-10-13.html"><strong aria-hidden="true">1.1.</strong> Unions and data design (October 13 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-10-14.html"><strong aria-hidden="true">1.2.</strong> Text Editor v2 (October 14, 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-10-19.html"><strong aria-hidden="true">1.3.</strong> Text Editor v2 contd. (October 19, 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-12-1.html" class="active"><strong aria-hidden="true">1.4.</strong> Recursion and balloon game (December 1, 2020)</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Python</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../python/introduction.html"><strong aria-hidden="true">2.1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../python/constants-functions.html"><strong aria-hidden="true">2.2.</strong> Constants and Functions</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><a href="../help-sheet.html">ECS Help Sheet</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Welcome</a></li><li class="spacer"></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.</strong> Scheme</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../scheme/2020-10-13.html"><strong aria-hidden="true">1.1.</strong> Unions and data design (October 13 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-10-14.html"><strong aria-hidden="true">1.2.</strong> Text Editor v2 (October 14, 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-10-19.html"><strong aria-hidden="true">1.3.</strong> Text Editor v2 contd. (October 19, 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-12-1.html" class="active"><strong aria-hidden="true">1.4.</strong> Recursion and balloon game (December 1, 2020)</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Python</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../python/introduction.html"><strong aria-hidden="true">2.1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../python/constants-functions.html"><strong aria-hidden="true">2.2.</strong> Constants and Functions</a></li><li class="chapter-item expanded "><a href="../python/lists.html"><strong aria-hidden="true">2.3.</strong> Lists</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><a href="../help-sheet.html">ECS Help Sheet</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -189,12 +189,14 @@ and make it something like:</p>
 </code></pre>
 <p>But that method has a problem. First off, we need to make another whole data type <code>threethings</code>
 and making data types is <em>so <strong>not</strong> lit</em>. Another problem with this method is every single time
-we want to add another balloon, we have to make another variant, and a whole new data type. <em><strong>UGH</strong></em>.</p>
-<p>What if I told you <del>that you lived in a simulation</del> that there is a way to make a data definition that
-can hole <em>infinite</em> amounts of data.</p>
+we want to add another balloon, we have to make another variant, and a whole new data type.
+<em><strong>UGH</strong></em>.</p>
+<p>What if I told you <del>that you lived in a simulation</del> that there is a way to make a data definition
+that can hole <em>infinite</em> amounts of data.</p>
 <h2><a class="header" href="#recursive-data-structures" id="recursive-data-structures">Recursive data structures</a></h2>
-<p>You saw this coming if you read the title, but what you might not have known is what in the gosh darn
-is this fandangled recursion thing? Well, I can hit you with what my friend Merriam Webster says:</p>
+<p>You saw this coming if you read the title, but what you might not have known is what in the gosh
+darn is this fandangled recursion thing? Well, I can hit you with what my friend Merriam Webster
+says:</p>
 <pre><code class="language-none">recursion (noun)
 re·​cur·​sion | ri-ˈkər-zhən
     
@@ -270,22 +272,37 @@ for you to gander at</p>
 <p>And them &quot;unraveled&quot;</p>
 <pre><code class="language-scheme">(define NO-BALLOONS false)
 
-(define ONE-BALLOON (make-twothings (make-posn 10 20)
-                                    false))
+(define ONE-BALLOON
+  (make-twothings
+    (make-posn 10 20)
+    false))
 
-(define TWO-BALLOONS (make-twothings (make-posn 250 93)
-                                     (make-twothings (make-posn 10 20)
-                                                     false)))
+(define TWO-BALLOONS
+  (make-twothings
+    (make-posn 250 93)
+    (make-twothings
+      (make-posn 10 20)
+      false)))
 
-(define THREE-BALLOONS (make-twothings (make-posn 200 200)
-                                       (make-twothings (make-posn 250 93)
-                                                       (make-twothings (make-posn 10 20)
-                                                                       false))))
-(define FOUR-BALLOONS (make-twothings (make-posn 350 26)
-                                      (make-twothings (make-posn 200 200)
-                                                      (make-twothings (make-posn 250 93)
-                                                                      (make-twothings (make-posn 10 20)
-                                                                                      false)))))
+(define THREE-BALLOONS
+  (make-twothings
+    (make-posn 200 200)
+    (make-twothings
+      (make-posn 250 93)
+      (make-twothings
+        (make-posn 10 20)
+        false))))
+          
+(define FOUR-BALLOONS
+  (make-twothings
+    (make-posn 350 26)
+    (make-twothings
+      (make-posn 200 200)
+      (make-twothings
+        (make-posn 250 93)
+        (make-twothings
+          (make-posn 10 20)
+          false)))))
 </code></pre>
 <p>In the &quot;unraveled&quot; version — which by the way you should almost never type out by hand,
 always use the method shown above it, where you have each nested one get defined before it
@@ -293,9 +310,9 @@ always use the method shown above it, where you have each nested one get defined
 It is worthy to note that all of them end in false. If there not a second, non recursive variant
 of our data type, we would never to be able to stop recursing, but since we have that second false
 variant, we are allowed to stop our data type with the false variant.</p>
-<p>Since we have now updated the data definition and its samples (the NO-BALLOONS - FOUR-BALLOONS above)
-we can move to the final step of the data defining process, which is to make our template. In our case,
-we just need to update our template.</p>
+<p>Since we have now updated the data definition and its samples (the NO-BALLOONS - FOUR-BALLOONS
+above) we can move to the final step of the data defining process, which is to make our template. In
+our case, we just need to update our template.</p>
 <p>Currently we have this:</p>
 <pre><code class="language-scheme">; BalloonGame -&gt; ???
 (define (balloon-game-template game)

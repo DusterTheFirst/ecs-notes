@@ -97,7 +97,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Welcome</a></li><li class="spacer"></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.</strong> Scheme</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="scheme/2020-10-13.html"><strong aria-hidden="true">1.1.</strong> Unions and data design (October 13 2020)</a></li><li class="chapter-item expanded "><a href="scheme/2020-10-14.html"><strong aria-hidden="true">1.2.</strong> Text Editor v2 (October 14, 2020)</a></li><li class="chapter-item expanded "><a href="scheme/2020-10-19.html"><strong aria-hidden="true">1.3.</strong> Text Editor v2 contd. (October 19, 2020)</a></li><li class="chapter-item expanded "><a href="scheme/2020-12-1.html"><strong aria-hidden="true">1.4.</strong> Recursion and balloon game (December 1, 2020)</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Python</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="python/introduction.html"><strong aria-hidden="true">2.1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="python/constants-functions.html"><strong aria-hidden="true">2.2.</strong> Constants and Functions</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><a href="help-sheet.html">ECS Help Sheet</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Welcome</a></li><li class="spacer"></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.</strong> Scheme</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="scheme/2020-10-13.html"><strong aria-hidden="true">1.1.</strong> Unions and data design (October 13 2020)</a></li><li class="chapter-item expanded "><a href="scheme/2020-10-14.html"><strong aria-hidden="true">1.2.</strong> Text Editor v2 (October 14, 2020)</a></li><li class="chapter-item expanded "><a href="scheme/2020-10-19.html"><strong aria-hidden="true">1.3.</strong> Text Editor v2 contd. (October 19, 2020)</a></li><li class="chapter-item expanded "><a href="scheme/2020-12-1.html"><strong aria-hidden="true">1.4.</strong> Recursion and balloon game (December 1, 2020)</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Python</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="python/introduction.html"><strong aria-hidden="true">2.1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="python/constants-functions.html"><strong aria-hidden="true">2.2.</strong> Constants and Functions</a></li><li class="chapter-item expanded "><a href="python/lists.html"><strong aria-hidden="true">2.3.</strong> Lists</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><a href="help-sheet.html">ECS Help Sheet</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -255,16 +255,19 @@ Paycheck represents how often an employee is paid.</p>
     (string-append &quot;Here is your &quot; pc &quot; paycheck!&quot;))
 </code></pre>
 <p>In the end, our template and custom type were not used since they were more or less extrenious,
-we did not need to create a custom type for this since there is one code path for every paycheck type</p>
+we did not need to create a custom type for this since there is one code path for every paycheck
+type</p>
 <h2><a class="header" href="#lab-2-problem-3" id="lab-2-problem-3">Lab 2 Problem 3</a></h2>
 <blockquote>
-<p>Design a function calculate-annual which takes in a Number, representing the amount an employee makes
-on a single paycheck, and the data describing how often they receive the paycheck. It produces a Number
-with an estimate of their annual wages. For example, if the employee gets their paycheck once per month
-you will need to multiply the input number by 12 since there are 12 months in a year. Is the template
-useful here? Why or why not?</p>
-</blockquote>
+<p>Design a function calculate-annual which takes in a Number, representing the amount an employee
+makes on a single paycheck, and the data describing how often they receive the paycheck. It produces
+a Number with an estimate of their annual wages. For example, if the employee gets their paycheck
+once per month you will need to multiply the input number by 12 since there are 12 months in a year.
+Is the template useful here? Why or why not?</p>
+<blockquote>
 <p><em>As always, start your function definition with its signature</em></p>
+</blockquote>
+</blockquote>
 <p><strong>Name:</strong> <code>calculate-annual</code><br />
 <strong>Input:</strong> <code>Number and Paycheck</code><br />
 <strong>Output:</strong> <code>Number</code><br />
@@ -290,10 +293,10 @@ calculate the paycheck differently</p>
 </blockquote>
 <h2><a class="header" href="#lab-2-problem-4" id="lab-2-problem-4">Lab 2 problem 4</a></h2>
 <blockquote>
-<p>Design data to represent the name of someone who has donated to a charity. Your data should account
-for the fact that the donor may wish to remain anonymous. Why can’t we use a String to represent the
-anonymous donor? What can we use instead? Don’t forget to follow all 4 steps of the design recipe for
-data.</p>
+<p>Design data to represent the name of someone who has donated to a charity. Your data should
+account for the fact that the donor may wish to remain anonymous. Why can’t we use a String to
+represent the anonymous donor? What can we use instead? Don’t forget to follow all 4 steps of the
+design recipe for data.</p>
 </blockquote>
 <p>The first thing we need to do when defining a data type is to define what it can be:</p>
 <pre><code class="language-scheme">; A DonorName is one of:
@@ -348,7 +351,8 @@ order to write the signature for this function?</p>
 <li>Cond is very powerful for using unions. ie. the above function</li>
 <li><strong>ALWAYS</strong> define at least 2 examples of the union if it has an infinite amount of possibilities
 <a href="scheme/2020-10-13.html#lab-2-problem-4">see Lab 2 Problem 4</a></li>
-<li><strong>If Possible</strong> define all variants of the union (only for non infinite ones) <a href="scheme/2020-10-13.html#Lab-2-Problem-2">see Lab 2 Problem 2</a></li>
+<li><strong>If Possible</strong> define all variants of the union (only for non infinite ones)
+<a href="scheme/2020-10-13.html#Lab-2-Problem-2">see Lab 2 Problem 2</a></li>
 </ul>
 <h1><a class="header" href="#text-editor-v2-october-14-2020" id="text-editor-v2-october-14-2020">Text Editor v2 (October 14, 2020)</a></h1>
 <p><a href="scheme/2020-10-14.html#too-long-didnt-read">Jump to TL;DR (summary)</a><br />
@@ -382,7 +386,8 @@ function.</p>
 <pre><code class="language-scheme">(address false &quot;hello&quot; 2 -7 true)
 </code></pre>
 <blockquote>
-<p>Notice that this does not match our comment, but scheme cant read our comment, so it doesn't know better.</p>
+<p>Notice that this does not match our comment, but scheme cant read our comment, so it doesn't know
+better.</p>
 </blockquote>
 <p>To make sure that we match our address definition, we can make some samples and a more detailed
 description of the structure.</p>
@@ -466,8 +471,8 @@ create a template for us to use later.</p>
 </code></pre>
 <blockquote>
 <p>Notice how in this template, we also use the address-template. That is because the house
-member of the <code>student</code> structure is an <code>address</code> structure, so we need to use the tools from the address-template
-to get the data out of the address</p>
+member of the <code>student</code> structure is an <code>address</code> structure, so we need to use the tools from the
+<code>address-template</code> to get the data out of the address</p>
 </blockquote>
 <h2><a class="header" href="#using-a-structure-in-a-function" id="using-a-structure-in-a-function">Using a structure in a function</a></h2>
 <p>What if we want to use our new fandangled structure in a function? Well, lets try it out!
@@ -535,9 +540,10 @@ that the gradyr is now one more than the given</p>
 <blockquote>
 <p>Looks normal, and it is, all that changes is the zip code. This should be easy, right?</p>
 </blockquote>
-<p>Well yes, but we have a lot of writing to do. We can define our function, copying the student template,
-but, we cant just update the zip by replacing the last parameter with a new zip code, cause it takes
-in a whole structure. We need to make another function that can update the zip in the structure for us.</p>
+<p>Well yes, but we have a lot of writing to do. We can define our function, copying the student
+template, but, we cant just update the zip by replacing the last parameter with a new zip code,
+cause it takes in a whole structure. We need to make another function that can update the zip in the
+structure for us.</p>
 <blockquote>
 <p>Whenever you write a function, try to keep it limited to using only one data type at a time. In
 our case, we only use the student structure in this function, and we will make another <code>update-zip</code>
@@ -577,9 +583,9 @@ zip with the new zip</p>
 <h2><a class="header" href="#tying-it-together-into-a-text-editor" id="tying-it-together-into-a-text-editor">Tying it together into a text editor</a></h2>
 <p>Now that we have learned to use structures, we can put them to good use. We can use them in our
 text editor. Remember when we had our text editor, it could type and delete, but you could not move
-the cursor around. That was because our world state was a single string: The text that was in the editor.
-We had no way of storing the cursor position. Well, using these new hot structures that we have learned
-about, that is all about to change.</p>
+the cursor around. That was because our world state was a single string: The text that was in the
+editor. We had no way of storing the cursor position. Well, using these new hot structures that we
+have learned about, that is all about to change.</p>
 <p>So. first thing you do with any data type, function, or struct is a simple, one line comment
 describing it. In our case, we will make a structure called <code>TextEditor</code> or <code>te</code> for short with the
 text and cursor position as members. We can write this out in a comment like so:</p>
@@ -637,7 +643,8 @@ to access an address's st(reet), we can use the helper function <code>(address-s
 </li>
 <li>
 <p>When using structures in a function, only access one data type at a time, make different functions
-for deeply nested data, such as the address inside of the student <a href="scheme/2020-10-14.html#changing-the-zip-code">see: Changing the zip code</a></p>
+for deeply nested data, such as the address inside of the student
+<a href="scheme/2020-10-14.html#changing-the-zip-code">see: Changing the zip code</a></p>
 </li>
 <li>
 <p>ALL DATA IN SCHEME IS IMMUTABLE (unable to be mutated (changed))</p>
@@ -713,9 +720,10 @@ click and move the cursor around, and lastly we want <code>on-key</code> so we c
 and display it.</p>
 <h3><a class="header" href="#our-main-function" id="our-main-function">Our main function</a></h3>
 <p>Finally, we are here!!1! We can design our main function. Lets call this <code>microsoft-word</code>
-(this might violate tons of copyright, but we are too cool for copyright law). We also need to figure
-out what goes in and what comes out. With most all main functions, they will take in the <code>WorldState</code>
-and return a <code>WorldState</code>. And now, we can put it all together with a nice description as well</p>
+(this might violate tons of trademark law, but we are too cool for trademark law). We also need to
+figure out what goes in and what comes out. With most all main functions, they will take in the
+<code>WorldState</code> and return a <code>WorldState</code>. And now, we can put it all together with a nice description
+as well</p>
 <pre><code class="language-scheme">; microsoft-word : TextEditor -&gt; TextEditor
 ; Starts up a text editor where you can move the cursor
 (define (microsoft-word initial-editor)
@@ -725,8 +733,8 @@ and return a <code>WorldState</code>. And now, we can put it all together with a
                                              ; long as we know what they mean
               [on-key insert-text]))
 </code></pre>
-<p>Now that we have the main function and a wishlist of all the functions we want, we can make their function
-signatures so we know what we want later when we design them.</p>
+<p>Now that we have the main function and a wishlist of all the functions we want, we can make their
+function signatures so we know what we want later when we design them.</p>
 <h4><a class="header" href="#function-signatures" id="function-signatures">Function signatures</a></h4>
 <p>Lets define our <code>draw-text-editor</code> signature. Since it is the <code>to-draw</code> handler, it takes in the
 <code>WorldState</code> and outputs the drawn <code>Image</code>. We can put it in a nice old comment with a description</p>
@@ -747,11 +755,12 @@ into a handy comment for us.</p>
 </code></pre>
 <h4><a class="header" href="#defining-functions" id="defining-functions">Defining functions</a></h4>
 <p>Now that we have all of the signatures in our wish list, we can start writing the functions.</p>
-<p>We can start with the <code>draw-text-editor</code> function. As always, we need to start with some check expects.</p>
+<p>We can start with the <code>draw-text-editor</code> function. As always, we need to start with some check
+expects.</p>
 <pre><code class="language-scheme">(check-expect
     (draw-text-editor TE-EMPTY)
-    (overlay (beside CURSOR_IMAGE (text &quot; &quot; FONT-SIZE FONT-COLOR)) ; This will create the blank image
-                                                                   ; with just a cursor
+    (overlay (beside CURSOR_IMAGE (text &quot; &quot; FONT-SIZE FONT-COLOR)) ; This will create the blank
+                                                                   ; image with just a cursor
     BACKGROUND))
 (check-expect
     (draw-text-editor TE1)
@@ -777,8 +786,8 @@ Lets paste it down here so we can use it.</p>
          ...))
 </code></pre>
 <p>To access the text, we can use the <code>te-text</code> helper function from our template.
-So we can paste it into the first cond. We need to check it to make sure that its length is &gt; 0, meaning
-it is not empty</p>
+So we can paste it into the first cond. We need to check it to make sure that its length is &gt; 0,
+meaning it is not empty</p>
 <pre><code class="language-scheme">(define (draw-text-editor editor)
     (cond [(&gt; (string-length (te-text editor)) 0)] ; new
           [...]))
@@ -794,8 +803,8 @@ the cursor, and then the rest of the text</p>
           [...]))
 </code></pre>
 <p>Now, we need to figure out how to draw the text in front of the cursor. We can get a slice of
-a string by using the <code>substring</code> function, and use the cursor position to chop it. We want to get the
-<code>substring</code> of the <code>te-text</code> from 0 up until <code>te-cursor</code></p>
+a string by using the <code>substring</code> function, and use the cursor position to chop it. We want to get
+the <code>substring</code> of the <code>te-text</code> from 0 up until <code>te-cursor</code></p>
 <pre><code class="language-scheme">(define (draw-text-editor editor)
     (cond [(&gt; (string-length (te-text editor)) 0)
            (overlay (beside (text (substring (te-text editor) 0 ; new
@@ -832,8 +841,8 @@ into a constant. We can copy it from our first check expect</p>
 <p>and then update our check expect from</p>
 <pre><code class="language-scheme">(check-expect
     (draw-text-editor TE-EMPTY)
-    (overlay (beside CURSOR_IMAGE (text &quot; &quot; FONT-SIZE FONT-COLOR)) ; This will create the blank image
-                                                                   ; with just a cursor
+    (overlay (beside CURSOR_IMAGE (text &quot; &quot; FONT-SIZE FONT-COLOR)) ; This will create the blank
+                                                                   ; image with just a cursor
     BACKGROUND))
 </code></pre>
 <p>to</p>
@@ -888,12 +897,14 @@ and make it something like:</p>
 </code></pre>
 <p>But that method has a problem. First off, we need to make another whole data type <code>threethings</code>
 and making data types is <em>so <strong>not</strong> lit</em>. Another problem with this method is every single time
-we want to add another balloon, we have to make another variant, and a whole new data type. <em><strong>UGH</strong></em>.</p>
-<p>What if I told you <del>that you lived in a simulation</del> that there is a way to make a data definition that
-can hole <em>infinite</em> amounts of data.</p>
+we want to add another balloon, we have to make another variant, and a whole new data type.
+<em><strong>UGH</strong></em>.</p>
+<p>What if I told you <del>that you lived in a simulation</del> that there is a way to make a data definition
+that can hole <em>infinite</em> amounts of data.</p>
 <h2><a class="header" href="#recursive-data-structures" id="recursive-data-structures">Recursive data structures</a></h2>
-<p>You saw this coming if you read the title, but what you might not have known is what in the gosh darn
-is this fandangled recursion thing? Well, I can hit you with what my friend Merriam Webster says:</p>
+<p>You saw this coming if you read the title, but what you might not have known is what in the gosh
+darn is this fandangled recursion thing? Well, I can hit you with what my friend Merriam Webster
+says:</p>
 <pre><code class="language-none">recursion (noun)
 re·​cur·​sion | ri-ˈkər-zhən
     
@@ -969,22 +980,37 @@ for you to gander at</p>
 <p>And them &quot;unraveled&quot;</p>
 <pre><code class="language-scheme">(define NO-BALLOONS false)
 
-(define ONE-BALLOON (make-twothings (make-posn 10 20)
-                                    false))
+(define ONE-BALLOON
+  (make-twothings
+    (make-posn 10 20)
+    false))
 
-(define TWO-BALLOONS (make-twothings (make-posn 250 93)
-                                     (make-twothings (make-posn 10 20)
-                                                     false)))
+(define TWO-BALLOONS
+  (make-twothings
+    (make-posn 250 93)
+    (make-twothings
+      (make-posn 10 20)
+      false)))
 
-(define THREE-BALLOONS (make-twothings (make-posn 200 200)
-                                       (make-twothings (make-posn 250 93)
-                                                       (make-twothings (make-posn 10 20)
-                                                                       false))))
-(define FOUR-BALLOONS (make-twothings (make-posn 350 26)
-                                      (make-twothings (make-posn 200 200)
-                                                      (make-twothings (make-posn 250 93)
-                                                                      (make-twothings (make-posn 10 20)
-                                                                                      false)))))
+(define THREE-BALLOONS
+  (make-twothings
+    (make-posn 200 200)
+    (make-twothings
+      (make-posn 250 93)
+      (make-twothings
+        (make-posn 10 20)
+        false))))
+          
+(define FOUR-BALLOONS
+  (make-twothings
+    (make-posn 350 26)
+    (make-twothings
+      (make-posn 200 200)
+      (make-twothings
+        (make-posn 250 93)
+        (make-twothings
+          (make-posn 10 20)
+          false)))))
 </code></pre>
 <p>In the &quot;unraveled&quot; version — which by the way you should almost never type out by hand,
 always use the method shown above it, where you have each nested one get defined before it
@@ -992,9 +1018,9 @@ always use the method shown above it, where you have each nested one get defined
 It is worthy to note that all of them end in false. If there not a second, non recursive variant
 of our data type, we would never to be able to stop recursing, but since we have that second false
 variant, we are allowed to stop our data type with the false variant.</p>
-<p>Since we have now updated the data definition and its samples (the NO-BALLOONS - FOUR-BALLOONS above)
-we can move to the final step of the data defining process, which is to make our template. In our case,
-we just need to update our template.</p>
+<p>Since we have now updated the data definition and its samples (the NO-BALLOONS - FOUR-BALLOONS
+above) we can move to the final step of the data defining process, which is to make our template. In
+our case, we just need to update our template.</p>
 <p>Currently we have this:</p>
 <pre><code class="language-scheme">; BalloonGame -&gt; ???
 (define (balloon-game-template game)
@@ -1108,35 +1134,37 @@ which is much more similar to the mathematical notation you have learned before.
 6 / 2 # = 3
 </code></pre>
 <p>As well as the usual operators, python has a few others.</p>
-<p>In math class or when using a calculator, it is common to represent an exponent with the <code>^</code> character
-ex: <code>2^6</code> would represent 2 to the power of 6, but that is not the case in python. The <code>^</code> character
-already has a meaning as the <a href="https://en.wikipedia.org/wiki/Exclusive_or">XOR</a> operator, which does
-not matter for this class yet, but is important to note that python will not throw out code that uses
-the <code>^</code> character but will just produce a weird value. Instead, python uses 2 multiplicaation symbols
-to denote exponentiation: <code>**</code>. Some more examples are below.</p>
+<p>In math class or when using a calculator, it is common to represent an exponent with the <code>^</code>
+character ex: <code>2^6</code> would represent 2 to the power of 6, but that is not the case in python. The <code>^</code>
+character already has a meaning as the <a href="https://en.wikipedia.org/wiki/Exclusive_or">XOR</a> operator, which does not matter for this class yet, but
+is important to note that python will not throw out code that uses the <code>^</code> character but will just
+produce a weird value. Instead, python uses 2 multiplication symbols to denote exponentiation: <code>**</code>.
+Some more examples are below.</p>
 <pre><code class="language-python">2 ** 6 # = 64
 3 ** 3 # = 27
 </code></pre>
 <p>Sometimes when you divide, you might not care about the decimal or fractional portion of the result
-and for that use case, python has the double division <code>//</code> operator for &quot;integer division&quot; or division
-without decimals</p>
+and for that use case, python has the double division <code>//</code> operator for &quot;integer division&quot; or
+division without decimals</p>
 <pre><code class="language-python">2 // 16 # = 0
 10 // 8 # = 1
 </code></pre>
-<p>And when dividing you might only care about the remainder and for that, python has the modulo <code>%</code> operator.</p>
+<p>And when dividing you might only care about the remainder and for that, python has the modulo <code>%</code>
+operator.</p>
 <pre><code class="language-python">6 % 3 # = 0
 7 % 3 # = 1
 </code></pre>
 <h3><a class="header" href="#more-math" id="more-math">More Math</a></h3>
 <p>Sometimes you need more than just the simple operations and for that, python has the math library.
 The documentation for the math library can be found <a href="https://docs.python.org/3/library/math.html">on the official python docs</a>
-but python is a very popular language and is very easily google-able. Do not hesitate to use the internet
-whenever you need to reference some docs or look something up.</p>
-<p>In order to use libraries, you need to <code>import</code> them. To import the math library you would do as such:</p>
+but python is a very popular language and is very easily google-able. Do not hesitate to use the
+internet whenever you need to reference some docs or look something up.</p>
+<p>In order to use libraries, you need to <code>import</code> them. To import the math library you would do as
+such:</p>
 <pre><code class="language-python">import math
 </code></pre>
-<p>Functions from a library can be used by putting the library name, a dot, and then the name of the function.
-ex: <code>math.sin()</code> would be the sin function in the math library</p>
+<p>Functions from a library can be used by putting the library name, a dot, and then the name of the
+function. ex: <code>math.sin()</code> would be the sin function in the math library</p>
 <p>Here are a few useful but non-exhaustive list of the functions available from the math library.</p>
 <pre><code class="language-python"># Trig functions
 math.sin(math.pi) # = 0
@@ -1159,15 +1187,16 @@ math.log(100, 10) # = log_10(100) = 2
 math.log10(100) # = log_10(100) = 2
 math.log(100, 5) # = log_5(100) = 2.8613531161
 </code></pre>
-<p>Once again, the <a href="https://docs.python.org/3/library/math.html">docs</a> have an exhaustive list of all methods available from the library.</p>
+<p>Once again, the <a href="https://docs.python.org/3/library/math.html">docs</a> have an exhaustive list of all methods available from the
+library.</p>
 <h2><a class="header" href="#booleans" id="booleans">Booleans</a></h2>
 <p>Just like in scheme, we can also deal with true/false conditions or booleans. These are also used
 in python, although their names are capitalized:</p>
 <pre><code class="language-python">True
 False
 </code></pre>
-<p>Just like in scheme, we can also do logical operations with the booleans, such as <code>and</code> and <code>or</code> which
-are used much like they are in scheme, just in infix notation instead of prefix notation.</p>
+<p>Just like in scheme, we can also do logical operations with the booleans, such as <code>and</code> and <code>or</code>
+which are used much like they are in scheme, just in infix notation instead of prefix notation.</p>
 <pre><code class="language-python"># Logical and
 True and True # = True
 True and False # = False
@@ -1184,18 +1213,18 @@ False or False # = False
 not True # = False
 not False # = True
 </code></pre>
-<p>There is also a less common logical operation called <code>xor</code> or <code>eXclusive OR</code> which you may never have
-to use, but is good to know. It will return <code>True</code> if one and only one of the inputs is <code>True</code> which
-can be seen below.</p>
+<p>There is also a less common logical operation called <code>xor</code> or <code>eXclusive OR</code> which you may never
+have to use, but is good to know. It will return <code>True</code> if one and only one of the inputs is <code>True</code>
+which can be seen below.</p>
 <pre><code class="language-python">True ^ True # = False
 True ^ False # = True
 False ^ True # = True
 False ^ False # = False
 </code></pre>
 <h2><a class="header" href="#conditionals" id="conditionals">Conditionals</a></h2>
-<p>When dealing with numbers, we may want to check if some <em>condition</em> holds true. There are 2 different
-types of conditionals, equality and inequality. You may remember these from your math class, but if
-not here is a refresher.</p>
+<p>When dealing with numbers, we may want to check if some <em>condition</em> holds true. There are 2
+different types of conditionals, equality and inequality. You may remember these from your math
+class, but if not here is a refresher.</p>
 <p>Equality is the comparison of 2 exact numbers, such as <code>_ is equal to _</code> or <code>_ is not equal to _</code>.
 Equality can be expressed in python as such:</p>
 <pre><code class="language-python">1 == 2 # = False
@@ -1220,8 +1249,8 @@ Equality can be expressed in python as such:</p>
 </code></pre>
 <h2><a class="header" href="#strings" id="strings">Strings</a></h2>
 <p>Similarly to scheme, strings, which are just text, can be created using quotation marks (<code>&quot;</code>) aka
-double quotes. But unlike scheme python also lets you use apostrophes (<code>'</code>) aka single quotes to surround
-your text. Both act exactly the same.</p>
+double quotes. But unlike scheme python also lets you use apostrophes (<code>'</code>) aka single quotes to
+surround your text. Both act exactly the same.</p>
 <pre><code class="language-python">&quot;Strings can be defined using double quotes&quot;
 'or using single quotes'
 </code></pre>
@@ -1235,25 +1264,25 @@ your text. Both act exactly the same.</p>
 around your string, signal to the language that everything inside of it is text, but when the text
 contains the same quote you used to tell the language about the text, the language will mistakenly
 see it as you ending the string.</p>
-<p>You can see this in the syntax highlighting (coloring) of the code below changing after that quote, meaning
-that python would not read this how we wanted.</p>
+<p>You can see this in the syntax highlighting (coloring) of the code below changing after that quote,
+meaning that python would not read this how we wanted.</p>
 <pre><code class="language-python">&quot;They're having a lot of fun and yelling &quot;yippee&quot;&quot;
 'They're having a lot of fun and yelling &quot;yippee&quot;'
 </code></pre>
-<p>To get around this issue, we can use what is called &quot;escaping quotes&quot;. If you want to use the character
-tha you used to make a string (ie. <code>'</code> inside a single quoted string or <code>&quot;</code> inside a double quoted string)
-you can put a backslash <code>\</code> character in front of it to tell the language to treat it as part of the
-string.</p>
+<p>To get around this issue, we can use what is called &quot;escaping quotes&quot;. If you want to use the
+character that you used to make a string (ie. <code>'</code> inside a single quoted string or <code>&quot;</code> inside a
+double quoted string) you can put a backslash <code>\</code> character in front of it to tell the language to
+treat it as part of the string.</p>
 <pre><code class="language-python">'They\'re having a lot of fun and yelling &quot;yippee&quot;'
 &quot;They're having a lot of fun and yelling \&quot;yippee\&quot;&quot;
 </code></pre>
-<p>Note the colors staying the same throughout the string. Both strings above are exactly equal, the only
-difference is what quote we are using.</p>
+<p>Note the colors staying the same throughout the string. Both strings above are exactly equal, the
+only difference is what quote we are using.</p>
 <p>Sometimes it is useful to combine 2 strings, and python allows us to do so using the <code>+</code> operator.</p>
 <pre><code class="language-python">&quot;Hello&quot; + &quot;world&quot; # = &quot;Helloworld&quot;
 </code></pre>
-<p>We may also want to create a string that has multiple lines of text. We can do so using a multiline strings
-which are defined using 3 double quotes</p>
+<p>We may also want to create a string that has multiple lines of text. We can do so using a multiline
+strings which are defined using 3 double quotes</p>
 <pre><code class="language-python">&quot;&quot;&quot;Hello there
 this string
 spans across
@@ -1266,10 +1295,10 @@ multiple lines :D&quot;&quot;&quot;
 <h2><a class="header" href="#comments" id="comments">Comments</a></h2>
 <p>A lot of the time, code is complicated.
 <a href="https://www.quora.com/Why-is-reading-code-much-harder-than-writing-it-How-can-I-read-code-and-understand-what-the-code-actually-is-doing-in-Python-to-be-precise">Reading code is 2x harder than writing that same code.</a>
-To help ourselves with our programming, programming languages have comments, or lines/sections of code
-that are not read by the language, but instead by the programmer. I have been using comments in these
-notes with notes and information on what is in the code that I am showing you. These comments are denoted
-by a different, dimmer color than the rest of the code.</p>
+To help ourselves with our programming, programming languages have comments, or lines/sections of
+code that are not read by the language, but instead by the programmer. I have been using comments in
+these notes with notes and information on what is in the code that I am showing you. These comments
+are denoted by a different, dimmer color than the rest of the code.</p>
 <p>Comments in python are denoted using the pound sign <code>#</code> aka hash or hashtag.</p>
 <pre><code class="language-python"># Cool single line comment
 </code></pre>
@@ -1283,7 +1312,7 @@ Weird whacky multiline string acting as a
 multiline comment
 &quot;&quot;&quot;
 </code></pre>
-<p>But it is probably better to just use multiple comments, one per line <sup>(like a sane person)</sup></p>
+<p>But it is probably better to just use multiple comments, one per line <sup>like a sane person</sup></p>
 <pre><code class="language-python"># Or just use
 # Multiple lines of these
 # Like a sane human being
@@ -1292,11 +1321,12 @@ multiline comment
 <p>You cant have a programming lesson without a bit of fun, so here is our fun for this lesson. We get
 to draw! yaay woot woot.... Just me? ok...</p>
 <p>In python, we can use the turtle library. The documentation for the turtle library can be found
-<a href="https://docs.python.org/3/library/turtle.html">on the official python docs</a> Just like with the math library, we have to <code>import</code>
-the library to use it.</p>
+<a href="https://docs.python.org/3/library/turtle.html">on the official python docs</a> Just like with the math library, we have to
+<code>import</code> the library to use it.</p>
 <pre><code class="language-python">import turtle
 </code></pre>
-<p>With all good art, we need color, so we can go ahead and set the color of the turtle with the color method</p>
+<p>With all good art, we need color, so we can go ahead and set the color of the turtle with the color
+method</p>
 <pre><code class="language-python">turtle.color('red', 'yellow')
 </code></pre>
 <p>To move the turtle, we have 2 options. We can either move in a direction, ie <code>forward</code>, <code>backward</code>,
@@ -1318,7 +1348,8 @@ turtle.penup()
 turtle.pencolor('red')
 turtle.pendown()
 </code></pre>
-<p>Once again, the <a href="https://docs.python.org/3/library/math.html">docs</a> have an exhaustive list of all methods available from the library.</p>
+<p>Once again, the <a href="https://docs.python.org/3/library/math.html">docs</a> have an exhaustive list of all methods available from the
+library.</p>
 <p>Remember, python is very google-able, please feel free to google to your heart's content.</p>
 <h2><a class="header" href="#too-long-didnt-read-4" id="too-long-didnt-read-4">Too Long; Didn't Read</a></h2>
 <p>If you want an abridged version, you can look at just the code that I have gone over
@@ -1337,18 +1368,19 @@ turtle.left(90)
 turtle.forward(150)
 turtle.done()
 </code></pre>
-<p>We can see that our code is very repetitive. We call <code>turtle.forward</code> 4 times and <code>turtle.left</code> 3 times.
-We also give them all the same values to the functions over and over. We can start by getting rid of
-the same value over and over and over again using constants, much like we have with scheme.</p>
+<p>We can see that our code is very repetitive. We call <code>turtle.forward</code> 4 times and <code>turtle.left</code> 3
+times. We also give them all the same values to the functions over and over. We can start by getting
+rid of the same value over and over and over again using constants, much like we have with scheme.</p>
 <p>Constants in python are defined with all caps names and our constants would look something like</p>
 <pre><code class="language-python">SIZE = 150
 ANGLE = 90
 </code></pre>
-<p>Just like in scheme, we use all caps for our constants to show that they will never change. If we wanted
-to have a constant with spaces in its name, we would write it like such</p>
+<p>Just like in scheme, we use all caps for our constants to show that they will never change. If we
+wanted to have a constant with spaces in its name, we would write it like such</p>
 <pre><code class="language-python">THIS_IS_MY_CONSTANT = &quot;hello&quot;
 </code></pre>
-<p>And now that we have these constants defined, we can replace the numbers in our code with these constants</p>
+<p>And now that we have these constants defined, we can replace the numbers in our code with these
+constants</p>
 <pre><code class="language-python">turtle.forward(SIZE)
 turtle.left(ANGLE)
 turtle.forward(SIZE)
@@ -1362,33 +1394,34 @@ turtle.done()
 draw a different size. The code is still repetitive though. If we wanted to draw 2 squares, we would
 have 14 lines of code. bruh :(. Instead, we can use</p>
 <h2><a class="header" href="#functions" id="functions">Functions</a></h2>
-<p>Functions, which you are hopefully familiar with from scheme, are tools that allow us to group blocks
-of code together which we can run and even give values to. In python, we follow the same steps as in
-scheme when defining a function.</p>
+<p>Functions, which you are hopefully familiar with from scheme, are tools that allow us to group
+blocks of code together which we can run and even give values to. In python, we follow the same
+steps as in scheme when defining a function.</p>
 <ul>
 <li>Signature</li>
 <li>Purpose/Description</li>
 <li><del>Tests</del></li>
 <li>Actual Function Body</li>
 </ul>
-<p>Ok, we do all of them <em>except</em> tests. I know, it is so sad. They were my favorite part of programming
-too.</p>
-<p>Now that we have that out of the way, we can move our code into a function. We start with the signature.
-Since this function is drawing a square, I think we should name it <code>draw_triangle</code>. No? Ok... I guess
-we can call it <code>draw_square</code>. And we want our function to take in the size of the square so that we
-can use it for <sub>small</sub> and <strong>big</strong> squares. Our function's signature would look something like</p>
+<p>Ok, we do all of them <em>except</em> tests. I know, it is so sad. They were my favorite part of
+programming too.</p>
+<p>Now that we have that out of the way, we can move our code into a function. We start with the
+signature. Since this function is drawing a square, I think we should name it <code>draw_triangle</code>. No?
+Ok... I guess we can call it <code>draw_square</code>. And we want our function to take in the size of the
+square so that we can use it for <sub>small</sub> and <strong>big</strong> squares. Our function's signature
+would look something like</p>
 <pre><code class="language-python"># draw_square : Number -&gt; Image
 </code></pre>
-<p>Although, yes, this function does not <code>return</code> an image per se, we will still put it down as such, to
-clarify that the function will create an image on the screen. We will get into what it means for a function
-to actually return a value later.</p>
+<p>Although, yes, this function does not <code>return</code> an image per se, we will still put it down as such,
+to clarify that the function will create an image on the screen. We will get into what it means for
+a function to actually return a value later.</p>
 <p>And now we can add our very, very complex description or purpose statement whatever you prefer.</p>
 <pre><code class="language-python"># draw_square : Number -&gt; Image
 # Draws a square of the given size
 </code></pre>
 <p>Now that we have the documentation out of the way, we can move onto the actual body of the function.
-The function will basically be a copy and paste of our above code with some parts added to tell python
-that it is a function.</p>
+The function will basically be a copy and paste of our above code with some parts added to tell
+python that it is a function.</p>
 <pre><code class="language-python"># draw_square : Number -&gt; Image
 # Draws a square of the given size
 def draw_square(size):
@@ -1413,14 +1446,14 @@ draw_square # The name of our function
 constant size that we defined before and instead are allowing us to specify the size of the square
 when we call the function</p>
 <blockquote>
-<p>Python is what is called a &quot;whitespace language&quot; meaning that what the code means is heavily dependant
-on the whitespace in the code.</p>
+<p>Python is what is called a &quot;whitespace language&quot; meaning that what the code means is heavily
+dependant on the whitespace in the code.</p>
 <blockquote>
 <p>Whitespace is a character that you can not see such as space or tab</p>
 </blockquote>
-<p>because of this, the indentation of your code matters. To specify that the code above is part of the
-function, it needed to be indented one time. If we now wanted to write more code after, but not inside
-of the function, we would have to un-indent the code which would look like so</p>
+<p>because of this, the indentation of your code matters. To specify that the code above is part of
+the function, it needed to be indented one time. If we now wanted to write more code after, but not
+inside of the function, we would have to un-indent the code which would look like so</p>
 </blockquote>
 <pre><code class="language-python"># draw_square : Number -&gt; Image
 # Draws a square of the given size
@@ -1441,9 +1474,9 @@ draw_square(300)
 turtle.done()
 </code></pre>
 <blockquote>
-<p>Unlike in scheme where you can call/use a function from anywhere, in python, you must define a function
-before you are able to use it, much like variables or constants. So the above code would have to appear
-below the function we have made</p>
+<p>Unlike in scheme where you can call/use a function from anywhere, in python, you must define a
+function before you are able to use it, much like variables or constants. So the above code would
+have to appear below the function we have made</p>
 </blockquote>
 <h2><a class="header" href="#designing-a-square-root-function" id="designing-a-square-root-function">Designing a square root function</a></h2>
 <p>Now that we have designed a simple function, we get to do another one! yay!</p>
@@ -1466,15 +1499,15 @@ below the function we have made</p>
 <ul>
 <li>Actual Function Body</li>
 </ul>
-<p>To make the function, we need to remember how to take a square root. If you remember from math class,
-a square root is the same as raising something to the power of <code>1/2</code>, we can express that in python
-with the following</p>
+<p>To make the function, we need to remember how to take a square root. If you remember from math
+class, a square root is the same as raising something to the power of <code>1/2</code>, we can express that in
+python with the following</p>
 <pre><code class="language-python">def square_root(n):
     n**(1/2)
 </code></pre>
 <p>If you remember back to the introduction, the <code>**</code> operator raises the number on the left to the
-exponent on the right, so in this case, we are raising n to the power of <code>1/2</code> where n is the inputted
-value to our function</p>
+exponent on the right, so in this case, we are raising n to the power of <code>1/2</code> where n is the
+inputted value to our function</p>
 <p>Unlike scheme, python does not return anything from the function unless you explicitly tell it to
 <code>return</code> the value. That is because in python, you can run multiple lines of code per function where
 as scheme had you nest all of the function calls inside each other.</p>
@@ -1493,9 +1526,10 @@ def square_root(n):
 </code></pre>
 <p>But how to we show out this information to us? Im not too sure, but I have heard a bit about</p>
 <h2><a class="header" href="#printing-values-to-the-console" id="printing-values-to-the-console">Printing Values to the Console</a></h2>
-<p>Python provides a function to us called print that will print out all of its arguments. This function
-is a bit different than the ones that we have wrote so far in that it can take 0 or 100 inputs. Print
-will print out all of the inputs given to it. We use it like any other function that we have before</p>
+<p>Python provides a function to us called print that will print out all of its arguments. This
+function is a bit different than the ones that we have wrote so far in that it can take 0 or 100
+inputs. Print will print out all of the inputs given to it. We use it like any other function that
+we have before</p>
 <pre><code class="language-python">print(&quot;hello&quot;)
 print(&quot;hello&quot;, 7, False, 32)
 print(square_root(100))
@@ -1503,17 +1537,17 @@ print(square_root(100))
 <blockquote>
 <p>Watch out! Although python is very google-able, there are 2 different versions of python: Python 2
 and Python 3. There are a few syntax and other changes between these versions, one of these is the
-layout of the print function. In Python 2, you would write <code>print &quot;hello&quot;</code> to print the string hello.
-In the newer Python 3 that we use, we need to put parenthesis around the inputs to all functions, so
-we would write <code>print(&quot;hello&quot;)</code>. <strong>If you ever see the old way of printing, look around for a newer
-source since the source you are using may be outdated, or just replace the old style of prints with
-the new style.</strong></p>
+layout of the print function. In Python 2, you would write <code>print &quot;hello&quot;</code> to print the string
+hello. In the newer Python 3 that we use, we need to put parenthesis around the inputs to all
+functions, so we would write <code>print(&quot;hello&quot;)</code>. <strong>If you ever see the old way of printing, look
+around for a newer source since the source you are using may be outdated, or just replace the old
+style of prints with the new style.</strong></p>
 </blockquote>
 <h2><a class="header" href="#returning-nothing" id="returning-nothing">Returning Nothing</a></h2>
-<p>When writing a function, we may want to not return anything from it since we might print to the console
-or draw using a turtle. In that case, we need to mark the function as returning <code>(void)</code>.</p>
-<p>We will use a simple function that prints a greeting to the name that is given ie. <code>print_greeting(&quot;Zach&quot;)</code>
-would print <code>Hello Zach</code> to the console as an example for this.</p>
+<p>When writing a function, we may want to not return anything from it since we might print to the
+console or draw using a turtle. In that case, we need to mark the function as returning <code>(void)</code>.</p>
+<p>We will use a simple function that prints a greeting to the name that is given ie.
+<code>print_greeting(&quot;Zach&quot;)</code> would print <code>Hello Zach</code> to the console as an example for this.</p>
 <p>The function signature and usage would look as follows</p>
 <pre><code class="language-python"># print_greeting : String -&gt; (void)
 # Prints a greeting to the given person
@@ -1523,8 +1557,8 @@ def print_greeting(name):
 print_greeting(&quot;Alice&quot;) # prints &quot;Hello Alice&quot;
 </code></pre>
 <blockquote>
-<p>Make note of the un-indentation of the last line, meaning that it is not inside of the function above
-it.</p>
+<p>Make note of the un-indentation of the last line, meaning that it is not inside of the function
+above it.</p>
 </blockquote>
 <p>The main change we have made is the return type being <code>(void)</code> to tell us that this function returns
 nothing.</p>
@@ -1596,9 +1630,10 @@ print(x)
 <summary>Click for the answer</summary>
 <p>This would print out 10.</p>
 <p>The x in the function and the x in the code outside of the function are not the same variable. Yes
-they have the same name, but the one inside of the function could just as well be named <code>n</code> or <code>jeff</code>.</p>
-<p>The variables that are passed to a function cannot be modified by the function. But they can modify the
-data in the function themselves.</p>
+they have the same name, but the one inside of the function could just as well be named <code>n</code> or
+<code>jeff</code>.</p>
+<p>The variables that are passed to a function cannot be modified by the function. But they can modify
+the data in the function themselves.</p>
 <p>If we wanted to actually give the changed value back to the code that called this function, we would
 need to return it back out.</p>
 <pre><code class="language-python"># change_number : Number -&gt; Number
@@ -1678,8 +1713,129 @@ x = 10
 print(x)
 </code></pre>
 <ul>
-<li>Inside of a function, variables do not modify the variables that were passed in (see <a href="python/constants-functions.html#mutation-madness">Mutation Madness</a>)</li>
+<li>Inside of a function, variables do not modify the variables that were passed in
+(see <a href="python/constants-functions.html#mutation-madness">Mutation Madness</a>)</li>
 </ul>
+<h1><a class="header" href="#lists" id="lists">Lists</a></h1>
+<p><a href="python/lists.html#too-long-didnt-read">Jump to TL;DR (summary)</a></p>
+<p>Lists in python are very simple to create. They are specified by a square bracket <code>[</code>, a comma
+separated list of the data you would like, and a closing square bracket <code>]</code>. Below are a few
+examples of lists.</p>
+<pre><code class="language-python">MY_FIRST_LIST = [0, 1, 2]
+MY_SECOND_LIST = [&quot;Joe&quot;, &quot;Fred&quot;, &quot;Hubert&quot;]
+</code></pre>
+<p>Lists alone are pretty cool, but we sometimes might want to get a single value from a list.
+To do so, we need to use some more square brackets. This time, our square brackets go after the name
+of the list, and within them is the <code>index</code> of the value we want.</p>
+<p>If I had a list <code>MY_LIST</code> and wanted to get the 2nd element, I would write <code>MY_LIST[1]</code>. And yes,
+that is not a typo, you use the number 1 to refer to the 2nd element. Why is that? Well it has to do
+with a whole lot of how computers work, but the main thing to remember is that <code>1</code> is not the first
+element, <code>0</code> is.</p>
+<blockquote>
+<p>Lists in python are what are called 0 indexed lists, or their first value has the index of 0</p>
+</blockquote>
+<p>Here is another example of getting data from a list</p>
+<pre><code class="language-python">FRUIT_WORDS = [&quot;apple&quot;, &quot;bananna&quot;, &quot;cherry&quot;]
+
+print(FRUIT_WORDS[0]) # Prints &quot;apple&quot;
+print(FRUIT_WORDS[1]) # Prints &quot;bananna&quot;
+print(FRUIT_WORDS[2]) # Prints &quot;cherry&quot;
+</code></pre>
+<h2><a class="header" href="#mutation-1" id="mutation-1">Mutation</a></h2>
+<p>Just having a list of items is cool, but what if we want to change what is in the list? Well that is
+where list mutation comes into play.</p>
+<p>There are a few ways we can mutate a list. We can change the value stored in one of the indexes,
+like so</p>
+<pre><code class="language-python">fruit_words = [&quot;apple&quot;, &quot;bananna&quot;, &quot;cherry&quot;]
+
+FRUIT_WORDS[1] = &quot;berries&quot; # Changes &quot;bananna&quot; to &quot;berries&quot;
+
+print(FRUIT_WORDS[1]) # Prints &quot;berries&quot;
+</code></pre>
+<blockquote>
+<p>Note how the list's name is <code>lower_snake_case</code> instead of <code>UPPER_SNAKE_CASE</code> since it is mutable
+or not constant</p>
+</blockquote>
+<p>Or, we can add items to the end of the list, with the <code>append</code> method</p>
+<pre><code class="language-python">my_list = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+my_list.append(&quot;d&quot;)
+print(my_list) # Prints &quot;['a', 'b', 'c', 'd']&quot;
+</code></pre>
+<blockquote>
+<p><code>print</code> can print out whole lists for us which is useful for making sure the list has what we
+think it has in it</p>
+</blockquote>
+<p>As well as adding items to lists, we can remove items.</p>
+<pre><code class="language-python">my_list.remove(&quot;b&quot;)
+print(my_list) # Prints &quot;['a', 'c', 'd']&quot;
+</code></pre>
+<blockquote>
+<p><strong>WATCH OUT</strong> <code>remove</code> takes in the value to remove, not the index</p>
+</blockquote>
+<h2><a class="header" href="#length" id="length">Length</a></h2>
+<p>We all know the size of your list is not what matters, but instead how you use it. Sometimes it is
+useful to know its length every once and a while though. Luckily for us, python provides a handy
+dandy <code>len</code> function, the same one we have been using to get the length of a string.</p>
+<pre><code class="language-python">FRUIT_WORDS = [&quot;apple&quot;, &quot;bananna&quot;, &quot;cherry&quot;]
+
+print(len(FRUIT_WORDS)) # Prints &quot;3&quot;
+</code></pre>
+<h2><a class="header" href="#looping" id="looping">Looping</a></h2>
+<p>Sometimes, just getting one element is not enough for us, and instead we want to do something with
+or to the whole list. To do so, we can use a loop to go over each element of the list, and do
+something. The simplest thing to do is to just print out each element in a list.</p>
+<pre><code class="language-python">FRUIT_WORDS = [&quot;apple&quot;, &quot;bananna&quot;, &quot;cherry&quot;]
+
+for fruit in FRUIT_WORDS:
+    print(fruit) # Will print each name in the list
+</code></pre>
+<p>We might also want to produce a single value based on all the items in the list, such as a sum.
+Let's make a function to calculate the sum of a list of numbers. Its signature would look as such:</p>
+<pre><code class="language-python"># sum : ListOfNumbers -&gt; Number
+# Sums up all the numbers in a list of numbers
+def sum(list_of_numbers):
+</code></pre>
+<p>Since we need a place to store our sum, we will create a variable and call it <code>result</code></p>
+<pre><code class="language-python">    result = 0 # We start with a sum of 0
+</code></pre>
+<p>And then we can loop over every element</p>
+<pre><code class="language-python">    for n in list_of_numbers: # Loop over every number `n` in the list
+        result += n # Add the current number to the sum
+</code></pre>
+<p>And then finally, we can return the result, leaving us with</p>
+<pre><code class="language-python"># sum : ListOfNumbers -&gt; Number
+# Sums up all the numbers in a list of numbers
+def sum(list_of_numbers):
+    result = 0 # We start with a sum of 0
+
+    for n in list_of_numbers: # Loop over every number `n` in the list
+        result += n # Add the current number to the sum
+
+    # Note the un-indentation, since this return is outside of the for loop
+    # If the return was inside of the for loop, the function would return the
+    # sum after only adding the first value, basically returning the first value
+    return result # Give the result to the caller
+</code></pre>
+<p>If we were to use our function, we could do so as such:</p>
+<pre><code class="language-python">sum([0, 2, 3, 4]) # = 9
+sum([6]) # = 6
+sum([15, 21, 55]) # = 91
+</code></pre>
+<h2><a class="header" href="#example-counting" id="example-counting">Example: Counting</a></h2>
+<pre><code class="language-python"># count_big_strings : ListOfStrings -&gt; Nat
+# Count the number of strings that have at least 10 letters
+def count_big_strings(list_of_strings):
+    count = 0 # We have 0 big strings by default
+
+    for s in list_of_strings: # Loop over every string `s` in the list
+        if len(s) &gt;= 10: # This will check if the condition is true
+            count += 1 # And run this code if it is true, hence the name
+    
+    return count # Return the result, outside of the for and if statement
+</code></pre>
+<h2><a class="header" href="#too-long-didnt-read-6" id="too-long-didnt-read-6">Too Long; Didn't Read</a></h2>
+<p>If you want an abridged version, you can look at just the code that I have gone over
+<a href="https://github.com/DusterTheFirst/ecs-notes/tree/main/src/python/lists.py">here</a></p>
 <h1><a class="header" href="#ecs-help-sheet" id="ecs-help-sheet">ECS Help Sheet</a></h1>
 <table><thead><tr><th align="center">Designing Data</th><th align="center">Designing Functions</th></tr></thead><tbody>
 <tr><td align="center">Data Definition - what kind of data is allowed</td><td align="center">Signature - what kind of data goes in and what kind of data comes out?</td></tr>

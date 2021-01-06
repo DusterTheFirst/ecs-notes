@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Welcome</a></li><li class="spacer"></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.</strong> Scheme</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../scheme/2020-10-13.html"><strong aria-hidden="true">1.1.</strong> Unions and data design (October 13 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-10-14.html" class="active"><strong aria-hidden="true">1.2.</strong> Text Editor v2 (October 14, 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-10-19.html"><strong aria-hidden="true">1.3.</strong> Text Editor v2 contd. (October 19, 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-12-1.html"><strong aria-hidden="true">1.4.</strong> Recursion and balloon game (December 1, 2020)</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Python</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../python/introduction.html"><strong aria-hidden="true">2.1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../python/constants-functions.html"><strong aria-hidden="true">2.2.</strong> Constants and Functions</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><a href="../help-sheet.html">ECS Help Sheet</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Welcome</a></li><li class="spacer"></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.</strong> Scheme</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../scheme/2020-10-13.html"><strong aria-hidden="true">1.1.</strong> Unions and data design (October 13 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-10-14.html" class="active"><strong aria-hidden="true">1.2.</strong> Text Editor v2 (October 14, 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-10-19.html"><strong aria-hidden="true">1.3.</strong> Text Editor v2 contd. (October 19, 2020)</a></li><li class="chapter-item expanded "><a href="../scheme/2020-12-1.html"><strong aria-hidden="true">1.4.</strong> Recursion and balloon game (December 1, 2020)</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Python</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../python/introduction.html"><strong aria-hidden="true">2.1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../python/constants-functions.html"><strong aria-hidden="true">2.2.</strong> Constants and Functions</a></li><li class="chapter-item expanded "><a href="../python/lists.html"><strong aria-hidden="true">2.3.</strong> Lists</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><a href="../help-sheet.html">ECS Help Sheet</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -199,7 +199,8 @@ function.</p>
 <pre><code class="language-scheme">(address false &quot;hello&quot; 2 -7 true)
 </code></pre>
 <blockquote>
-<p>Notice that this does not match our comment, but scheme cant read our comment, so it doesn't know better.</p>
+<p>Notice that this does not match our comment, but scheme cant read our comment, so it doesn't know
+better.</p>
 </blockquote>
 <p>To make sure that we match our address definition, we can make some samples and a more detailed
 description of the structure.</p>
@@ -283,8 +284,8 @@ create a template for us to use later.</p>
 </code></pre>
 <blockquote>
 <p>Notice how in this template, we also use the address-template. That is because the house
-member of the <code>student</code> structure is an <code>address</code> structure, so we need to use the tools from the address-template
-to get the data out of the address</p>
+member of the <code>student</code> structure is an <code>address</code> structure, so we need to use the tools from the
+<code>address-template</code> to get the data out of the address</p>
 </blockquote>
 <h2><a class="header" href="#using-a-structure-in-a-function" id="using-a-structure-in-a-function">Using a structure in a function</a></h2>
 <p>What if we want to use our new fandangled structure in a function? Well, lets try it out!
@@ -352,9 +353,10 @@ that the gradyr is now one more than the given</p>
 <blockquote>
 <p>Looks normal, and it is, all that changes is the zip code. This should be easy, right?</p>
 </blockquote>
-<p>Well yes, but we have a lot of writing to do. We can define our function, copying the student template,
-but, we cant just update the zip by replacing the last parameter with a new zip code, cause it takes
-in a whole structure. We need to make another function that can update the zip in the structure for us.</p>
+<p>Well yes, but we have a lot of writing to do. We can define our function, copying the student
+template, but, we cant just update the zip by replacing the last parameter with a new zip code,
+cause it takes in a whole structure. We need to make another function that can update the zip in the
+structure for us.</p>
 <blockquote>
 <p>Whenever you write a function, try to keep it limited to using only one data type at a time. In
 our case, we only use the student structure in this function, and we will make another <code>update-zip</code>
@@ -394,9 +396,9 @@ zip with the new zip</p>
 <h2><a class="header" href="#tying-it-together-into-a-text-editor" id="tying-it-together-into-a-text-editor">Tying it together into a text editor</a></h2>
 <p>Now that we have learned to use structures, we can put them to good use. We can use them in our
 text editor. Remember when we had our text editor, it could type and delete, but you could not move
-the cursor around. That was because our world state was a single string: The text that was in the editor.
-We had no way of storing the cursor position. Well, using these new hot structures that we have learned
-about, that is all about to change.</p>
+the cursor around. That was because our world state was a single string: The text that was in the
+editor. We had no way of storing the cursor position. Well, using these new hot structures that we
+have learned about, that is all about to change.</p>
 <p>So. first thing you do with any data type, function, or struct is a simple, one line comment
 describing it. In our case, we will make a structure called <code>TextEditor</code> or <code>te</code> for short with the
 text and cursor position as members. We can write this out in a comment like so:</p>
@@ -454,7 +456,8 @@ to access an address's st(reet), we can use the helper function <code>(address-s
 </li>
 <li>
 <p>When using structures in a function, only access one data type at a time, make different functions
-for deeply nested data, such as the address inside of the student <a href="#changing-the-zip-code">see: Changing the zip code</a></p>
+for deeply nested data, such as the address inside of the student
+<a href="#changing-the-zip-code">see: Changing the zip code</a></p>
 </li>
 <li>
 <p>ALL DATA IN SCHEME IS IMMUTABLE (unable to be mutated (changed))</p>
