@@ -12,6 +12,7 @@
 - [Python]()
     - [Introduction](./python/introduction.md)
     - [Constants and Functions](./python/constants-functions.md)
+    - [Lists](./python/lists.md)
 
 ---
 

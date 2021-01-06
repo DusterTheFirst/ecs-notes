@@ -26,3 +26,16 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./book/html
           publish_branch: rendered
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js 10
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10
+
+      - run: yarn global install markdownlint-cli2
+
+      - run: markdownlint-cli2 **/*.md

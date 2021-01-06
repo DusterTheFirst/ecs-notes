@@ -6,7 +6,6 @@ src = "src"
 title = "ECS Notes"
 
 [build]
-create-missing = false
 
 [output.html]
 default-theme = "navy"
