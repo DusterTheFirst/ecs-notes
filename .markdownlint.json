@@ -14,5 +14,6 @@
     },
     "MD007": {
         "indent": 4
-    }
+    },
+    "no-empty-links": false
 }
