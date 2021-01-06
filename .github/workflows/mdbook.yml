@@ -36,6 +36,6 @@ jobs:
         with:
           node-version: 10
 
-      - run: yarn global install markdownlint-cli2
+      - run: yarn global add markdownlint-cli2
 
       - run: markdownlint-cli2 **/*.md
