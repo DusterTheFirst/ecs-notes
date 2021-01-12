@@ -258,7 +258,7 @@ below.
 {{#include introduction.py:162:165}}
 ```
 
-Once again, the [docs][python-math-docs] have an exhaustive list of all methods available from the
+Once again, the [docs][python-turtle-docs] have an exhaustive list of all methods available from the
 library.
 
 Remember, python is very google-able, please feel free to google to your heart's content.
