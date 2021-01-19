@@ -15,7 +15,7 @@
     - [Lists](./python/lists.md)
     - [Conditionals and Returns]()
     - [Loops](./python/loops.md)
-    - [User inputs and randomness]()
+    - [User inputs and randomness](./python/input-random.md)
 
 ---
 
