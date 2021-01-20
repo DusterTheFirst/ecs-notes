@@ -29,3 +29,26 @@ f = open("testing.txt", "r")
 
 for line in f:
     print(line)
+
+# Closing files when done
+f.close()
+
+
+
+# Writing to files
+f = open("hello.txt", "w")
+f.write("hello\ngoodbye") # Writes 2 lines, hello and goodbye to the file
+f.close()
+
+# Watch out, w mode will clear the file when it is opened
+# Instead, if you want to add to the file, you want "a" mode
+
+f = open("hello.txt", "a")
+f.write("hello\n") # Add hello to the end of the file
+f.close()
+
+# Sometimes we want to read and write to the file
+
+f = open("hello.txt", "r+")
+f.write(f.read() + "hello\n") # Writes to the file its existing contents, plus hello
+f.close()
