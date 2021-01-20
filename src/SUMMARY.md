@@ -13,9 +13,10 @@
     - [Introduction](./python/introduction.md)
     - [Constants and Functions](./python/constants-functions.md)
     - [Lists](./python/lists.md)
-    - [Conditionals and Returns]()
+    - [Conditionals and Returns](./python/conditionals-returns.md)
     - [Loops](./python/loops.md)
     - [User inputs and randomness](./python/input-random.md)
+    - [Files](./python/files.md)
 
 ---
 

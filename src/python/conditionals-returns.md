@@ -1,4 +1,4 @@
-# Loops
+# Files
 
 [Jump to TL;DR (summary)](#too-long-didnt-read)
 
@@ -11,4 +11,4 @@ this page, please email me at `21kohnenz@wpsraiders.org`
 If you want an abridged version, you can look at just the code that I have gone over
 [here][python-code]
 
-[python-code]: https://github.com/DusterTheFirst/ecs-notes/tree/main/src/python/loops.py
+[python-code]: https://github.com/DusterTheFirst/ecs-notes/tree/main/src/python/conditionals-returns.py
